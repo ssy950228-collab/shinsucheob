@@ -146,7 +146,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
     <button id="lockCancel" type="button" class="hidden w-full text-sm text-slate-500">취소</button>
     <button id="lockSkip" type="button" class="hidden w-full text-xs text-slate-500 hover:text-slate-800">비밀번호 없이 사용</button>
     <button id="lockReset" type="button" class="hidden w-full text-xs text-slate-400 hover:text-red-600">비밀번호를 잊으셨나요? 초기화</button>
-    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 결석계 묶음 · 명단 자유양식 · 비번 저장 · 기록 엑셀 · 학급시간표 v2 · 글씨+2pt · 넓은 화면 · 홈 접기 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기</p>
+    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 결석계 묶음 · 명단 자유양식 · 비번 저장 · 기록 엑셀 · 학급시간표 v2 · 글씨+2pt · 넓은 화면 · 홈 접기 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기 · 사진 인쇄 · 자동 보관함 · 연동 표시 · 연동 상태표 · 기록 연동 버튼 · 등교일 기준</p>
   </form>
 </div>
 
@@ -172,7 +172,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="gong">📑 공문 작성</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="counsel">💬 상담 관리자</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="records">🎒 학생 기록 관리</button>
-    <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="pass">🎫 조퇴증 발급</button>
+    <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="pass">🎫 조퇴/외출증 발급</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="seat">🪑 자리 배치</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="absent">📄 결석신고서</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="gicho">🌱 기초조사서</button>
@@ -374,6 +374,12 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
 
   <!-- 기록 작성 -->
   <section id="tab-rec" class="tab-panel hidden">
+    <div class="rounded-xl border border-sky-200 bg-sky-50 px-4 py-2.5 mb-3 flex items-center gap-3 flex-wrap text-sm">
+      <b class="whitespace-nowrap">☁️ 기록 연동</b>
+      <label class="flex items-center gap-1.5 whitespace-nowrap"><input type="checkbox" id="recSyncOn" class="w-4 h-4"> 작성한 기록도 함께 연동</label>
+      <button id="recSyncBtn" type="button" class="bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg px-4 py-1.5 whitespace-nowrap">☁️ 지금 동기화</button>
+      <span id="recSyncState" class="text-xs text-slate-600 flex-1 min-w-[180px]"></span>
+    </div>
     <div class="bg-white rounded-xl border border-slate-200 p-5 space-y-3">
       <div id="recTypes" class="flex gap-2 flex-wrap"></div>
       <div id="recSubRow" class="hidden flex gap-2 flex-wrap items-center">
@@ -671,6 +677,9 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
           <label class="text-sm">시작일<input id="asFrom" type="date" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
           <label class="text-sm">종료일<input id="asTo" type="date" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
           <button id="asAll" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">전체 기간</button>
+          <label class="text-sm flex items-center gap-1.5 whitespace-nowrap"><input type="checkbox" id="asWeek" checked class="w-4 h-4"> 주말 빼기</label>
+          <label class="text-sm flex items-center gap-1.5 whitespace-nowrap"><input type="checkbox" id="asHoli" checked class="w-4 h-4"> 공휴일·휴업일 빼기</label>
+          <button id="asHoliEdit" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">🗓️ 쉬는 날 직접 넣기</button>
           <label class="text-sm">정렬<select id="asSort" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><option value="days">결석일수 많은 순</option><option value="no">학번 순</option><option value="name">이름 순</option></select></label>
           <div class="ml-auto flex gap-2">
             <button id="asPrint" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">🖨️ 인쇄</button>
@@ -687,7 +696,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
     <div class="grid lg:grid-cols-[400px_1fr] gap-6 items-start">
       <div class="bg-white rounded-xl border border-slate-200 p-5 space-y-4">
         <form id="pForm" class="space-y-4">
-          <h2 class="font-bold text-lg">🎫 조퇴증(외출증) 발급</h2>
+          <h2 class="font-bold text-lg">🎫 조퇴/외출증 발급</h2>
           <label class="text-sm block">학생 선택
             <select id="pStu" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></select>
           </label>
@@ -748,6 +757,31 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
           </div>
           <p id="btStatus" class="text-xs text-slate-500 mt-2">연결 안 됨 · 발급 시 브라우저 인쇄창이 열립니다.</p>
         </div>
+
+        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50 space-y-3">
+          <p class="text-sm font-bold">🖼️ 사진·그림 그대로 인쇄</p>
+          <p class="text-xs text-slate-500">사진이나 그림 파일을 올리면 프린터 폭에 맞춰 흑백으로 바꿔 그대로 찍어 줍니다. 메모, 안내문, QR 코드 등에 쓰세요.</p>
+          <input id="picFile" type="file" accept="image/*" class="block text-sm w-full">
+          <div id="picBox" class="hidden space-y-3">
+            <label class="block text-xs text-slate-500">진하기 <span id="picThV" class="text-slate-700 font-bold"></span>
+              <input id="picTh" type="range" min="60" max="200" value="128" class="w-full">
+            </label>
+            <label class="flex items-center gap-2 text-xs"><input id="picDither" type="checkbox" checked> 사진처럼 부드럽게 (끄면 글씨·도장이 또렷해집니다)</label>
+            <div class="bg-white border border-slate-200 rounded-lg p-2 text-center overflow-auto max-h-80">
+              <canvas id="picCv" class="mx-auto max-w-full" style="image-rendering:pixelated"></canvas>
+            </div>
+            <p id="picInfo" class="text-xs text-slate-500"></p>
+            <div class="grid gap-2">
+              <button id="picBt" type="button" class="w-full bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg py-2">🖨️ 블루투스 프린터로 인쇄</button>
+              <div class="flex gap-2">
+                <button id="picPrn" type="button" class="flex-1 border border-slate-300 bg-white hover:bg-slate-50 rounded-lg py-2 text-sm">🖨️ 일반 인쇄</button>
+                <button id="picSave" type="button" class="flex-1 border border-slate-300 bg-white hover:bg-slate-50 rounded-lg py-2 text-sm">💾 이미지 저장</button>
+                <button id="picDel" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">🗑️</button>
+              </div>
+            </div>
+            <p id="picMsg" class="text-xs text-slate-600"></p>
+          </div>
+        </div>
       </div>
 
       <div class="bg-white rounded-xl border border-slate-200 p-5">
@@ -801,6 +835,10 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
       <input id="syncUrl" placeholder="웹 앱 주소 (https://script.google.com/macros/s/.../exec)" class="w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm">
       <input id="syncToken" type="password" autocomplete="off" placeholder="연동 암호 (Apps Script에 적은 값과 같게)" class="mt-2 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm">
       <div class="flex items-center gap-2 mt-2 flex-wrap"><button id="syncRun" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm font-bold">☁️ 지금 동기화</button><span id="syncMsg" class="text-xs text-slate-600"></span></div>
+      <details class="mt-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
+        <summary class="text-sm font-bold cursor-pointer">📋 항목별 연동 상태 보기</summary>
+        <div id="syncState" class="mt-2 overflow-x-auto"></div>
+      </details>
     </section>
 
     <section>
@@ -819,7 +857,13 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
       </div>
       <p class="text-xs text-slate-500 mt-2">초기화는 학생·상담·조퇴 기록과 결석신고서 저장 목록을 모두 지웁니다(D-day는 유지). 먼저 백업 파일을 저장하세요.</p>
     </section>
-    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기</p>
+
+    <section>
+      <h3 class="font-bold text-sm mb-2">📦 자동 보관함 <span class="text-xs font-normal text-slate-500">(기록이 사라졌을 때 되돌리기)</span></h3>
+      <p class="text-xs text-slate-500 mb-2">프로그램을 열 때와 연동으로 내용을 받기 전에, <b>작성한 기록·관찰 메모·학생 명단·상담 기록</b>을 이 기기에 몰래 복사해 둡니다. 실수로 지워졌을 때 아래에서 되돌릴 수 있습니다.</p>
+      <div id="snapList" class="space-y-2 text-sm"></div>
+    </section>
+    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기 · 사진 인쇄 · 자동 보관함 · 연동 표시 · 연동 상태표 · 기록 연동 버튼 · 등교일 기준</p>
   </div>
 </dialog>
 
@@ -2302,7 +2346,7 @@ $('dlgClose').addEventListener('click', () => $('dlg').close());
 
 /* 백업 · 복원 · 초기화 */
 $('bkBtn').addEventListener('click', () => {
-  const data = { v: 1, students, counsels, passes, ddays, memos, events: evs, timetable: myTT, budget: bg, ch, sch, schEdit: schE, recs, subjects: subjList, clubs: clubList, absList: (window.absStore ? absStore.get() : []), gongmun: (() => { try { return JSON.parse(localStorage.getItem('gm-gongmun')) || []; } catch (e) { return []; } })(), teacher: $('pTeacher').value };
+  const data = { v: 1, students, counsels, passes, ddays, memos, events: evs, timetable: myTT, budget: bg, ch, sch, schEdit: schE, recs, recMemo, recRost, subjects: subjList, clubs: clubList, absList: (window.absStore ? absStore.get() : []), gongmun: (() => { try { return JSON.parse(localStorage.getItem('gm-gongmun')) || []; } catch (e) { return []; } })(), holidays: (() => { try { return JSON.parse(localStorage.getItem('gm-holidays')) || []; } catch (e) { return []; } })(), teacher: $('pTeacher').value };
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' }));
   a.download = `교무실_백업_${ymd(new Date())}.json`; a.click();
@@ -2320,6 +2364,8 @@ $('rsFile').addEventListener('change', async e => {
     if (d.timetable) { myTT = d.timetable; store(TT_KEY, myTT); renderMyTT(); }
     if (d.budget) { bg = normBg(d.budget); saveBg(); }
     if (d.recs) { recs = d.recs; store(REC_KEY, recs); }
+    if (d.recMemo && typeof d.recMemo === 'object') { recMemo = d.recMemo; store('gm-rec-memo', recMemo); }
+    if (d.recRost && typeof d.recRost === 'object') { recRost = d.recRost; store('gm-rec-rost', recRost); }
     if (d.ch) { ch = { sheets: d.ch.sheets || {}, files: d.ch.files || [], sel: d.ch.sel || '' }; saveCh(); }
     if (d.sch) { sch = schNorm(d.sch); saveSch(); }
     if (d.schEdit) { schE = { t: d.schEdit.t || {}, c: d.schEdit.c || {} }; saveSchE(); }
@@ -2327,6 +2373,7 @@ $('rsFile').addEventListener('change', async e => {
     if (Array.isArray(d.clubs)) { clubList = d.clubs; store('gm-clubs', clubList); }
     if (Array.isArray(d.absList) && window.absStore) absStore.set(d.absList);
     if (Array.isArray(d.gongmun)) { try { localStorage.setItem('gm-gongmun', JSON.stringify(d.gongmun)); } catch (err) {} }
+    if (Array.isArray(d.holidays)) { try { localStorage.setItem('gm-holidays', JSON.stringify(d.holidays)); } catch (err) {} }
     store('gm-students', students); store('gm-counsels', counsels); store('gm-pass', passes); store('gm-dday', ddays);
     renderAll(); alert('복원했습니다.');
   } catch (err) { alert('복원 실패: ' + err.message); }
@@ -4488,6 +4535,178 @@ function absInit() {
 })();
 
 
+
+
+
+/* ===== 기록 작성 탭에서 바로 연동 ===== */
+(() => {
+  const st = () => {
+    const e = $('recSyncState'), on = !!syncCfg.opt.rec, set = syncCfg.url && syncCfg.token;
+    const ts = syncCfg.meta && syncCfg.meta.ts ? syncCfg.meta.ts['gm-recs'] : 0;
+    const n = Object.keys(recs || {}).length;
+    $('recSyncOn').checked = on;
+    if (!set) { e.textContent = '아직 연동 설정이 안 되어 있습니다. 설정 ⚙️ → PC·휴대폰 연동에서 주소와 암호를 넣어 주세요.'; e.className = 'text-xs text-rose-600 flex-1 min-w-[180px]'; return; }
+    if (!on) { e.textContent = `이 기기에만 저장됩니다(${n}명분). 왼쪽을 체크하면 다른 기기와 함께 쓸 수 있어요.`; e.className = 'text-xs text-rose-600 flex-1 min-w-[180px]'; return; }
+    if (!ts) { e.textContent = `아직 올린 적이 없습니다(${n}명분). "지금 동기화"를 눌러 주세요.`; e.className = 'text-xs text-amber-700 flex-1 min-w-[180px]'; return; }
+    const d = new Date(ts);
+    e.textContent = `마지막 연동 ${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')} · 이 기기 ${n}명분`;
+    e.className = 'text-xs text-emerald-700 flex-1 min-w-[180px]';
+  };
+  window.recSyncState = st;
+  $('recSyncOn').addEventListener('change', () => {
+    if ($('recSyncOn').checked && !confirm('작성한 기록(세특·행특 등)이 본인 구글 시트에 저장됩니다.\n학교 개인정보 보호 지침을 확인했고, 시트와 연동 암호를 안전하게 관리하시겠습니까?')) { $('recSyncOn').checked = false; return; }
+    syncCfg.opt.rec = $('recSyncOn').checked; saveSync();
+    if (typeof renderSyncOpts === 'function') renderSyncOpts();
+    st();
+  });
+  $('recSyncBtn').addEventListener('click', async () => {
+    if (!(syncCfg.url && syncCfg.token)) { alert('먼저 설정 ⚙️ → PC·휴대폰 연동에서 웹 앱 주소와 연동 암호를 넣어 주세요.'); return; }
+    if (!syncCfg.opt.rec && !confirm('"작성한 기록도 함께 연동"이 꺼져 있어 세특·행특 내용은 올라가지 않습니다.\n\n켜고 동기화할까요?')) { }
+    else if (!syncCfg.opt.rec) { syncCfg.opt.rec = true; saveSync(); if (typeof renderSyncOpts === 'function') renderSyncOpts(); }
+    $('recSyncBtn').disabled = true;
+    const old = $('recSyncState').textContent;
+    $('recSyncState').textContent = '동기화 중…';
+    try { await syncNow(true); } catch (e) {}
+    $('recSyncBtn').disabled = false;
+    st();
+    const m = $('syncMsg') ? $('syncMsg').textContent : '';
+    if (m) { $('recSyncState').textContent = m.replace(/^.*동기화 /, '동기화 ').slice(0, 120); $('recSyncState').className = 'text-xs text-slate-700 flex-1 min-w-[180px]'; }
+    else if (!old) st();
+  });
+  setTimeout(st, 300);
+})();
+/* ===== 자동 보관함: 중요한 기록을 이 기기에 몰래 복사해 두고 되돌릴 수 있게 ===== */
+const SNAP_KEY = 'gm-snapshots';
+const SNAP_ITEMS = [
+  ['gm-recs', '작성한 기록'],
+  ['gm-rec-memo', '관찰 메모'],
+  ['gm-rec-rost', '과목·동아리 명단'],
+  ['gm-students', '학생 명단'],
+  ['gm-counsels', '상담 기록']
+];
+const snapLoad = () => { try { const v = JSON.parse(localStorage.getItem(SNAP_KEY)); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
+function snapTake(why) {
+  try {
+    const data = {};
+    let has = false;
+    SNAP_ITEMS.forEach(([k]) => { const v = localStorage.getItem(k); if (v && v !== '[]' && v !== '{}' && v !== 'null') { data[k] = v; has = true; } });
+    if (!has) return;
+    const sig = SNAP_ITEMS.map(([k]) => (data[k] || '').length).join('/');
+    let list = snapLoad();
+    if (list.length && list[0].sig === sig) return;                       // 바뀐 게 없으면 넘어감
+    list.unshift({ t: new Date().toISOString(), why: why || '열 때', sig, data });
+    while (list.length > 3) list.pop();
+    for (;;) {
+      try { localStorage.setItem(SNAP_KEY, JSON.stringify(list)); break; }
+      catch (e) { list.pop(); if (!list.length) return; }                 // 공간이 모자라면 오래된 것부터 버림
+    }
+    if ($('snapList')) snapDraw();
+  } catch (e) {}
+}
+function snapDraw() {
+  const box = $('snapList'); if (!box) return;
+  const list = snapLoad(); box.innerHTML = '';
+  if (!list.length) { box.appendChild(el('p', 'text-xs text-slate-500', '아직 보관된 내용이 없습니다.')); return; }
+  list.forEach((sn, i) => {
+    const d = new Date(sn.t), when = `${d.getFullYear()}. ${d.getMonth() + 1}. ${d.getDate()}. ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    const parts = SNAP_ITEMS.filter(([k]) => sn.data[k]).map(([k, label]) => {
+      let n = 0; try { const v = JSON.parse(sn.data[k]); n = Array.isArray(v) ? v.length : Object.keys(v).length; } catch (e) {}
+      return `${label} ${n}`;
+    }).join(' · ');
+    const row = el('div', 'border border-slate-200 rounded-lg px-3 py-2 flex items-center gap-2 flex-wrap');
+    row.append(el('div', 'flex-1 min-w-[180px]', ''), el('span', '', ''));
+    row.firstChild.innerHTML = `<b>${when}</b> <span class="text-xs text-slate-500">${esc(sn.why)}</span><br><span class="text-xs text-slate-500">${esc(parts)}</span>`;
+    const b = el('button', 'border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold', '이 시점으로 되돌리기');
+    b.type = 'button';
+    b.onclick = () => {
+      if (!confirm(`${when}에 보관한 내용으로 되돌립니다.\n\n지금 이 기기의 작성한 기록·관찰 메모·학생 명단·상담 기록이 그때 내용으로 바뀝니다. 계속할까요?`)) return;
+      snapTake('되돌리기 직전');
+      try { Object.keys(sn.data).forEach(k => localStorage.setItem(k, sn.data[k])); } catch (e) { alert('되돌리지 못했습니다: ' + e.message); return; }
+      alert('되돌렸습니다. 화면을 새로 불러옵니다.');
+      location.reload();
+    };
+    row.appendChild(b); box.appendChild(row);
+  });
+}
+setTimeout(() => { snapTake('열 때'); snapDraw(); }, 1500);
+/* ===== 올린 사진을 프린터로 그대로 인쇄 ===== */
+(() => {
+  let img = null;
+  const msg = (t, ok) => { $('picMsg').textContent = t || ''; $('picMsg').className = 'text-xs ' + (ok ? 'text-emerald-700' : 'text-slate-600'); };
+  const printW = () => $('pType').value === 'm02s' ? (+$('m02Width').value || 576) : 384;
+  function render() {
+    if (!img) return;
+    const w = printW(), scale = w / img.width;
+    let h = Math.max(1, Math.round(img.height * scale));
+    if (h > 2400) h = 2400;                       // 너무 길면 자름 (약 30cm)
+    const cv = $('picCv'); cv.width = w; cv.height = h;
+    const x = cv.getContext('2d', { willReadFrequently: true });
+    x.fillStyle = '#fff'; x.fillRect(0, 0, w, h);
+    x.drawImage(img, 0, 0, w, Math.round(img.height * scale));
+    const d = x.getImageData(0, 0, w, h), p = d.data, th = +$('picTh').value, n = w * h;
+    const g = new Float32Array(n);
+    for (let i = 0; i < n; i++) {
+      const a = p[i * 4 + 3] / 255;               // 투명한 곳은 흰색으로
+      g[i] = (0.299 * p[i * 4] + 0.587 * p[i * 4 + 1] + 0.114 * p[i * 4 + 2]) * a + 255 * (1 - a);
+    }
+    if ($('picDither').checked) {
+      for (let y = 0; y < h; y++) for (let xx = 0; xx < w; xx++) {
+        const i = y * w + xx, old = g[i], nv = old < th ? 0 : 255, err = old - nv;
+        g[i] = nv;
+        if (xx + 1 < w) g[i + 1] += err * 7 / 16;
+        if (y + 1 < h) {
+          if (xx > 0) g[i + w - 1] += err * 3 / 16;
+          g[i + w] += err * 5 / 16;
+          if (xx + 1 < w) g[i + w + 1] += err * 1 / 16;
+        }
+      }
+    } else for (let i = 0; i < n; i++) g[i] = g[i] < th ? 0 : 255;
+    for (let i = 0; i < n; i++) { const v = g[i] < 128 ? 0 : 255; p[i * 4] = p[i * 4 + 1] = p[i * 4 + 2] = v; p[i * 4 + 3] = 255; }
+    x.putImageData(d, 0, 0);
+    cv.style.width = Math.min(w, 260) + 'px';
+    $('picThV').textContent = th < 110 ? '연하게' : th > 150 ? '진하게' : '보통';
+    $('picInfo').textContent = `${w} × ${h} 점 · 종이 약 ${Math.round(h / 8)}mm 길이${Math.round(img.height * scale) > 2400 ? ' (너무 길어서 아래를 잘랐습니다)' : ''}`;
+  }
+  $('picFile').addEventListener('change', e => {
+    const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+    if (!/^image\//.test(f.type)) { alert('사진이나 그림 파일(JPG·PNG 등)만 인쇄할 수 있습니다. 문서라면 화면을 캡처해서 올려 주세요.'); return; }
+    const url = URL.createObjectURL(f), im = new Image();
+    im.onload = () => { img = im; $('picBox').classList.remove('hidden'); render(); msg(''); URL.revokeObjectURL(url); };
+    im.onerror = () => { alert('그림을 읽지 못했습니다. 다른 파일로 해 보세요.'); URL.revokeObjectURL(url); };
+    im.src = url;
+  });
+  ['picTh', 'picDither'].forEach(id => $(id).addEventListener('input', render));
+  $('pType').addEventListener('change', render);
+  $('m02Width').addEventListener('change', render);
+  $('picDel').addEventListener('click', () => { img = null; $('picBox').classList.add('hidden'); msg(''); });
+  $('picBt').addEventListener('click', async () => {
+    if (!img) return;
+    const t = $('pType').value;
+    if (t === 'niimbot') { alert('님봇 라벨 프린터는 사진 인쇄를 지원하지 않습니다. "일반 인쇄"를 쓰거나 이미지를 저장해 라벨 앱에서 출력하세요.'); return; }
+    if (!(btChar && btDev && btDev.gatt && btDev.gatt.connected)) { alert('먼저 위에서 "블루투스 연결"을 눌러 프린터를 연결해 주세요.'); return; }
+    $('picBt').disabled = true; msg('프린터로 보내는 중… 사진이 길면 시간이 걸립니다.', true);
+    try {
+      await btSend(packRaster($('picCv'), t === 'm02s' ? m02Mode() : 'escpos'));
+      msg('프린터로 보냈습니다. 안 나오면 용지·덮개·배터리와 전송 방식을 확인하세요.', true);
+    } catch (e) { msg('전송 실패: ' + e.message); }
+    $('picBt').disabled = false;
+  });
+  $('picPrn').addEventListener('click', () => {
+    if (!img) return;
+    printReset();
+    const pa = $('printArea'); pa.innerHTML = '';
+    const im = new Image(); im.src = $('picCv').toDataURL('image/png'); im.style.width = '100%';
+    pa.appendChild(im);
+    im.onload = () => window.print();
+    setTimeout(() => window.print(), 600);
+  });
+  $('picSave').addEventListener('click', () => {
+    if (!img) return;
+    const a = document.createElement('a');
+    a.href = $('picCv').toDataURL('image/png'); a.download = `인쇄용_이미지_${ymd(new Date())}.png`;
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+})();
 /* ===== 공문 초안 (Gemini) ===== */
 (() => {
   /* 키 설정 — "기록 작성" 탭과 같은 키를 함께 씁니다 */
@@ -4652,6 +4871,30 @@ function absInit() {
 (() => {
   const KINDS = ['질병', '인정', '기타'];
   const nd = v => v ? new Date(v + 'T00:00:00') : null;
+  /* 쉬는 날: 주말 · 날짜가 정해진 공휴일 · 학사일정(나이스)의 휴업일 · 직접 넣은 날 */
+  const HOLI_KEY = 'gm-holidays';
+  const FIXED = ['01-01', '03-01', '05-05', '06-06', '08-15', '10-03', '10-09', '12-25'];
+  let holi = (() => { try { const v = JSON.parse(localStorage.getItem(HOLI_KEY)); return Array.isArray(v) ? v : []; } catch (e) { return []; } })();
+  const saveHoli = () => { try { localStorage.setItem(HOLI_KEY, JSON.stringify(holi)); } catch (e) {} };
+  function isOff(ds) {
+    const w = nd(ds).getDay();
+    if ($('asWeek').checked && (w === 0 || w === 6)) return true;
+    if (!$('asHoli').checked) return false;
+    if (holi.includes(ds)) return true;
+    if (FIXED.includes(ds.slice(5))) return true;
+    try {
+      const list = (typeof neisCache === 'object' && neisCache) ? (neisCache[ds.slice(0, 7)] || []) : [];
+      return list.some(e => e.date === ds && e.tag && /휴업|공휴|방학|휴일/.test(e.tag));
+    } catch (e) { return false; }
+  }
+  function countDays(a, b) {                       // a~b 중 실제 등교일만 셈
+    let n = 0;
+    for (const d = nd(a); d <= nd(b); d.setDate(d.getDate() + 1)) {
+      const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      if (!isOff(ds)) n++;
+    }
+    return n;
+  }
   const md = v => v ? v.slice(5).replace('-', '/') : '';
   function rows() {
     const f = $('asFrom').value, t = $('asTo').value, map = new Map();
@@ -4660,7 +4903,7 @@ function absInit() {
       let b = s.to || a; if (b < a) b = a;
       if (f && b < f) return; if (t && a > t) return;
       const s1 = f && a < f ? f : a, e1 = t && b > t ? t : b;
-      const days = Math.round((nd(e1) - nd(s1)) / 86400000) + 1;
+      const days = countDays(s1, e1);
       const key = (s.no || '') + '|' + (s.name || '(이름 없음)');
       let o = map.get(key);
       if (!o) { o = { no: s.no || '', name: s.name || '(이름 없음)', days: 0, cnt: 0, k: { 질병: 0, 인정: 0, 기타: 0 }, items: [] }; map.set(key, o); }
@@ -4688,10 +4931,22 @@ function absInit() {
     if (!$('asOut')) return;
     const L = rows(), d = L.reduce((a, o) => a + o.days, 0), c = L.reduce((a, o) => a + o.cnt, 0);
     $('asOut').innerHTML = table(L, false);
-    $('asInfo').textContent = `${period()} · 학생 ${L.length}명 · 결석 ${d}일 · 신고서 ${c}건 (저장한 결석신고서를 모아 센 값입니다)`;
+    const how = [$('asWeek').checked ? '주말' : '', $('asHoli').checked ? '공휴일·휴업일' : ''].filter(Boolean).join('·');
+    $('asInfo').textContent = `${period()} · 학생 ${L.length}명 · 결석 ${d}일 · 신고서 ${c}건` + (how ? ` · ${how}은 빼고 센 값입니다${holi.length ? ` (직접 넣은 쉬는 날 ${holi.length}일 포함)` : ''}` : ' · 달력 날짜 그대로 센 값입니다');
   }
   window.absStatRender = render;
-  ['asFrom', 'asTo', 'asSort'].forEach(id => $(id).addEventListener('change', render));
+  ['asFrom', 'asTo', 'asSort', 'asWeek', 'asHoli'].forEach(id => $(id).addEventListener('change', () => {
+    if (id === 'asWeek' || id === 'asHoli') { try { localStorage.setItem('gm-as-opt', JSON.stringify({ w: $('asWeek').checked, h: $('asHoli').checked })); } catch (e) {} }
+    render();
+  }));
+  try { const o = JSON.parse(localStorage.getItem('gm-as-opt')); if (o) { $('asWeek').checked = o.w !== false; $('asHoli').checked = o.h !== false; } } catch (e) {}
+  $('asHoliEdit').addEventListener('click', () => {
+    const v = prompt('학교가 쉬는 날을 직접 넣습니다. (설날·추석·대체공휴일·재량휴업일 등)\n날짜를 2026-02-17 처럼 쓰고, 여러 날은 쉼표로 나눠 주세요.\n\n비우고 확인을 누르면 모두 지웁니다.', holi.join(', '));
+    if (v === null) return;
+    holi = v.split(/[,\s]+/).map(x => x.trim()).filter(x => /^\d{4}-\d{2}-\d{2}$/.test(x)).filter((x, i, a) => a.indexOf(x) === i).sort();
+    saveHoli(); render();
+    alert(holi.length ? `쉬는 날 ${holi.length}일을 저장했습니다.` : '직접 넣은 쉬는 날을 모두 지웠습니다.');
+  });
   $('asAll').addEventListener('click', () => { $('asFrom').value = ''; $('asTo').value = ''; render(); });
   $('asPrint').addEventListener('click', () => {
     const L = rows(); if (!L.length) { alert('인쇄할 내용이 없습니다.'); return; }
@@ -4699,7 +4954,7 @@ function absInit() {
     printReset();
     const pa = $('printArea');
     pa.innerHTML = `<h2 style="text-align:center;font-size:15pt;font-weight:700;margin:0 0 2px">결석 현황</h2>
-      <p style="text-align:center;font-size:9.5pt;color:#475569;margin:0 0 10px">${esc([c.school || '', c.cls || ''].filter(Boolean).join(' '))} · ${esc(period())} · 출력 ${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}</p>
+      <p style="text-align:center;font-size:9.5pt;color:#475569;margin:0 0 10px">${esc([c.school || '', c.cls || ''].filter(Boolean).join(' '))} · ${esc(period())} · 출력 ${now.getFullYear()}.${now.getMonth() + 1}.${now.getDate()}<br>${esc([$('asWeek').checked ? '주말' : '', $('asHoli').checked ? '공휴일·휴업일' : ''].filter(Boolean).join('·') ? [$('asWeek').checked ? '주말' : '', $('asHoli').checked ? '공휴일·휴업일' : ''].filter(Boolean).join('·') + '을 뺀 등교일 기준' : '달력 날짜 기준')}</p>
       ${table(L, true)}
       <p style="font-size:8.5pt;color:#64748b;margin-top:8px">※ 저장한 결석신고서를 모아 센 값입니다. 개인정보가 담겨 있으니 보관과 폐기에 유의하세요.</p>`;
     pa.classList.add('as-print');
@@ -4898,38 +5153,58 @@ async function syncNow(interactive) {
   try {
     const g = await syncReq('GET'); if (!g.ok) throw new Error(g.error || '서버 응답 오류');
     const doc = g.doc && g.doc.items ? g.doc : { v: 1, items: {} }, meta = syncCfg.meta, stamp = Date.now(), skipped = [];
-    let pushed = 0, pulled = 0;
+    let pushed = 0, pulled = 0; const upNames = [], downNames = [];
     for (const [k, label, get, set, grp] of SYNC_KEYS) {
       if (!syncOn(grp)) continue;
       const rem = doc.items[k], lh = hashStr(JSON.stringify(get())), empty = isEmptyVal(get());
-      const lc = lh !== meta.h[k] && !(empty && rem), rc = !!rem && rem.ts !== meta.ts[k];
+      const lc = lh !== meta.h[k] && !(empty && rem);
+      /* 이 기기가 비어 있는데 시트에 내용이 있으면, 기록이 지워진 것으로 보고 되살린다 */
+      const rc = !!rem && (rem.ts !== meta.ts[k] || (empty && !isEmptyVal(rem.data)));
       let use = !rem ? (empty ? 'none' : 'push') : lc && rc ? 'conflict' : lc ? 'push' : rc ? 'pull' : 'none';
       if (use === 'conflict') {
         if (!interactive) { skipped.push(label); continue; }
         use = confirm(`'${label}'이(가) 이 기기와 다른 기기에서 모두 바뀌었습니다.\n\n확인: 이 기기 내용으로 맞추기\n취소: 다른 기기 내용으로 맞추기`) ? 'push' : 'pull';
       }
-      if (use === 'push') { doc.items[k] = { ts: stamp, data: get() }; meta.h[k] = lh; meta.ts[k] = stamp; pushed++; }
-      else if (use === 'pull') { set(rem.data); store(k, get()); meta.h[k] = hashStr(JSON.stringify(get())); meta.ts[k] = rem.ts; pulled++; }
+      if (use === 'push') { doc.items[k] = { ts: stamp, data: get() }; meta.h[k] = lh; meta.ts[k] = stamp; pushed++; upNames.push(label); }
+      else if (use === 'pull') { snapTake('연동으로 받기 전'); set(rem.data); store(k, get()); meta.h[k] = hashStr(JSON.stringify(get())); meta.ts[k] = rem.ts; pulled++; downNames.push(label); }
       else if (rem) { meta.ts[k] = rem.ts; meta.h[k] = lh; }
     }
     if (pushed) { doc.v = 1; const p = await syncReq('POST', { token: syncCfg.token, doc }); if (!p.ok) throw new Error(p.error || '저장 실패'); }
     syncCfg.meta = meta; syncCfg.last = new Date().toLocaleString('ko-KR'); saveSync();
     if (pulled) renderAll();
-    syncMsg(`${syncCfg.last} 동기화 완료 · 보냄 ${pushed} · 받음 ${pulled}${skipped.length ? ' · 양쪽 모두 바뀌어 건너뜀: ' + skipped.join(', ') + ' (지금 동기화를 눌러 선택)' : ''}`, true);
+    renderSyncState(); if (window.recSyncState) recSyncState();
+    const off = SYNC_GROUPS.filter(([g]) => !syncOn(g)).map(([g, l]) => l.replace(/^\S+\s*/, ''));
+    syncMsg(`${syncCfg.last} 동기화 완료${pushed ? ' · 보냄: ' + upNames.join(', ') : ''}${pulled ? ' · 받음: ' + downNames.join(', ') : ''}${!pushed && !pulled ? ' · 바뀐 내용 없음' : ''}${skipped.length ? ' · 양쪽 모두 바뀌어 건너뜀: ' + skipped.join(', ') + ' (지금 동기화를 눌러 선택)' : ''}${off.length ? ' · ⚠️ 연동하지 않는 항목: ' + off.join(', ') : ''}`, true);
   } catch (e) { syncMsg('동기화 실패: ' + e.message); if (interactive) alert('동기화 실패: ' + e.message); }
   finally { syncing = false; }
 }
 const renderSyncOpts = () => {
   const box = $('syncOpts'); if (!box) return; box.innerHTML = '';
+  renderSyncState();
   SYNC_GROUPS.forEach(([g, label, pii]) => {
     const l = el('label', 'flex items-center gap-2 text-sm'), c = el('input'); c.type = 'checkbox'; c.checked = !!syncCfg.opt[g];
     c.addEventListener('change', () => {
       if (c.checked && pii && !confirm('학생 개인정보가 본인 구글 시트에 그대로 저장됩니다.\n학교 개인정보 보호 지침을 확인했고, 시트·웹 앱 주소·연동 암호를 안전하게 관리할 수 있나요?')) { c.checked = false; return; }
-      syncCfg.opt[g] = c.checked; saveSync();
+      syncCfg.opt[g] = c.checked; saveSync(); renderSyncState();
     });
     l.append(c, document.createTextNode(label)); box.appendChild(l);
+    if (pii) l.title = '체크하지 않으면 이 자료는 연동되지 않습니다.';
   });
 };
+function renderSyncState() {
+  const box = $('syncState'); if (!box) return;
+  const cnt = v => { try { return Array.isArray(v) ? v.length : (v && typeof v === 'object') ? Object.keys(v).length : (v ? 1 : 0); } catch (e) { return 0; } };
+  const when = t => { if (!t) return ''; const d = new Date(t); return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
+  const rows = SYNC_KEYS.map(([k, label, get, set, grp]) => {
+    const n = cnt(get()), on = syncOn(grp), ts = syncCfg.meta && syncCfg.meta.ts ? syncCfg.meta.ts[k] : 0;
+    const state = !on ? '<span class="text-rose-600 font-bold">연동 안 함</span>'
+      : ts ? `<span class="text-emerald-700">${when(ts)}</span>`
+      : (n ? '<span class="text-amber-700">아직 안 올림</span>' : '<span class="text-slate-400">내용 없음</span>');
+    return `<tr class="border-t border-slate-200"><td class="py-1 pr-3">${esc(label)}</td><td class="py-1 pr-3 text-right">${n}</td><td class="py-1">${state}</td></tr>`;
+  }).join('');
+  box.innerHTML = `<table class="w-full text-xs"><thead class="text-slate-500 text-left"><tr><th class="pb-1 pr-3">항목</th><th class="pb-1 pr-3 text-right">이 기기</th><th class="pb-1">마지막 연동</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="text-xs text-slate-500 mt-2">"연동 안 함"은 위에서 체크해야 올라갑니다. "아직 안 올림"은 체크는 되어 있지만 아직 <b>☁️ 지금 동기화</b>를 누르지 않은 상태입니다.</p>`;
+}
 const syncUI = () => { $('syncBtn').classList.toggle('hidden', !(syncCfg.url && syncCfg.token)); if (syncCfg.last && !$('syncMsg').textContent) syncMsg(`마지막 동기화: ${syncCfg.last}`, true); };
 $('syncUrl').value = syncCfg.url; $('syncToken').value = syncCfg.token;
 ['syncUrl', 'syncToken'].forEach(id => $(id).addEventListener('change', () => { syncCfg.url = $('syncUrl').value.trim(); syncCfg.token = $('syncToken').value.trim(); syncCfg.meta = { h: {}, ts: {} }; saveSync(); syncUI(); }));
@@ -4938,7 +5213,7 @@ $('syncBtn').addEventListener('click', () => syncNow(true));
 renderSyncOpts(); syncUI();
 if (syncCfg.url && syncCfg.token) setTimeout(() => syncNow(false), 1500);
 
-function renderAll() { renderSch(); renderToday(); renderHome(); renderCh(); renderBudget(); renderRec(); renderDash(); renderMemos(); renderGrades(); renderDdays(); refreshMsgSel(); refreshSelects(); renderStudents(); renderTimeline(); renderPasses(); renderSeat(); absInit(); renderMeal(); renderRsv(); renderHomeRsv(); }
+function renderAll() { renderSch(); renderToday(); renderCal(); renderHome(); renderCh(); renderBudget(); renderRec(); renderDash(); renderMemos(); renderGrades(); renderDdays(); refreshMsgSel(); refreshSelects(); renderStudents(); renderTimeline(); renderPasses(); renderSeat(); absInit(); renderMeal(); renderRsv(); renderHomeRsv(); }
 renderAll();
 
 (() => {
