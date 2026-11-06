@@ -156,7 +156,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
     <button id="lockCancel" type="button" class="hidden w-full text-sm text-slate-500">취소</button>
     <button id="lockSkip" type="button" class="hidden w-full text-xs text-slate-500 hover:text-slate-800">비밀번호 없이 사용</button>
     <button id="lockReset" type="button" class="hidden w-full text-xs text-slate-400 hover:text-red-600">비밀번호를 잊으셨나요? 초기화</button>
-    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 결석계 묶음 · 명단 자유양식 · 비번 저장 · 기록 엑셀 · 학급시간표 v2 · 글씨+2pt · 넓은 화면 · 홈 접기 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기 · 사진 인쇄 · 자동 보관함 · 연동 표시 · 연동 상태표 · 기록 연동 버튼 · 등교일 기준 · 추천서 · 추천서 키 · 추천서 미리보기 · 교직원 연락처 · 추가 잠금 · 추천서 인적사항 · 학생 주소·생일 · 달력에 창체</p>
+    <p class="text-xs text-center" style="color:#475569">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 결석계 묶음 · 명단 자유양식 · 비번 저장 · 기록 엑셀 · 학급시간표 v2 · 글씨+2pt · 넓은 화면 · 홈 접기 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기 · 사진 인쇄 · 자동 보관함 · 연동 표시 · 연동 상태표 · 기록 연동 버튼 · 등교일 기준 · 추천서 · 추천서 키 · 추천서 미리보기 · 교직원 연락처 · 추가 잠금 · 추천서 인적사항 · 학생 주소·생일 · 달력에 창체 · 지필평가 비교 · 상담 안내 문구 · 메모 색 13가지 · 외국인 이름 · 자리 떼어놓기 · 교과 묶음 · 품의 작성 · 상담 승인 메일 · 신청 페이지 9개 국어 · 상담 이름 번역 · 학부모 문자 AI · 상담-학생 연결 복구 · 메일 알림</p>
   </form>
 </div>
 
@@ -363,9 +363,28 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
         </details>
         <label class="text-sm block">공문 종류
           <select id="goType" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm">
-            <option>알림</option><option>협조 요청</option><option>자료 제출(보고)</option><option>계획 알림(시행)</option><option>회신</option><option>안내</option><option>기타</option>
+            <option>알림</option><option>협조 요청</option><option>자료 제출(보고)</option><option>계획 알림(시행)</option><option>회신</option><option>안내</option><option>품의(내부결재)</option><option>기타</option>
           </select>
         </label>
+        <div id="goPum" class="hidden rounded-lg border border-amber-200 bg-amber-50 p-3 space-y-2 text-sm">
+          <p class="font-bold">💰 품의 내용</p>
+          <label class="block text-xs">목적 <span class="text-slate-500">(왜 사는지·왜 하는지)</span><input id="puPurpose" placeholder="예: 1학년 진로체험 운영에 필요한 재료 구입" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="block text-xs">일시<input id="puWhen" placeholder="2026. 11. 12.(수) 14:00" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
+            <label class="block text-xs">장소<input id="puWhere" placeholder="본교 시청각실" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
+          </div>
+          <label class="block text-xs">대상<input id="puWho" placeholder="1학년 7반 학생 18명" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
+          <div>
+            <div class="flex items-center gap-2"><span class="text-xs font-bold">산출 내역</span><button id="puAdd" type="button" class="ml-auto text-xs border border-slate-300 bg-white rounded-lg px-2 py-1">＋ 줄 추가</button></div>
+            <div id="puRows" class="space-y-1 mt-1"></div>
+            <p id="puSum" class="text-xs font-bold text-right mt-1"></p>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="block text-xs">예산 과목<input id="puBudget" list="puBudgetList" placeholder="예: 학생자치활동비" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><datalist id="puBudgetList"></datalist></label>
+            <label class="block text-xs">지출 방법<select id="puPay" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><option>학교 법인카드</option><option>계좌 이체</option><option>현금(소액)</option><option>기타</option></select></label>
+          </div>
+          <label class="block text-xs">업체·비고 <span class="text-slate-500">(선택)</span><input id="puVendor" placeholder="예: ○○문구 / 견적서 2곳 비교" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
+        </div>
         <label class="text-sm block">수신 (받는 곳)<input id="goTo" placeholder="예: 충청남도청양교육지원청교육장" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
         <label class="text-sm block">제목 <span class="text-xs text-slate-500">(비워 두면 AI가 지어 줍니다)</span><input id="goTitle" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
         <label class="text-sm block">핵심 내용 <span class="text-xs text-slate-500">(무엇을·언제·어디서·누가·왜)</span>
@@ -421,6 +440,34 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
       <p id="gInfo" class="text-xs text-slate-500 mt-2"></p>
     </div>
     <div id="gOut" class="mt-5 space-y-5"></div>
+
+    <details class="fold bg-white rounded-xl border border-slate-200 mt-5" id="fold-exam" open>
+      <summary class="fold-sum px-5 py-3 font-bold">📈 지필평가 비교 (1·2학기 / 1·2회고사)</summary>
+      <div class="px-5 pb-5 space-y-4">
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-2">
+          <div class="flex flex-wrap items-end gap-3">
+            <label class="text-sm">학년도<input id="exY" type="number" min="2000" max="2100" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm w-28"></label>
+            <label class="text-sm">학기<select id="exT" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><option value="1">1학기</option><option value="2">2학기</option></select></label>
+            <label class="text-sm">회차<select id="exR" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><option value="1">1회고사</option><option value="2">2회고사</option></select></label>
+            <label class="text-sm">성적 파일<input id="exFile" type="file" accept=".xlsx,.xls,.csv" class="block mt-1 text-sm"></label>
+          </div>
+          <p class="text-xs text-slate-500">엑셀에 <b>성명(또는 이름)</b> 열과 <b>과목 이름 열</b>이 있고 칸에 점수가 있으면 읽습니다. 과목마다 열이 하나씩 있는 표면 됩니다.</p>
+          <p id="exMsg" class="text-xs text-slate-600"></p>
+          <div id="exRounds" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div class="flex flex-wrap items-end gap-3">
+          <label class="flex items-center gap-1.5 text-sm whitespace-nowrap"><input type="checkbox" id="exGroup" checked class="w-4 h-4"> 같은 교과끼리 묶어 보기</label>
+          <button id="exMap" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">🧩 교과 묶음 고치기</button>
+          <label class="text-sm">학생<select id="exStu" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm min-w-[180px]"></select></label>
+          <div class="ml-auto flex gap-2">
+            <button id="exPrint" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">🖨️ 인쇄</button>
+            <button id="exXlsx" type="button" class="px-3 py-2 rounded-lg bg-[#0f2747] text-white text-sm">📊 엑셀로 받기</button>
+          </div>
+        </div>
+        <div id="exMapBox" class="hidden rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-2"></div>
+        <div id="exOut"></div>
+      </div>
+    </details>
   </section>
 
   <!-- 대시보드 -->
@@ -451,7 +498,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
       <label class="text-sm flex-1 min-w-[240px]">새 업무 메모<textarea id="mmText" required maxlength="1000" rows="3" placeholder="예: 금요일까지 상담일지 제출 (Enter로 줄바꿈, Ctrl+Enter로 추가)" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm resize-y"></textarea></label>
       <select id="mmCat" class="border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><option value="">분류 없음</option><option value="담임">🧑‍🏫 담임</option><option value="수업">📚 수업</option><option value="업무">💼 업무</option></select>
       <input id="mmDue" type="date" title="마감일" class="border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm">
-      <div id="mmColors" class="flex gap-2 pb-2.5" role="group" aria-label="메모 색상"></div>
+      <div id="mmColors" class="flex gap-1.5 flex-wrap pb-2.5 max-w-[220px]" role="group" aria-label="메모 색상"></div>
       <button class="bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg px-5 py-2.5">추가</button>
     </form>
     <div id="mmFilter" class="mt-4 flex items-center gap-2 text-sm flex-wrap"></div>
@@ -593,6 +640,10 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
           <label class="block">웹 앱 주소 (상담 신청용 Apps Script)<input id="rsvUrl" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50" placeholder="https://script.google.com/macros/s/.../exec"></label>
           <label class="block">관리 암호<input id="rsvTok" type="password" autocomplete="off" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50"></label>
           <label class="block">학생 신청 페이지 주소 (GitHub 등에 올린 reservation 페이지)<input id="rsvPage" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50" placeholder="https://아이디.github.io/reservation/"></label>
+          <label class="block">학생용 링크 언어 <select id="rsvLang" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50">
+            <option value="">자동 (학생 휴대폰 언어대로)</option><option value="ko">한국어</option><option value="en">English</option><option value="zh">中文</option><option value="vi">Tiếng Việt</option><option value="ru">Русский</option><option value="uz">O‘zbekcha</option><option value="th">ไทย</option><option value="fil">Filipino</option><option value="mn">Монгол</option>
+          </select></label>
+          <p class="text-xs text-slate-500">이주배경 학생에게는 그 학생 언어로 링크를 따로 만들어 보내면 됩니다. 학생이 신청 페이지에서 직접 언어 버튼을 눌러 바꿀 수도 있습니다.</p>
           <div class="flex flex-wrap gap-2">
             <button id="rsvLink" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">🔗 학생용 링크 복사</button>
             <button id="rsvRefresh" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">🔄 신청 새로고침</button>
@@ -609,13 +660,16 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
           <div class="grid grid-cols-3 gap-3">
             <label>시작<input id="rsvStart" type="time" value="12:40" class="mt-1 w-full border border-slate-300 rounded-lg px-2 py-2 bg-slate-50"></label>
             <label>끝<input id="rsvEnd" type="time" value="13:00" class="mt-1 w-full border border-slate-300 rounded-lg px-2 py-2 bg-slate-50"></label>
-            <label>이름<input id="rsvName" value="점심 상담" class="mt-1 w-full border border-slate-300 rounded-lg px-2 py-2 bg-slate-50"></label>
+            <label>이름<input id="rsvName" value="점심 상담" list="rsvNameList" class="mt-1 w-full border border-slate-300 rounded-lg px-2 py-2 bg-slate-50"></label>
+            <datalist id="rsvNameList"><option value="점심 상담"><option value="방과후 상담"><option value="아침 상담"><option value="저녁 상담"><option value="야자 상담"><option value="쉬는 시간 상담"><option value="진로 상담"><option value="학습 상담"><option value="교우관계 상담"><option value="개인 상담"><option value="학부모 상담"><option value="전화 상담"><option value="면담"></datalist>
           </div>
+          <div class="text-xs text-slate-500">이름은 위 목록(점심 상담 · 방과후 상담 · 진로 상담 …)에서 고르면 학생 신청 페이지에서 그 학생 언어로 자동 번역됩니다. 직접 쓴 이름은 한국어 그대로 나옵니다.</div>
           <button id="rsvAdd" type="button" class="w-full bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg py-2">＋ 상담 시간 추가</button>
           <div class="text-xs text-slate-500">같은 날짜·시작 시간은 한 번만 추가됩니다. 변경하면 자동으로 신청 페이지에 반영됩니다.</div>
         </div>
         <div class="space-y-3">
           <h3 class="font-bold">3. 신청 승인</h3>
+          <div class="text-xs text-slate-500">학생이 신청할 때 📬 이메일을 적어 두면, 승인·거절 버튼을 누를 때 안내 메일이 자동 발송됩니다. 화면에는 주소를 띄우지 않고 <b>📧 메일 알림</b>으로만 표시합니다. 처음 켤 때는 Apps Script 편집기에서 <b>setupMail</b> 함수를 한 번 실행해 메일 권한을 허용한 뒤 <b>새 버전으로 배포</b>해야 합니다.</div>
           <div id="rsvReqList" class="space-y-2"></div>
           <h3 class="font-bold pt-2">열어 둔 상담 시간</h3>
           <div id="rsvSlotList" class="space-y-1 max-h-72 overflow-auto"></div>
@@ -657,9 +711,26 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
           <label class="text-sm">어조<select id="mTone" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><option>정중하고 격식 있게</option><option>따뜻하고 부드럽게</option><option>간결하고 사무적으로</option></select></label>
           <label class="text-sm flex items-center gap-2 pb-2"><input id="mHide" type="checkbox" checked>이름 대신 "자녀분"</label>
         </div>
-        <button id="mPrompt" type="button" class="w-full border border-slate-300 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">1. AI 요청문 복사</button>
-        <textarea id="mPromptBox" readonly rows="3" placeholder="복사한 요청문이 여기에 표시됩니다. 사용하시는 AI 채팅창에 붙여넣으세요." class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></textarea>
-        <label class="text-sm block">2. AI가 써 준 문자를 붙여넣고 다듬기<textarea id="mOut" rows="6" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></textarea></label>
+        <label class="text-sm block">분량<select id="mLen" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><option value="200">짧게 (200자 내외)</option><option value="350" selected>보통 (350자 내외)</option><option value="500">자세히 (500자 내외)</option></select></label>
+        <details id="msGemDet" class="rounded-lg border border-sky-200 bg-sky-50 p-3 text-xs">
+          <summary class="font-bold cursor-pointer text-sm">🔑 Gemini 연결 설정 <span id="msGemState" class="font-normal text-slate-500"></span></summary>
+          <div class="mt-3 space-y-3">
+            <p class="text-slate-700"><b>Google AI Studio</b>(aistudio.google.com)에서 <b>"API 키 받기"</b>로 키를 만들어 붙여넣고 <b>연결 테스트</b>를 누르세요. 추천서·공문 탭과 같은 키를 씁니다. 키는 이 컴퓨터(브라우저)에만 저장됩니다.</p>
+            <label class="block">API 키<input id="msGemKey" type="password" autocomplete="off" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-white text-sm" placeholder="AIza..."></label>
+            <label class="block">모델 이름<input id="msGemModel" list="msGemList" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-white text-sm" placeholder="gemini-2.5-flash"></label>
+            <div class="flex items-center gap-2 flex-wrap"><button id="msGemTest" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 font-bold">연결 테스트</button><button id="msGemModels" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 font-bold">모델 목록 불러오기</button><button id="msGemClear" type="button" class="text-slate-500 underline">키 지우기</button><datalist id="msGemList"></datalist><span id="msGemMsg" class="text-slate-600"></span></div>
+            <p class="text-slate-600"><b>개인정보:</b> 상담 내용이 구글 서버로 전송됩니다. 학생 이름은 "자녀분"으로 바꿔 보낼 수 있지만, 메모에 적힌 다른 개인정보는 그대로 가니 필요한 내용만 적어 주세요.</p>
+          </div>
+        </details>
+        <button id="mGen" type="button" class="w-full bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg py-2.5 text-sm">✨ Gemini로 문자 초안 쓰기</button>
+        <details class="text-xs">
+          <summary class="cursor-pointer text-slate-500">다른 AI(챗GPT 등)에 붙여넣어 쓰기</summary>
+          <div class="mt-2 space-y-2">
+            <button id="mPrompt" type="button" class="w-full border border-slate-300 hover:bg-slate-50 rounded-lg px-3 py-2 text-sm">AI 요청문 복사</button>
+            <textarea id="mPromptBox" readonly rows="3" placeholder="복사한 요청문이 여기에 표시됩니다. 사용하시는 AI 채팅창에 붙여넣으세요." class="w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></textarea>
+          </div>
+        </details>
+        <label class="text-sm block">문자 초안 (고쳐서 쓰세요)<textarea id="mOut" rows="7" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></textarea></label>
         <div class="flex items-center justify-between gap-3">
           <span id="mCount" class="text-xs text-slate-500">0자</span>
           <button id="mCopy" type="button" class="border border-slate-300 hover:bg-slate-50 rounded-lg px-4 py-2 text-sm">문자 복사</button>
@@ -673,6 +744,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
           <h2 class="font-bold text-lg">🌈 상담 타임라인</h2>
           <select id="cFilter" class="text-sm border border-slate-300 rounded-lg px-3 py-1.5 bg-slate-50"></select>
         </div>
+        <p id="cOrphan" class="hidden mt-3 text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2"></p>
         <ol id="timeline" class="mt-4 border-l-2 border-slate-200 ml-2 space-y-5"></ol>
         <p id="tlEmpty" class="text-sm text-slate-500 py-8 text-center">저장된 상담 기록이 없습니다. 학생을 선택해 첫 기록을 남겨 보세요.</p>
       </div>
@@ -737,6 +809,13 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
           <div class="flex gap-2"><select id="seExSel" class="flex-1 min-w-0 border border-slate-300 rounded-lg px-2 py-2 bg-slate-50 text-sm"></select><button id="seExAdd" type="button" class="border border-slate-300 bg-white rounded-lg px-3 text-sm font-bold">추가</button></div>
           <div class="flex gap-2 mt-2"><input id="seExTxt" placeholder="이름·학번 직접 입력" class="flex-1 min-w-0 border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"><button id="seExAdd2" type="button" class="border border-slate-300 bg-white rounded-lg px-3 text-sm font-bold">추가</button></div>
           <div id="seExList" class="flex flex-wrap gap-2 mt-2"></div>
+        </div>
+        <div>
+          <h3 class="font-bold text-sm mb-2">↔️ 떼어 놓을 짝</h3>
+          <p class="text-xs text-slate-500 mb-2">두 학생을 고르면 <b>앞뒤·양옆으로 붙지 않게</b> 섞습니다.</p>
+          <div class="flex gap-2"><select id="seApA" class="flex-1 min-w-0 border border-slate-300 rounded-lg px-2 py-2 bg-slate-50 text-sm"></select><select id="seApB" class="flex-1 min-w-0 border border-slate-300 rounded-lg px-2 py-2 bg-slate-50 text-sm"></select><button id="seApAdd" type="button" class="border border-slate-300 bg-white rounded-lg px-3 text-sm font-bold">추가</button></div>
+          <label class="flex items-center gap-2 text-xs mt-2"><input type="checkbox" id="seApDiag" class="w-4 h-4"> 대각선도 떨어뜨리기</label>
+          <div id="seApList" class="flex flex-wrap gap-2 mt-2"></div>
         </div>
         <p id="seMsg" class="text-xs text-emerald-700"></p>
       </div>
@@ -1024,7 +1103,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
       <p class="text-xs text-slate-500 mb-2">프로그램을 열 때와 연동으로 내용을 받기 전에, <b>작성한 기록·관찰 메모·학생 명단·상담 기록</b>을 이 기기에 몰래 복사해 둡니다. 실수로 지워졌을 때 아래에서 되돌릴 수 있습니다.</p>
       <div id="snapList" class="space-y-2 text-sm"></div>
     </section>
-    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기 · 사진 인쇄 · 자동 보관함 · 연동 표시 · 연동 상태표 · 기록 연동 버튼 · 등교일 기준 · 추천서 · 추천서 키 · 추천서 미리보기 · 교직원 연락처 · 추가 잠금 · 추천서 인적사항 · 학생 주소·생일 · 달력에 창체</p>
+    <p class="text-xs text-slate-500 text-center">버전 2026-10-02 · 홈 4분할 · 여러 줄 메모 · 메뉴 화살표 v2 · 인쇄 머리글 제거 · 학교 양식 업로드 · 화살표 v3 · 급식 v3 · 학교명 입력 · 상담 신청 · 생기부 AI · Gemini v3 · 명단·자율자치 · 성적 인쇄 · 기초조사서 팝업 · 학년도 조정 · 결석계 목록 보관 · 결석 현황 · 할 일 수정 · 상담 수정 · 인쇄 정리 · 발급 안내 · 전송 안내 · 테스트 인쇄 · Phomemo 전송 선택 · 공문 작성 · 학번 표시 · 메뉴 줄바꿈 · 공문 키 설정 · 소속 표기 · 사진 인쇄 · 자동 보관함 · 연동 표시 · 연동 상태표 · 기록 연동 버튼 · 등교일 기준 · 추천서 · 추천서 키 · 추천서 미리보기 · 교직원 연락처 · 추가 잠금 · 추천서 인적사항 · 학생 주소·생일 · 달력에 창체 · 지필평가 비교 · 상담 안내 문구 · 메모 색 13가지 · 외국인 이름 · 자리 떼어놓기 · 교과 묶음 · 품의 작성 · 상담 승인 메일 · 신청 페이지 9개 국어 · 상담 이름 번역 · 학부모 문자 AI · 상담-학생 연결 복구 · 메일 알림</p>
   </div>
 </dialog>
 
@@ -2485,7 +2564,26 @@ let students = load('gm-students'), counsels = load('gm-counsels'), passes = loa
 const SEED = [{"no": "1701", "name": "황하이안", "phone": "010-3495-1268", "guard": "이희경(엄마) 010-8033-0785", "note": ""}, {"no": "1702", "name": "김민선", "phone": "010-2757-0021", "guard": "김형태(아빠) 010-5892-0021", "note": "배가 자주 아픕니다."}, {"no": "1703", "name": "김송민", "phone": "010-9218-3747", "guard": "김승현(부) 010-3407-3737", "note": ""}, {"no": "1704", "name": "김지민", "phone": "010-8310-4663", "guard": "김명섭(부) 010-8320-4663", "note": ""}, {"no": "1705", "name": "김현우", "phone": "010-4510-7704", "guard": "김승천(부) 010-4477-5875", "note": ""}, {"no": "1706", "name": "류지환", "phone": "010-4220-2239", "guard": "김영희(엄마) 010-3331-2239", "note": ""}, {"no": "1707", "name": "박지훈", "phone": "010-8669-9846", "guard": "박기영(부) 010-4857-9846", "note": ""}, {"no": "1708", "name": "박한결", "phone": "010-8201-7833", "guard": "김민혜(모) 010-8837-7833", "note": ""}, {"no": "1709", "name": "배에스더", "phone": "010-4046-7509", "guard": "이종미(엄마) 010-9727-7509", "note": ""}, {"no": "1710", "name": "양현민", "phone": "010-5425-0749", "guard": "양권규(부) 010-9574-0806", "note": ""}, {"no": "1711", "name": "오지성", "phone": "010-2718-5623", "guard": "장희선(모) 010-6250-8050", "note": ""}, {"no": "1712", "name": "오영준", "phone": "010-9025-0047", "guard": "이새롬(모) 010-4187-0047", "note": ""}, {"no": "1713", "name": "이재현", "phone": "010-4446-7797", "guard": "최현영(모) 010-9236-7772", "note": ""}, {"no": "1714", "name": "이제이", "phone": "010-4491-2900", "guard": "김선미(엄마) 010-4414-2900", "note": ""}, {"no": "1715", "name": "이준희", "phone": "010-4482-2439", "guard": "김보나(어머니) 010-3316-2439", "note": "장이 좋지 않다"}, {"no": "1716", "name": "정여원", "phone": "010-9529-3984", "guard": "박정선(모) 010-7676-3984", "note": ""}, {"no": "1717", "name": "편민창", "phone": "010-3686-1503", "guard": "편도철(부) 010-8826-1503", "note": ""}, {"no": "1718", "name": "허예빈", "phone": "010-5341-6846", "guard": "허진영(아빠) 010-5345-6846", "note": "배아픔 머리아픔 예민"}]; // 청양고 1학년 7반 기초조사서 기준
 try { if (localStorage.getItem('gm-students') === null) { students = SEED.map(s => ({ id: uid(), ...s })); store('gm-students', students); } } catch (e) { students = SEED.map(s => ({ id: uid(), ...s })); }
 const sorted = () => [...students].sort((a, b) => a.no.localeCompare(b.no, 'ko', { numeric: true }));
-const stuName = id => { const s = students.find(x => x.id === id); return s ? `${s.no} ${s.name}` : '(삭제된 학생)'; };
+const stuName = (id, c) => {
+  const s = students.find(x => x.id === id);
+  if (s) return `${s.no} ${s.name}`;
+  if (c && (c.sno || c.sname)) return `${[c.sno, c.sname].filter(Boolean).join(' ')} (명단에 없음)`;
+  return '(삭제된 학생)';
+};
+/* 학생 명단이 바뀌거나 다른 기기에서 동기화되면 상담 기록의 학생 연결이 끊길 수 있어,
+   기록에 함께 저장해 둔 학번·이름으로 다시 이어 붙입니다. */
+function relinkCounsels() {
+  let ch = 0;
+  counsels.forEach(c => {
+    const s = students.find(x => x.id === c.sid);
+    if (s) { if (c.sno !== s.no || c.sname !== s.name) { c.sno = s.no; c.sname = s.name; ch++; } return; }
+    let t = c.sno ? students.find(x => String(x.no) === String(c.sno)) : null;
+    if (!t && c.sname) { const m = students.filter(x => x.name === c.sname); if (m.length === 1) t = m[0]; }
+    if (t) { c.sid = t.id; c.sno = t.no; c.sname = t.name; ch++; }
+  });
+  if (ch) store('gm-counsels', counsels);
+  return counsels.filter(c => !students.some(x => x.id === c.sid)).length;
+}
 
 /* 날짜 · 고사 D-day */
 const now = new Date(), base = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -2519,7 +2617,7 @@ $('dlgClose').addEventListener('click', () => $('dlg').close());
 
 /* 백업 · 복원 · 초기화 */
 $('bkBtn').addEventListener('click', () => {
-  const data = { v: 1, students, counsels, passes, ddays, memos, events: evs, timetable: myTT, budget: bg, ch, sch, schEdit: schE, recs, recMemo, recRost, subjects: subjList, clubs: clubList, absList: (window.absStore ? absStore.get() : []), gongmun: (() => { try { return JSON.parse(localStorage.getItem('gm-gongmun')) || []; } catch (e) { return []; } })(), holidays: (() => { try { return JSON.parse(localStorage.getItem('gm-holidays')) || []; } catch (e) { return []; } })(), scho: (() => { try { return JSON.parse(localStorage.getItem('gm-scho')) || []; } catch (e) { return []; } })(), staff: (window.staffGet ? staffGet() : []), schoInfo: (() => { try { return JSON.parse(localStorage.getItem('gm-scho-info')) || {}; } catch (e) { return {}; } })(), teacher: $('pTeacher').value };
+  const data = { v: 1, students, counsels, passes, ddays, memos, events: evs, timetable: myTT, budget: bg, ch, sch, schEdit: schE, recs, recMemo, recRost, subjects: subjList, clubs: clubList, absList: (window.absStore ? absStore.get() : []), gongmun: (() => { try { return JSON.parse(localStorage.getItem('gm-gongmun')) || []; } catch (e) { return []; } })(), pumui: (() => { try { return JSON.parse(localStorage.getItem('gm-pumui')) || null; } catch (e) { return null; } })(), holidays: (() => { try { return JSON.parse(localStorage.getItem('gm-holidays')) || []; } catch (e) { return []; } })(), scho: (() => { try { return JSON.parse(localStorage.getItem('gm-scho')) || []; } catch (e) { return []; } })(), staff: (window.staffGet ? staffGet() : []), schoInfo: (() => { try { return JSON.parse(localStorage.getItem('gm-scho-info')) || {}; } catch (e) { return {}; } })(), exams: (window.examGet ? examGet() : {}), subjMap: (() => { try { return JSON.parse(localStorage.getItem('gm-subj-map')) || {}; } catch (e) { return {}; } })(), teacher: $('pTeacher').value };
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' }));
   a.download = `교무실_백업_${ymd(new Date())}.json`; a.click();
@@ -2550,6 +2648,8 @@ $('rsFile').addEventListener('change', async e => {
     if (Array.isArray(d.scho)) { try { localStorage.setItem('gm-scho', JSON.stringify(d.scho)); } catch (err) {} }
     if (Array.isArray(d.staff) && window.staffSet) staffSet(d.staff);
     if (d.schoInfo && typeof d.schoInfo === 'object') { try { localStorage.setItem('gm-scho-info', JSON.stringify(d.schoInfo)); } catch (err) {} }
+    if (d.exams && typeof d.exams === 'object' && window.examSet) examSet(d.exams);
+    if (d.subjMap && typeof d.subjMap === 'object') { try { localStorage.setItem('gm-subj-map', JSON.stringify(d.subjMap)); } catch (err) {} }
     store('gm-students', students); store('gm-counsels', counsels); store('gm-pass', passes); store('gm-dday', ddays);
     renderAll(); alert('복원했습니다.');
   } catch (err) { alert('복원 실패: ' + err.message); }
@@ -2565,6 +2665,20 @@ $('rstBtn').addEventListener('click', () => {
 });
 
 
+/* 이름 다듬기: 한글 이름은 공백을 붙이고, 외국인 이름은 띄어쓰기를 살린다 */
+const nameNorm = v => {
+  const t = String(v == null ? '' : v).replace(/\s+/g, ' ').trim();
+  return /^[가-힣\s]+$/.test(t) ? t.replace(/\s+/g, '') : t;
+};
+/* 사람 이름처럼 보이는가 (한글 2자 이상 또는 영문 2자 이상) */
+const looksName = v => {
+  const t = nameNorm(v);
+  if (!t || /\d/.test(t)) return '';
+  if (/^[가-힣]{2,10}$/.test(t)) return t;
+  if (/^[A-Za-z][A-Za-z.'’\- ]{1,39}$/.test(t) && t.replace(/[^A-Za-z]/g, '').length >= 2) return t;
+  if (/^[가-힣A-Za-z][가-힣A-Za-z.'’\- ]{1,39}$/.test(t)) return t;        /* 한글·영문 섞인 이름 */
+  return '';
+};
 const fmtBirth = v => {
   const t = String(v == null ? '' : v).trim(); if (!t) return '';
   if (/^\d{5}$/.test(t)) { const d = new Date(Date.UTC(1899, 11, 30 + (+t))); return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`; }
@@ -2578,8 +2692,8 @@ function parseStudentsFlex(wb) {
   const out = [], seen = new Set(), none = ['', '없음', '없습', '없어요', '튼튼함', '건강은 보통이에요'];
   const nrm = v => String(v == null ? '' : v).replace(/\s+/g, ''), cl = v => String(v == null ? '' : v).trim();
   const BAD = new Set(['이름', '성명', '학번', '번호', '비고', '반', '학년', '남', '여', '남자', '여자', '합계', '계', '담임']);
-  const nameOk = v => { const t = cl(v).replace(/\s+/g, ''); return /^[가-힣]{2,5}$/.test(t) && !BAD.has(t) ? t : ''; };
-  const add = (no, name, ex) => { no = String(no).replace(/\D/g, ''); name = cl(name).replace(/\s+/g, ''); if (!no || !name || seen.has(no)) return; seen.add(no); out.push(Object.assign({ no, name }, ex || {})); };
+  const nameOk = v => { const t = looksName(v); return t && !BAD.has(t) ? t : ''; };
+  const add = (no, name, ex) => { no = String(no).replace(/\D/g, ''); name = nameNorm(name); if (!no || !name || seen.has(no)) return; seen.add(no); out.push(Object.assign({ no, name }, ex || {})); };
   for (const sn of wb.SheetNames) {
     const rows = XLSX.utils.sheet_to_json(wb.Sheets[sn], { header: 1, defval: '' });
     let hi = -1, c = {};
@@ -2603,11 +2717,11 @@ function parseStudentsFlex(wb) {
     } else {
       rows.forEach(row => {
         const line = row.map(cl).filter(Boolean).join(' ');
-        let m = /(\d{1,2})\s*학년\s*(\d{1,2})\s*반\s*(\d{1,2})\s*번\s*([가-힣]{2,5})/.exec(line);
+        let m = /(\d{1,2})\s*학년\s*(\d{1,2})\s*반\s*(\d{1,2})\s*번\s*([가-힣]{2,10}|[A-Za-z][A-Za-z.'’\- ]{1,39})/.exec(line);
         if (m) { add(`${+m[1]}${String(+m[2]).padStart(2, '0')}${String(+m[3]).padStart(2, '0')}`, m[4]); return; }
         const cells = row.map(cl), ni = cells.findIndex(x => nameOk(x)), noi = cells.findIndex(x => /^\d{3,6}$/.test(x.replace(/\s+/g, '')));
         if (ni >= 0 && noi >= 0) { add(cells[noi], nameOk(cells[ni])); return; }
-        m = /(?:^|\s)(\d{3,6})\s*([가-힣]{2,5})(?:\s|$)/.exec(line) || /(?:^|\s)([가-힣]{2,5})\s*(\d{3,6})(?:\s|$)/.exec(line);
+        m = /(?:^|\s)(\d{3,6})\s+([가-힣]{2,10}|[A-Za-z][A-Za-z.'’\- ]{1,39}?)(?:\s{2,}|$)/.exec(line) || /(?:^|\s)([가-힣]{2,10})\s*(\d{3,6})(?:\s|$)/.exec(line);
         if (m) { const a = /^\d/.test(m[1]); const no = a ? m[1] : m[2], nm = a ? m[2] : m[1]; if (nameOk(nm)) add(no, nm); }
       });
     }
@@ -2737,6 +2851,12 @@ function cLoad(c) {
 }
 function cReset() { cEdit = ''; $('cDetail').value = ''; $('cDate').value = ymd(new Date()); cSyncForm(); renderTimeline(); }
 function renderTimeline() {
+  const orphan = relinkCounsels();
+  if ($('cOrphan')) {
+    const miss = [...new Set(counsels.filter(c => !students.some(x => x.id === c.sid)).map(c => [c.sno, c.sname].filter(Boolean).join(' ') || '학생'))];
+    $('cOrphan').textContent = orphan ? `⚠️ ${orphan}건의 상담 기록이 명단에 없는 학생(${miss.join(', ')})을 가리킵니다. "학생 기록 관리"에서 그 학번으로 학생을 등록하면 자동으로 다시 연결됩니다.` : '';
+    $('cOrphan').classList.toggle('hidden', !orphan);
+  }
   const f = $('cFilter').value;
   if (cEdit && !counsels.some(x => x.id === cEdit)) { cEdit = ''; cSyncForm(); }
   const list = counsels.filter(c => !f || c.sid === f).sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
@@ -2745,7 +2865,7 @@ function renderTimeline() {
     const li = el('li', 'relative pl-6' + (cEdit === c.id ? ' bg-sky-50 rounded-lg py-1' : ''));
     li.appendChild(el('span', 'absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-[#0f2747] ring-4 ring-white'));
     const head = el('div', 'flex items-center gap-2 flex-wrap');
-    head.append(el('span', 'font-bold', c.date), el('span', 'text-sm', stuName(c.sid)),
+    head.append(el('span', 'font-bold', c.date), el('span', 'text-sm', stuName(c.sid, c)),
       el('span', `text-xs px-2 py-0.5 rounded ${TYPE_CLR[c.type]}`, c.type), el('span', 'text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600', c.area));
     const edit = el('button', 'ml-auto text-xs text-slate-400 hover:text-sky-700', '수정');
     edit.type = 'button'; edit.onclick = () => cLoad(c);
@@ -2761,7 +2881,8 @@ $('cFilter').addEventListener('change', renderTimeline);
 $('cForm').addEventListener('submit', e => {
   e.preventDefault();
   if (!$('cStu').value) { alert('학생을 먼저 선택하세요. 학생이 없다면 "학생 기록 관리"에서 등록하세요.'); return; }
-  const v = { sid: $('cStu').value, date: $('cDate').value, type: $('cType').value, area: $('cArea').value, detail: $('cDetail').value.trim() };
+  const st = students.find(x => x.id === $('cStu').value);
+  const v = { sid: $('cStu').value, sno: st ? st.no : '', sname: st ? st.name : '', date: $('cDate').value, type: $('cType').value, area: $('cArea').value, detail: $('cDetail').value.trim() };
   if (cEdit) { const i = counsels.findIndex(x => x.id === cEdit); if (i >= 0) counsels[i] = Object.assign({}, counsels[i], v); cEdit = ''; }
   else counsels.push(Object.assign({ id: uid() }, v));
   store('gm-counsels', counsels); $('cDetail').value = ''; $('cFilter').value = v.sid; cSyncForm(); renderAll();
@@ -2776,34 +2897,72 @@ const copyText = async t => {
 };
 function showGuard() {
   const c = counsels.find(x => x.id === $('mSel').value), s = c && students.find(x => x.id === c.sid);
-  $('mGuard').textContent = s ? `보호자 연락처: ${s.guard || '등록된 번호 없음'}` : '';
+  $('mGuard').textContent = s ? `보호자 연락처: ${s.guard || '등록된 번호 없음'}` : c ? '이 학생은 명단에 없습니다. 학생 기록 관리에 등록하면 보호자 연락처가 함께 나옵니다.' : '';
 }
 function refreshMsgSel() {
   const sel = $('mSel'), keep = sel.value; sel.innerHTML = '';
   const o0 = el('option', '', counsels.length ? '-- 상담 기록을 선택하세요 --' : '저장된 상담 기록이 없습니다'); o0.value = ''; sel.appendChild(o0);
   [...counsels].sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id)).forEach(c => {
-    const o = el('option', '', `${c.date} ${stuName(c.sid)} · ${c.area}/${c.type}`); o.value = c.id; sel.appendChild(o);
+    const o = el('option', '', `${c.date} ${stuName(c.sid, c)} · ${c.area}/${c.type}`); o.value = c.id; sel.appendChild(o);
   });
   if (counsels.some(c => c.id === keep)) sel.value = keep;
   showGuard();
 }
 $('mSel').addEventListener('change', showGuard);
-$('mPrompt').addEventListener('click', async () => {
+function msgPrompt() {
   const c = counsels.find(x => x.id === $('mSel').value);
-  if (!c) { alert('상담 기록을 먼저 선택하세요.'); return; }
+  if (!c) { alert('상담 기록을 먼저 선택하세요.'); return ''; }
   const s = students.find(x => x.id === c.sid);
   const who = $('mHide').checked ? '학생 이름은 쓰지 말고 "자녀분"으로 표현' : `학생 이름은 "${s ? s.name : '학생'}"으로 표기`;
-  const txt = [
+  const len = ($('mLen') && $('mLen').value) || '350';
+  return [
     '당신은 고등학교 담임교사입니다. 아래 상담 내용을 바탕으로 학부모님께 보낼 문자 메시지 초안을 작성해 주세요.', '',
-    `- 어조: ${$('mTone').value}`, '- 분량: 공백 포함 350자 이내, 인사말과 끝인사 포함', `- ${who}`,
+    `- 어조: ${$('mTone').value}`, `- 분량: 공백 포함 ${len}자 이내, 인사말과 끝인사 포함`, `- ${who}`,
     '- 서명(학교·학급·담임 이름)은 쓰지 않기',
-    '- 결과는 문자에 바로 붙여넣을 본문만 출력(설명·제목 없이)',
+    '- 결과는 문자에 바로 붙여넣을 본문만 출력(설명·제목·따옴표 없이)',
     '- 상담에 없는 내용은 지어내지 말고, 걱정을 키우는 표현은 피하며, 필요한 협조는 정중히 요청', '',
     '[상담 정보]', `- 일자: ${c.date}`, `- 유형: ${c.type} 상담`, `- 영역: ${c.area}`, `- 내용: ${c.detail}`
   ].join('\n');
+}
+$('mPrompt').addEventListener('click', async () => {
+  const txt = msgPrompt(); if (!txt) return;
   $('mPromptBox').value = txt;
   $('mHint').textContent = (await copyText(txt)) ? '요청문을 복사했습니다. 사용하시는 AI 채팅창에 붙여넣으세요.' : '자동 복사에 실패했습니다. 아래 요청문을 직접 선택해 복사해 주세요.';
 });
+/* Gemini로 바로 작성 */
+(() => {
+  const K = ['msGemKey', 'msGemModel', 'msGemTest', 'msGemModels', 'msGemClear', 'mGen'];
+  if (K.some(id => !$(id))) return;
+  $('msGemKey').addEventListener('change', () => { gem.key = $('msGemKey').value.trim(); saveGem(); gemUI(); });
+  $('msGemModel').addEventListener('change', () => { gem.model = $('msGemModel').value.trim(); gem.manual = !!gem.model; saveGem(); gemUI(); });
+  $('msGemClear').addEventListener('click', () => { gem.key = ''; saveGem(); gemUI(); gemMsg('키를 지웠습니다.'); });
+  $('msGemModels').addEventListener('click', async () => {
+    gem.key = $('msGemKey').value.trim(); saveGem(); gemUI();
+    if (!gem.key) { gemMsg('먼저 API 키를 입력하세요.'); return; }
+    gemMsg('모델 목록을 불러오는 중…');
+    try { const l = await gemFill(), p = gemPick(l); gemMsg(`사용 가능한 모델 ${l.length}개를 불러왔습니다.${p ? ` (추천: ${p})` : ''}`, true); if (p && !gem.model) { gem.model = p; gem.manual = false; saveGem(); gemUI(); } }
+    catch (e) { gemMsg(e.message); }
+  });
+  $('msGemTest').addEventListener('click', async () => {
+    gem.key = $('msGemKey').value.trim(); gem.model = $('msGemModel').value.trim(); gem.manual = !!gem.model; saveGem(); gemUI(); gemMsg('연결 확인 중…');
+    try { await gemAsk('"연결됨"이라고만 답하세요.'); gemMsg('연결됨! 이제 문자 초안을 바로 쓸 수 있어요.', true); } catch (e) { gemMsg(e.message); }
+  });
+  const hint = (t, ok) => { $('mHint').textContent = t || ''; $('mHint').className = 'text-xs ' + (ok ? 'text-emerald-600' : 'text-slate-600'); };
+  $('mGen').addEventListener('click', async () => {
+    if (!$('mSel').value) { alert('상담 기록을 먼저 선택하세요.'); return; }
+    if (!gem.key) { $('msGemDet').open = true; $('msGemKey').focus(); gemMsg('먼저 API 키를 입력하고 "연결 테스트"를 눌러 주세요.'); alert('먼저 위 "🔑 Gemini 연결 설정"에서 API 키를 넣어 주세요.'); return; }
+    const txt = msgPrompt(); if (!txt) return;
+    $('mPromptBox').value = txt;
+    const btn = $('mGen'), old = btn.textContent;
+    btn.disabled = true; btn.textContent = '✍️ 쓰는 중…'; hint('Gemini가 문자 초안을 쓰고 있습니다… (10~20초)', true);
+    try {
+      const out = (await gemAsk(txt)).replace(/^["'\s]+|["'\s]+$/g, '');
+      $('mOut').value = out; $('mCount').textContent = `${out.length}자`;
+      hint('초안을 썼습니다. 내용을 확인·수정한 뒤 "문자 복사"를 누르세요.', true);
+    } catch (e) { hint('실패: ' + e.message); }
+    btn.disabled = false; btn.textContent = old;
+  });
+})();
 $('mOut').addEventListener('input', () => { $('mCount').textContent = `${$('mOut').value.length}자`; });
 $('mCopy').addEventListener('click', async () => {
   if (!$('mOut').value.trim()) { $('mHint').textContent = '복사할 문자가 없습니다.'; return; }
@@ -3368,8 +3527,262 @@ $('gFile').addEventListener('change', async e => {
   } catch (err) { alert('불러오기 실패: ' + err.message); }
 });
 
+
+
+/* ===== 과목 이름을 교과로 묶기 (국어/수학/영어…) ===== */
+const SMAP_KEY = 'gm-subj-map';
+let subjMap = (() => { try { const v = JSON.parse(localStorage.getItem(SMAP_KEY)); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; } catch (e) { return {}; } })();
+const saveSubjMap = () => { try { localStorage.setItem(SMAP_KEY, JSON.stringify(subjMap)); } catch (e) {} };
+/* 위에서부터 먼저 맞는 규칙을 씁니다 */
+const SUBJ_RULES = [
+  [/한국사/, '한국사'],
+  [/중국어|일본어|독일어|프랑스어|스페인어|러시아어|아랍어|베트남어/, '제2외국어'],
+  [/영어|영독|영작|영문/, '영어'],
+  [/경제수학|실용수학|인공지능수학|미적분|확률|통계|기하|대수|수학/, '수학'],
+  [/국어|문학|독서|작문|화법|언어|매체|고전|논술/, '국어'],
+  [/물리|화학|생명|지구과학|과학탐구|통합과학|과학/, '과학'],
+  [/회계|세무|무역|마케팅|유통|금융|사무|전산|비즈니스|창업|상업|매장|서비스|실무|프로그래밍|데이터|콘텐츠|디자인/, '전문교과'],
+  [/지리|정치|법과|사회문화|윤리|세계사|동아시아사|역사|통합사회|사회|경제/, '사회'],
+  [/정보|기술|가정|공학|컴퓨터/, '기술·정보'],
+  [/체육|운동|스포츠|건강/, '체육'],
+  [/음악|미술|연극|무용|예술/, '예술'],
+  [/한문/, '한문'],
+  [/진로|보건|환경|심리|교양/, '교양']
+];
+function subjGroup(name) {
+  const t = String(name == null ? '' : name).trim();
+  if (!t) return '';
+  if (subjMap[t]) return subjMap[t];
+  const k = t.replace(/\s+/g, '');
+  for (const [re, g] of SUBJ_RULES) if (re.test(k)) return g;
+  return t;                                        /* 못 찾으면 과목 이름 그대로 */
+}
+/* ===== 지필평가 회차별 비교 ===== */
+(() => {
+  const EX_KEY = 'gm-exams';
+  const SKIP = /^(번호|학번|성명|이름|반|학급|학년|석차|등급|총점|합계|평균|비고|구분|순위|점수|성적|과목)$/;
+  let ex = (() => { try { const v = JSON.parse(localStorage.getItem(EX_KEY)); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; } catch (e) { return {}; } })();
+  const save = () => { try { localStorage.setItem(EX_KEY, JSON.stringify(ex)); } catch (e) { alert('저장 공간이 부족합니다.'); } };
+  const msg = (t, ok) => { $('exMsg').textContent = t || ''; $('exMsg').className = 'text-xs ' + (ok ? 'text-emerald-700' : 'text-slate-600'); };
+  const nz = v => String(v == null ? '' : v).replace(/\s+/g, '');
+  const num = v => { const m = /-?\d+(\.\d+)?/.exec(String(v == null ? '' : v)); return m ? +m[0] : null; };
+  const keyOf = (y, t, r) => `${y}-${t}-${r}`;
+  const label = k => { const [y, t, r] = k.split('-'); return `${y}학년도 ${t}학기 ${r}회`; };
+  const order = () => Object.keys(ex).sort();
+  window.examGet = () => ex;
+  window.examSet = v => { ex = (v && typeof v === 'object' && !Array.isArray(v)) ? v : {}; save(); draw(); };
+
+  function parseExam(wb) {
+    for (const sn of wb.SheetNames) {
+      const rows = XLSX.utils.sheet_to_json(wb.Sheets[sn], { header: 1, defval: '' });
+      let hi = -1, ni = -1;
+      for (let i = 0; i < Math.min(rows.length, 20) && hi < 0; i++) {
+        const j = rows[i].findIndex(c => /^(성명|이름|학생명|학생이름)$/.test(nz(c)));
+        if (j >= 0) { hi = i; ni = j; }
+      }
+      if (hi < 0) continue;
+      const subs = [];
+      rows[hi].forEach((v, c) => { const t = nz(v); if (t && c !== ni && !SKIP.test(t)) subs.push([c, String(v).trim().replace(/\s+/g, ' ')]); });
+      if (!subs.length) continue;
+      const stu = {};
+      for (let i = hi + 1; i < rows.length; i++) {
+        const nm = nameNorm(rows[i][ni]);
+        if (!nm || /^(합계|평균|계|소계|총계)$/.test(nm) || !looksName(nm)) continue;
+        const o = {};
+        subs.forEach(([c, name]) => { const v = num(rows[i][c]); if (v != null) o[name] = v; });
+        if (Object.keys(o).length) stu[nm] = o;
+      }
+      if (Object.keys(stu).length) return { subjects: subs.map(x => x[1]), stu };
+    }
+    return null;
+  }
+  $('exFile').addEventListener('change', async e => {
+    const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+    if (typeof XLSX === 'undefined') { alert('엑셀 읽기 도구를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'); return; }
+    try {
+      const got = parseExam(XLSX.read(await f.arrayBuffer()));
+      if (!got) { alert('성적을 찾지 못했습니다.\n\n"성명"(또는 "이름") 열과 과목별 점수 열이 있는 표인지 확인해 주세요.'); return; }
+      const k = keyOf(+$('exY').value || new Date().getFullYear(), $('exT').value, $('exR').value);
+      if (ex[k] && !confirm(`${label(k)} 성적이 이미 있습니다. 새 파일로 바꿀까요?`)) return;
+      ex[k] = { subjects: got.subjects, stu: got.stu, file: f.name };
+      save(); draw(); msg(`${label(k)} · 학생 ${Object.keys(got.stu).length}명 · 과목 ${got.subjects.length}개를 저장했습니다.`, true);
+    } catch (err) { alert('불러오기 실패: ' + err.message); }
+  });
+  function drawRounds() {
+    const box = $('exRounds'); box.innerHTML = '';
+    const ks = order();
+    if (!ks.length) { box.appendChild(el('span', 'text-xs text-slate-500', '아직 올린 회차가 없습니다.')); return; }
+    ks.forEach(k => {
+      const n = Object.keys(ex[k].stu || {}).length;
+      const t = el('span', 'inline-flex items-center gap-1 bg-white border border-slate-200 rounded-full px-3 py-1 text-xs', `${label(k)} · ${n}명`);
+      const x = el('button', 'text-slate-400 hover:text-red-600 font-bold', '×'); x.type = 'button';
+      x.onclick = () => { if (!confirm(`${label(k)} 성적을 지울까요?`)) return; delete ex[k]; save(); draw(); };
+      t.appendChild(x); box.appendChild(t);
+    });
+  }
+  function fillStu() {
+    const sel = $('exStu'), keep = sel.value, names = [...new Set(order().flatMap(k => Object.keys(ex[k].stu || {})))].sort((a, b) => a.localeCompare(b, 'ko'));
+    sel.innerHTML = '<option value="">-- 전체(반 평균) --</option>';
+    names.forEach(n => { const o = el('option', '', n); o.value = n; sel.appendChild(o); });
+    if (names.includes(keep)) sel.value = keep;
+  }
+  const avgOf = (k, sub) => { const v = Object.values(ex[k].stu || {}).map(o => o[sub]).filter(x => typeof x === 'number'); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+  const f1 = v => v == null ? '-' : (Math.round(v * 10) / 10).toFixed(1);
+  const diff = (a, b) => (a == null || b == null) ? '' : (a - b > 0 ? `▲${f1(a - b)}` : a - b < 0 ? `▼${f1(b - a)}` : '—');
+  const dcls = (a, b) => (a == null || b == null) ? 'text-slate-400' : a > b ? 'text-rose-600 font-bold' : a < b ? 'text-sky-700 font-bold' : 'text-slate-400';
+
+  function chart(labels, series) {                 // 간단한 꺾은선 그래프 (SVG)
+    const W = 640, H = 220, L = 44, R = 40, T = 14, B = 34;
+    const all = series.flatMap(s => s.v).filter(v => v != null);
+    if (!all.length) return '';
+    const lo = Math.max(0, Math.floor((Math.min(...all) - 5) / 10) * 10), hi = Math.min(100, Math.ceil((Math.max(...all) + 5) / 10) * 10);
+    const x = i => L + (labels.length < 2 ? (W - L - R) / 2 : i * (W - L - R) / (labels.length - 1));
+    const y = v => T + (hi - v) * (H - T - B) / (hi - lo || 1);
+    const CL = ['#0ea5e9', '#f43f5e', '#10b981', '#f59e0b', '#8b5cf6', '#14b8a6', '#ec4899', '#64748b'];
+    let g = `<svg viewBox="0 0 ${W} ${H}" class="w-full" style="max-width:720px">`;
+    for (let v = lo; v <= hi; v += Math.max(10, Math.round((hi - lo) / 5 / 10) * 10)) {
+      g += `<line x1="${L}" y1="${y(v)}" x2="${W - R}" y2="${y(v)}" stroke="#e2e8f0"/><text x="${L - 6}" y="${y(v) + 4}" font-size="11" fill="#94a3b8" text-anchor="end">${v}</text>`;
+    }
+    labels.forEach((t, i) => { g += `<text x="${x(i)}" y="${H - 12}" font-size="11" fill="#64748b" text-anchor="middle">${esc(t)}</text>`; });
+    series.forEach((s, si) => {
+      const c = CL[si % CL.length];
+      let d = '', pts = '';
+      s.v.forEach((v, i) => { if (v == null) return; d += (d ? ' L' : 'M') + x(i) + ' ' + y(v); pts += `<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="${c}"><title>${esc(s.name)} ${esc(labels[i])}: ${v}</title></circle>`; });
+      g += `<path d="${d}" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>${pts}`;
+    });
+    g += '</svg>';
+    const legend = series.map((s, i) => `<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;margin-right:14px"><span style="width:10px;height:10px;border-radius:50%;background:${CL[i % CL.length]};display:inline-block"></span>${esc(s.name)}</span>`).join('');
+    return `<div class="overflow-x-auto">${g}</div><div class="mt-1">${legend}</div>`;
+  }
+  function draw() {
+    drawRounds(); fillStu();
+    const box = $('exOut'), ks = order();
+    if (!ks.length) { box.innerHTML = '<p class="text-sm text-slate-500 py-8 text-center">회차별 성적 파일을 올리면 여기에서 비교해 드립니다.</p>'; return; }
+    const labels = ks.map(k => { const [, t, r] = k.split('-'); return `${t}학기 ${r}회`; });
+    const name = $('exStu').value, grouped = $('exGroup').checked;
+    const subs = [...new Set(ks.flatMap(k => ex[k].subjects || []))];
+    const val = name ? (k, sub) => { const o = (ex[k].stu || {})[name]; return o && typeof o[sub] === 'number' ? o[sub] : null; } : avgOf;
+    let rows;
+    if (grouped) {
+      const g = {};
+      subs.forEach(sub => { const key = subjGroup(sub); (g[key] = g[key] || []).push(sub); });
+      rows = Object.keys(g).map(key => ({
+        sub: key, from: g[key],
+        v: ks.map(k => { const a = g[key].map(sub => val(k, sub)).filter(x => x != null); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; })
+      })).filter(r => r.v.some(v => v != null));
+    } else rows = subs.map(sub => ({ sub, v: ks.map(k => val(k, sub)) })).filter(r => r.v.some(v => v != null));
+    if (!rows.length) { box.innerHTML = `<p class="text-sm text-slate-500 py-8 text-center">${name ? esc(name) + ' 학생의 점수가 없습니다.' : '점수가 없습니다.'}</p>`; return; }
+    const mean = v => { const a = v.filter(x => x != null); return a.length ? a.reduce((x, y) => x + y, 0) / a.length : null; };
+    const totals = ks.map((k, i) => mean(rows.map(r => r.v[i])));
+    const head = ['과목', ...labels, '처음 대비', '직전 대비'].map(h => `<th class="px-2 py-1.5 font-medium whitespace-nowrap">${h}</th>`).join('');
+    const body = rows.map(r => {
+      const last = r.v[r.v.length - 1], first = r.v.find(v => v != null);
+      const prev = [...r.v].slice(0, -1).reverse().find(v => v != null);
+      const merged = r.from && r.from.length > 1 ? `<br><span class="text-xs text-slate-500">${esc(r.from.join(' · '))}</span>` : '';
+      return `<tr class="border-t border-slate-100"><td class="px-2 py-1.5">${esc(r.sub)}${merged}</td>` +
+        r.v.map(v => `<td class="px-2 py-1.5 text-center">${v == null ? '-' : f1(v)}</td>`).join('') +
+        `<td class="px-2 py-1.5 text-center ${dcls(last, first)}">${diff(last, first)}</td>` +
+        `<td class="px-2 py-1.5 text-center ${dcls(last, prev)}">${diff(last, prev)}</td></tr>`;
+    }).join('');
+    const foot = `<tr class="border-t-2 border-slate-300 font-bold"><td class="px-2 py-1.5">${name ? '전 과목 평균' : '반 전체 평균'}</td>` +
+      totals.map(v => `<td class="px-2 py-1.5 text-center">${f1(v)}</td>`).join('') +
+      `<td class="px-2 py-1.5 text-center ${dcls(totals[totals.length - 1], totals.find(v => v != null))}">${diff(totals[totals.length - 1], totals.find(v => v != null))}</td>` +
+      (() => { const last = totals[totals.length - 1], prev = [...totals].slice(0, -1).reverse().find(v => v != null); return `<td class="px-2 py-1.5 text-center ${dcls(last, prev)}">${diff(last, prev)}</td>`; })() + `</tr>`;
+    const who = name ? `${esc(name)} 학생` : '반 전체 평균';
+    const cls = name ? ks.map((k, i) => mean(rows.map(r => avgOf(k, r.sub)))) : null;
+    const series = rows.slice(0, 8).map(r => ({ name: r.sub, v: r.v }));
+    box.innerHTML = `<div class="space-y-4">
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <h3 class="font-bold mb-2">${who} · 회차별 점수 ${grouped ? '<span class="text-xs font-normal text-slate-500">(같은 교과끼리 묶어서 평균)</span>' : ''}</h3>
+        <div class="overflow-x-auto"><table class="w-full text-sm"><thead class="text-slate-500 bg-slate-50"><tr>${head}</tr></thead><tbody>${body}${foot}</tbody></table></div>
+        ${name && cls ? `<p class="text-xs text-slate-500 mt-2">반 평균: ${cls.map((v, i) => `${labels[i]} ${f1(v)}`).join(' · ')}</p>` : ''}
+      </div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4">
+        <h3 class="font-bold mb-2">📉 과목별 변화 ${rows.length > 8 ? '<span class="text-xs font-normal text-slate-500">(앞 8과목만)</span>' : ''}</h3>
+        ${chart(labels, series)}
+      </div>
+      ${name ? `<div class="bg-white rounded-xl border border-slate-200 p-4"><h3 class="font-bold mb-2">📊 ${esc(name)} 학생과 반 평균</h3>${chart(labels, [{ name: '본인 평균', v: totals }, { name: '반 평균', v: cls }])}</div>` : ''}
+    </div>`;
+  }
+  $('exStu').addEventListener('change', draw);
+  $('exGroup').addEventListener('change', () => { try { localStorage.setItem('gm-ex-group', $('exGroup').checked ? '1' : '0'); } catch (e) {} draw(); });
+  try { const g = localStorage.getItem('gm-ex-group'); if (g !== null) $('exGroup').checked = g === '1'; } catch (e) {}
+  $('exMap').addEventListener('click', () => {
+    const box = $('exMapBox'), on = box.classList.contains('hidden');
+    box.classList.toggle('hidden', !on);
+    if (!on) return;
+    const subs = [...new Set(order().flatMap(k => ex[k].subjects || []))].sort((a, b) => a.localeCompare(b, 'ko'));
+    box.innerHTML = '';
+    if (!subs.length) { box.appendChild(el('p', 'text-xs text-slate-500', '아직 올린 성적이 없습니다.')); return; }
+    box.appendChild(el('p', 'text-xs text-slate-600', '과목이 엉뚱한 교과로 묶였으면 오른쪽 칸을 고쳐 주세요. 같은 이름을 적으면 같은 줄로 묶입니다.'));
+    const grid = el('div', 'grid sm:grid-cols-2 gap-2');
+    subs.forEach(sub => {
+      const row = el('label', 'flex items-center gap-2 text-sm bg-white border border-slate-200 rounded-lg px-2 py-1.5');
+      row.appendChild(el('span', 'flex-1 min-w-0 truncate', sub));
+      const inp = el('input', 'w-28 border border-slate-300 rounded px-2 py-1 text-sm');
+      inp.value = subjGroup(sub);
+      inp.onchange = () => {
+        const v = inp.value.trim();
+        if (!v || v === sub) delete subjMap[sub]; else subjMap[sub] = v;
+        saveSubjMap(); draw();
+      };
+      row.appendChild(inp); grid.appendChild(row);
+    });
+    box.appendChild(grid);
+    const rst = el('button', 'text-xs underline text-slate-500', '자동으로 되돌리기'); rst.type = 'button';
+    rst.onclick = () => { if (!confirm('직접 고친 교과 묶음을 모두 지우고 자동 분류로 돌릴까요?')) return; subjMap = {}; saveSubjMap(); draw(); $('exMap').click(); $('exMap').click(); };
+    box.appendChild(rst);
+  });
+  $('exPrint').addEventListener('click', () => {
+    if (!order().length) { alert('인쇄할 내용이 없습니다.'); return; }
+    if (typeof printReset === 'function') printReset();
+    const c = (typeof cfg === 'object' && cfg) || {}, d = new Date();
+    const pa = $('printArea');
+    pa.innerHTML = `<h2 style="text-align:center;font-size:15pt;font-weight:700;margin:0 0 2px">지필평가 비교</h2>
+      <p style="text-align:center;font-size:9.5pt;color:#475569;margin:0 0 10px">${esc([c.school || '', c.cls || ''].filter(Boolean).join(' '))} · ${esc($('exStu').value || '반 전체 평균')} · 출력 ${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}</p>
+      ${$('exOut').innerHTML}
+      <p style="font-size:8.5pt;color:#64748b;margin-top:8px">※ 개인정보가 담겨 있으니 보관과 폐기에 유의하세요.</p>`;
+    pa.classList.add('as-print');
+    const pg = document.createElement('style'); pg.dataset.pg = '1'; pg.textContent = '@page{size:A4 landscape;margin:12mm}'; document.head.appendChild(pg);
+    const done = () => { pg.remove(); pa.classList.remove('as-print'); pa.innerHTML = ''; window.removeEventListener('afterprint', done); };
+    window.addEventListener('afterprint', done); window.print(); setTimeout(done, 60000);
+  });
+  $('exXlsx').addEventListener('click', () => {
+    const ks = order(); if (!ks.length) { alert('저장할 내용이 없습니다.'); return; }
+    if (typeof XLSX === 'undefined') { alert('엑셀 도구를 불러오지 못했습니다.'); return; }
+    const labels = ks.map(k => { const [, t, r] = k.split('-'); return `${t}학기 ${r}회`; });
+    const subs = [...new Set(ks.flatMap(k => ex[k].subjects || []))];
+    const names = [...new Set(ks.flatMap(k => Object.keys(ex[k].stu || {})))].sort((a, b) => a.localeCompare(b, 'ko'));
+    const aoa = [['이름', '교과', '과목', ...labels, '처음 대비', '직전 대비']];
+    names.forEach(nm => subs.forEach(sub => {
+      const v = ks.map(k => { const o = (ex[k].stu || {})[nm]; return o && typeof o[sub] === 'number' ? o[sub] : null; });
+      if (!v.some(x => x != null)) return;
+      const last = v[v.length - 1], first = v.find(x => x != null), prev = [...v].slice(0, -1).reverse().find(x => x != null);
+      aoa.push([nm, subjGroup(sub), sub, ...v.map(x => x == null ? '' : x), (last != null && first != null) ? +(last - first).toFixed(1) : '', (last != null && prev != null) ? +(last - prev).toFixed(1) : '']);
+    }));
+    const av = [['교과', '과목', ...labels]];
+    subs.forEach(sub => av.push([subjGroup(sub), sub, ...ks.map(k => { const v = avgOf(k, sub); return v == null ? '' : +v.toFixed(1); })]));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(aoa), '학생별');
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(av), '과목 평균');
+    const n = new Date(), p2 = v => String(v).padStart(2, '0');
+    XLSX.writeFile(wb, `지필평가비교_${n.getFullYear()}${p2(n.getMonth() + 1)}${p2(n.getDate())}.xlsx`);
+  });
+  $('exY').value = new Date().getFullYear();
+  draw();
+})();
 /* ===== 할 일 · 스티커 메모 ===== */
-const MEMO_KEY = 'gm-memos', MC = { y: 'bg-yellow-200', p: 'bg-orange-200', g: 'bg-green-200', b: 'bg-sky-200' }, CATS = ['담임', '수업', '업무'], CEMO = { 담임: '🧑‍🏫', 수업: '📚', 업무: '💼' };
+const MEMO_KEY = 'gm-memos';
+const MC = {
+  y: 'bg-yellow-200', p: 'bg-orange-200', pk: 'bg-pink-200', rd: 'bg-rose-300',
+  g: 'bg-green-200', mn: 'bg-teal-200', b: 'bg-sky-200', la: 'bg-violet-200',
+  gy: 'bg-slate-200', cr: 'bg-[#f6ead8]',
+  nv: 'bg-[#1f3a63] text-white', dg: 'bg-[#2f4f43] text-white', pl: 'bg-[#4b3869] text-white'
+};
+const MNAME = { y: '노랑', p: '주황', pk: '연핑크', rd: '분홍', g: '연두', mn: '민트', b: '하늘', la: '라벤더', gy: '연회색', cr: '크림', nv: '남색', dg: '진초록', pl: '보라' };
+const MDARK = { nv: 1, dg: 1, pl: 1 };        /* 글씨가 하얀 색 */
+const mSub = c => MDARK[c] ? 'text-slate-200' : 'text-slate-600';
+const CATS = ['담임', '수업', '업무'], CEMO = { 담임: '🧑‍🏫', 수업: '📚', 업무: '💼' };
 let memos = load(MEMO_KEY), mmColor = 'y', mmView = 'all', mmCat = 'all', mmRange = 'all', mmEdit = '';
 const weekEnd = () => { const d = new Date(base); d.setDate(d.getDate() + (7 - d.getDay()) % 7); return ymd(d); };
 function chips(box, items, cur, set) {
@@ -3387,11 +3800,11 @@ function memoEditCard(m) {
   [['', '분류 없음'], ...CATS.map(c => [c, `${CEMO[c]} ${c}`])].forEach(([v, t]) => { const o = el('option', '', t); o.value = v; cat.appendChild(o); });
   cat.value = m.cat || '';
   const due = el('input', 'border border-slate-300 rounded-lg px-2 py-1.5 text-xs bg-white'); due.type = 'date'; due.title = '마감일'; due.value = m.due || '';
-  const noDue = el('button', 'text-xs underline text-slate-600', '마감 지우기'); noDue.type = 'button'; noDue.onclick = () => { due.value = ''; };
+  const noDue = el('button', `text-xs underline ${mSub(m.color)}`, '마감 지우기'); noDue.type = 'button'; noDue.onclick = () => { due.value = ''; };
   row.append(cat, due, noDue);
-  const cols = el('div', 'flex gap-2'); let color = m.color || 'y';
-  const paint = () => [...cols.children].forEach(b => { b.className = `w-6 h-6 rounded-full ${MC[b.dataset.c]} ${b.dataset.c === color ? 'ring-2 ring-offset-1 ring-slate-700' : ''}`; });
-  Object.keys(MC).forEach(k => { const b = el('button'); b.type = 'button'; b.dataset.c = k; b.setAttribute('aria-label', '색상 선택'); b.onclick = () => { color = k; paint(); }; cols.appendChild(b); });
+  const cols = el('div', 'flex gap-1.5 flex-wrap'); let color = m.color || 'y';
+  const paint = () => [...cols.children].forEach(b => { b.className = `w-6 h-6 rounded-full border border-black/10 ${MC[b.dataset.c]} ${b.dataset.c === color ? 'ring-2 ring-offset-1 ring-slate-700' : ''}`; });
+  Object.keys(MC).forEach(k => { const b = el('button'); b.type = 'button'; b.dataset.c = k; b.title = MNAME[k] || ''; b.setAttribute('aria-label', MNAME[k] || '색상 선택'); b.onclick = () => { color = k; paint(); }; cols.appendChild(b); });
   paint();
   const btns = el('div', 'flex gap-2 justify-end items-center');
   const cancel = el('button', 'text-xs border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5', '취소');
@@ -3409,14 +3822,14 @@ function memoEditCard(m) {
     else if (e.key === 'Escape') { e.preventDefault(); cancel.click(); }
   });
   setTimeout(() => { try { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); } catch (e) {} }, 0);
-  card.append(ta, row, cols, el('p', 'text-xs text-slate-600', 'Ctrl+Enter로 저장, Esc로 취소'), btns);
+  card.append(ta, row, cols, el('p', `text-xs ${mSub(m.color)}`, 'Ctrl+Enter로 저장, Esc로 취소'), btns);
   return card;
 }
 function renderMemos() {
   const cbox = $('mmColors'); cbox.innerHTML = '';
   Object.entries(MC).forEach(([k, c]) => {
-    const b = el('button', `w-7 h-7 rounded-full ${c} ${k === mmColor ? 'ring-2 ring-offset-2 ring-slate-700' : ''}`);
-    b.type = 'button'; b.setAttribute('aria-label', '색상 선택'); b.onclick = () => { mmColor = k; renderMemos(); }; cbox.appendChild(b);
+    const b = el('button', `w-7 h-7 rounded-full border border-black/10 ${c} ${k === mmColor ? 'ring-2 ring-offset-2 ring-slate-700' : ''}`);
+    b.type = 'button'; b.title = MNAME[k] || ''; b.setAttribute('aria-label', MNAME[k] || '색상 선택'); b.onclick = () => { mmColor = k; renderMemos(); }; cbox.appendChild(b);
   });
   const fb = $('mmFilter'); fb.innerHTML = '';
   const cnt = k => memos.filter(m => k === 'all' || (k === 'done') === m.done).length;
@@ -3436,18 +3849,19 @@ function renderMemos() {
   list.forEach(m => {
     if (mmEdit === m.id) { board.appendChild(memoEditCard(m)); return; }
     const card = el('div', `rounded-lg p-4 shadow-sm flex flex-col gap-3 ${MC[m.color] || MC.y} ${m.done ? 'opacity-60' : ''}`);
+    const dk = !!MDARK[m.color];
     const lab = el('label', 'flex items-start gap-2 cursor-pointer');
     const cb = el('input'); cb.type = 'checkbox'; cb.checked = m.done; cb.className = 'mt-1 w-4 h-4';
     cb.onchange = () => { m.done = cb.checked; store(MEMO_KEY, memos); renderMemos(); renderDash(); };
     lab.append(cb, el('span', `text-sm whitespace-pre-wrap break-words ${m.done ? 'line-through' : ''}`, m.text));
-    const foot = el('div', 'flex items-center justify-between text-xs text-slate-600');
+    const foot = el('div', `flex items-center justify-between text-xs ${mSub(m.color)}`);
     const late = m.due && m.due < t && !m.done, meta = [m.cat ? `${CEMO[m.cat] || ''} ${m.cat}` : '', m.due ? '마감 ' + m.due.slice(5).replace('-', '/') : ''].filter(Boolean).join(' · ');
-    const edit = el('button', 'hover:text-sky-700', '수정'); edit.type = 'button';
+    const edit = el('button', dk ? 'hover:text-sky-200' : 'hover:text-sky-700', '수정'); edit.type = 'button';
     edit.onclick = () => { mmEdit = m.id; renderMemos(); };
-    const del = el('button', 'hover:text-red-600', '삭제'); del.type = 'button';
+    const del = el('button', dk ? 'hover:text-rose-300' : 'hover:text-red-600', '삭제'); del.type = 'button';
     del.onclick = () => { if (!confirm('이 메모를 지울까요?')) return; memos = memos.filter(x => x !== m); store(MEMO_KEY, memos); renderMemos(); renderDash(); };
     const acts = el('div', 'flex gap-2 shrink-0'); acts.append(edit, del);
-    foot.append(el('span', late ? 'text-red-600 font-bold' : '', meta || m.date), acts); card.append(lab, foot); board.appendChild(card);
+    foot.append(el('span', late ? (dk ? 'text-rose-300 font-bold' : 'text-red-600 font-bold') : '', meta || m.date), acts); card.append(lab, foot); board.appendChild(card);
   });
   $('mmEmpty').classList.toggle('hidden', list.length > 0);
 }
@@ -3818,11 +4232,11 @@ $('recAiBtn').addEventListener('click', async () => {
 /* ===== Gemini 연동 (API 키) ===== */
 let gem = (() => { const v = jl('gm-gemini'); return { key: v.key || '', model: v.model || '', manual: !!v.manual }; })();
 const GEM_DEF = 'gemini-2.5-flash', saveGem = () => store('gm-gemini', gem);
-const gemMsg = (t, ok) => { ['recGemMsg', 'goGemMsg', 'scGemMsg'].forEach(id => { const e = $(id); if (e) { e.textContent = t; e.className = ok ? 'text-emerald-700' : 'text-slate-600'; } }); };
+const gemMsg = (t, ok) => { ['recGemMsg', 'goGemMsg', 'scGemMsg', 'msGemMsg'].forEach(id => { const e = $(id); if (e) { e.textContent = t; e.className = ok ? 'text-emerald-700' : 'text-slate-600'; } }); };
 function gemUI() {
   $('recGemKey').value = gem.key; $('recGemModel').value = gem.model;
   $('recGemState').textContent = gem.key ? '· 키 입력됨' : '· 키를 입력하면 바로 작성할 수 있어요';
-  ['go', 'sc'].forEach(p => { if ($(p + 'GemKey')) { $(p + 'GemKey').value = gem.key; $(p + 'GemModel').value = gem.model; $(p + 'GemState').textContent = gem.key ? '· 키 입력됨' : '· 키를 입력해야 초안을 쓸 수 있어요'; } });
+  ['go', 'sc', 'ms'].forEach(p => { if ($(p + 'GemKey')) { $(p + 'GemKey').value = gem.key; $(p + 'GemModel').value = gem.model; $(p + 'GemState').textContent = gem.key ? '· 키 입력됨' : '· 키를 입력해야 초안을 쓸 수 있어요'; } });
 }
 async function gemList() {
   let r; try { r = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': gem.key } }); } catch (e) { throw new Error('모델 목록을 불러오지 못했습니다. 인터넷 연결을 확인하세요.'); }
@@ -3838,7 +4252,7 @@ function gemPick(list) {
 }
 async function gemFill() {
   const l = await gemList();
-  ['recGemList', 'goGemList', 'scGemList'].forEach(id => { const box = $(id); if (!box) return; box.innerHTML = ''; l.forEach(n => { const o = document.createElement('option'); o.value = n; box.appendChild(o); }); });
+  ['recGemList', 'goGemList', 'scGemList', 'msGemList'].forEach(id => { const box = $(id); if (!box) return; box.innerHTML = ''; l.forEach(n => { const o = document.createElement('option'); o.value = n; box.appendChild(o); }); });
   return l;
 }
 async function gemAsk(prompt, retried, tries, skip) {
@@ -4114,14 +4528,39 @@ function renderRsv() {
   const box = $('rsvReqList'); box.innerHTML = '';
   const decide = async (r, status) => {
     const note = status === '거절' ? (prompt('학생에게 보여줄 메모(선택)', '') || '') : '';
-    try { await rsvReq('POST', { action: 'decide', id: r.id, status, note }); r.status = status; r.note = note; store(RSVC_KEY, rsvCache); renderRsv(); renderHomeRsv(); } catch (e) { alert('처리 실패: ' + e.message); }
+    try {
+      const j = await rsvReq('POST', { action: 'decide', id: r.id, status, note }); r.status = status; r.note = note;
+      store(RSVC_KEY, rsvCache); renderRsv(); renderHomeRsv();
+      const m = j && j.mailed;
+      if (m === 'ok') rsvMsg(`📧 ${r.name} 학생에게 ${status} 안내 메일을 보냈습니다.`, true);
+      else if (m) rsvMsg('메일을 보내지 못했습니다: ' + m);
+      else if (status === '승인') rsvNotify([r]);
+    } catch (e) { alert('처리 실패: ' + e.message); }
   };
-  const row = (r, btns) => { const d = el('div', 'rounded-lg border border-slate-200 p-2.5 bg-slate-50'); d.append(el('div', 'font-bold', `${rsvTime(r)} · ${r.name}(${r.no})`)); if (r.topic) d.append(el('div', 'text-xs text-slate-600 mt-0.5', r.topic)); const b = el('div', 'flex gap-2 mt-2'); btns.forEach(([x, cls, fn]) => { const bt = el('button', `px-3 py-1 rounded-lg text-xs font-bold ${cls}`, x); bt.type = 'button'; bt.onclick = fn; b.appendChild(bt); }); d.appendChild(b); return d; };
+  /* 승인 결과를 단톡방에 붙여넣을 문구로 만들어 복사 */
+  async function rsvNotify(list) {
+    if (!list.length) return;
+    const one = list.length === 1;
+    const txt = (one ? '' : '[상담 확정 안내]\n') + list.map(r => {
+      const d = new Date(r.date + 'T00:00:00');
+      return `${one ? '[상담 확정] ' : '· '}${r.name}(${r.no}) ${d.getMonth() + 1}월 ${d.getDate()}일(${'일월화수목금토'[d.getDay()]}) ${r.start}~${r.end}${r.slot ? ` ${r.slot}` : ''}`;
+    }).join('\n') + '\n시간에 맞춰 와 주세요. 못 오게 되면 미리 알려 주세요.';
+    try { await navigator.clipboard.writeText(txt); rsvMsg(`승인 안내 문구를 복사했습니다. 학급 단톡방에 붙여넣으세요. (${list.length}건)`, true); }
+    catch (e) { prompt('아래 문구를 복사해 학급 단톡방에 붙여넣으세요.', txt); }
+  }
+  const row = (r, btns) => { const d = el('div', 'rounded-lg border border-slate-200 p-2.5 bg-slate-50'); d.append(el('div', 'font-bold', `${rsvTime(r)} · ${r.name}(${r.no})`)); if (r.topic) d.append(el('div', 'text-xs text-slate-600 mt-0.5', r.topic)); if (r.email) { const em = el('div', 'text-xs text-sky-700 mt-0.5', '📧 메일 알림'); em.title = '이 학생은 이메일을 적어 두었습니다. 승인·거절하면 안내 메일이 자동 발송됩니다. (주소는 구글 시트의 "신청" 탭에서 볼 수 있습니다)'; d.append(em); } const b = el('div', 'flex gap-2 mt-2'); btns.forEach(([x, cls, fn]) => { const bt = el('button', `px-3 py-1 rounded-lg text-xs font-bold ${cls}`, x); bt.type = 'button'; bt.onclick = fn; b.appendChild(bt); }); d.appendChild(b); return d; };
   if (!rsvOn()) { box.appendChild(el('p', 'text-xs text-slate-500', '웹 앱 주소와 관리 암호를 넣으면 신청이 여기에 표시됩니다.')); }
   else if (!pend.length && !appr.length) box.appendChild(el('p', 'text-xs text-slate-500', '아직 대기 중이거나 예정된 상담이 없습니다.'));
   if (pend.length) box.appendChild(el('div', 'text-xs font-bold text-rose-600', '승인 대기'));
   pend.forEach(r => box.appendChild(row(r, [['승인', 'bg-emerald-600 text-white', () => decide(r, '승인')], ['거절', 'border border-slate-300 bg-white', () => decide(r, '거절')]])));
-  if (appr.length) box.appendChild(el('div', 'text-xs font-bold text-emerald-700 mt-2', '승인된 상담'));
+  if (appr.length) {
+    const h = el('div', 'flex items-center gap-2 mt-2');
+    h.append(el('span', 'text-xs font-bold text-emerald-700 mr-auto', '승인된 상담'));
+    const cp = el('button', 'text-xs border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-2 py-1', '📋 안내 문구 복사');
+    cp.type = 'button'; cp.title = '승인된 상담을 학급 단톡방에 붙여넣을 문구로 복사합니다.';
+    cp.onclick = () => rsvNotify(appr);
+    h.appendChild(cp); box.appendChild(h);
+  }
   appr.forEach(r => box.appendChild(row(r, [['승인 취소(거절)', 'border border-slate-300 bg-white', () => { if (confirm('이 상담을 취소할까요? 학생 화면에 거절로 표시됩니다.')) decide(r, '거절'); }]])));
   const sl = $('rsvSlotList'); sl.innerHTML = '';
   const up = rsvSlots.filter(s => s.date >= t).sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start)).slice(0, 80);
@@ -4163,8 +4602,10 @@ function renderHomeRsv() {
   $('rsvRefresh').addEventListener('click', () => rsvRefresh());
   $('rsvLink').addEventListener('click', async () => {
     sv(); if (!rsv.url || !rsv.page) { alert('웹 앱 주소와 학생 신청 페이지 주소를 먼저 입력하세요.'); return; }
-    const link = `${rsv.page}${rsv.page.includes('?') ? '&' : '?'}a=${encodeURIComponent(rsv.url)}`;
-    try { await navigator.clipboard.writeText(link); rsvMsg('학생용 링크를 복사했습니다. 학생들에게 이 링크를 보내세요.', true); } catch (e) { prompt('이 링크를 복사해 학생들에게 보내세요', link); }
+    const lg = $('rsvLang') ? $('rsvLang').value : '';
+    const link = `${rsv.page}${rsv.page.includes('?') ? '&' : '?'}a=${encodeURIComponent(rsv.url)}${lg ? '&lang=' + lg : ''}`;
+    const nm = lg ? ` (${$('rsvLang').selectedOptions[0].textContent})` : '';
+    try { await navigator.clipboard.writeText(link); rsvMsg(`학생용 링크${nm}를 복사했습니다. 학생들에게 이 링크를 보내세요.`, true); } catch (e) { prompt('이 링크를 복사해 학생들에게 보내세요', link); }
   });
   $('rsvRoster').addEventListener('click', async () => {
     if (!rsvOn()) { alert('먼저 웹 앱 주소와 관리 암호를 입력하세요.'); return; }
@@ -4382,14 +4823,14 @@ const normSeat = v => {
   v = v && typeof v === 'object' && !Array.isArray(v) ? v : {};
   const cols = Math.min(10, Math.max(1, +v.cols || 4)), rows = Math.min(10, Math.max(1, +v.rows || 4)), cells = [];
   for (let i = 0; i < cols * rows; i++) { const c = (v.cells || [])[i]; cells.push(c && (c.name || c.no || c.lock) ? { no: c.no || '', name: c.name || '', lock: !!c.lock } : { no: '', name: '', lock: false }); }
-  return { cols, rows, cells, cls: typeof v.cls === 'string' ? v.cls : '', excl: Array.isArray(v.excl) ? v.excl.filter(e => e && (e.no || e.name)).map(e => ({ no: e.no || '', name: e.name || '' })) : [] };
+  return { cols, rows, cells, cls: typeof v.cls === 'string' ? v.cls : '', excl: Array.isArray(v.excl) ? v.excl.filter(e => e && (e.no || e.name)).map(e => ({ no: e.no || '', name: e.name || '' })) : [], apart: Array.isArray(v.apart) ? v.apart.filter(p => p && p.a && p.b).map(p => ({ a: String(p.a), b: String(p.b), an: p.an || '', bn: p.bn || '' })) : [], diag: !!v.diag };
 };
 let seat = normSeat(jl(SEAT_KEY));
 const saveSeat = () => store(SEAT_KEY, seat);
 const seMsg = (t, ok = true) => { $('seMsg').textContent = t; $('seMsg').className = 'text-xs ' + (ok ? 'text-emerald-700' : 'text-rose-600'); };
 const isExcl = s => seat.excl.some(e => (e.no && e.no === s.no) || (e.name && e.name === s.name));
 function seatResize(cols, rows) {
-  const old = seat; seat = normSeat({ cols, rows, cells: [], excl: old.excl, cls: old.cls });
+  const old = seat; seat = normSeat({ cols, rows, cells: [], excl: old.excl, cls: old.cls, apart: old.apart, diag: old.diag });
   // 기존 칸 위치(행/열)를 유지하며 옮김
   for (let r = 0; r < Math.min(old.rows, seat.rows); r++) for (let c = 0; c < Math.min(old.cols, seat.cols); c++) seat.cells[r * seat.cols + c] = old.cells[r * old.cols + c];
   saveSeat(); renderSeat();
@@ -4418,6 +4859,24 @@ function renderSeat() {
     const b = el('button', 'text-sm rounded-full border border-slate-300 bg-slate-50 px-3 py-1', `${e.no ? e.no + ' ' : ''}${e.name} ✕`); b.type = 'button';
     b.addEventListener('click', () => { seat.excl.splice(i, 1); saveSeat(); renderSeat(); }); ex.appendChild(b);
   });
+  /* 떼어 놓을 짝 */
+  const all = activeRoster().length ? activeRoster() : seat.cells.filter(c => c.name || c.no).map(c => ({ no: c.no, name: c.name }));
+  const uniq = [], ks = new Set();
+  all.forEach(s => { const k = seatKey(s); if (k && !ks.has(k)) { ks.add(k); uniq.push(s); } });
+  uniq.sort((a, b) => String(a.no).localeCompare(String(b.no)));
+  ['seApA', 'seApB'].forEach(id => {
+    const sel = $(id), keep = sel.value; sel.innerHTML = '';
+    sel.appendChild(new Option(uniq.length ? '-- 학생 --' : '(명단 없음)', ''));
+    uniq.forEach(s => sel.appendChild(new Option(`${s.no ? s.no + ' ' : ''}${s.name}`, seatKey(s))));
+    if ([...sel.options].some(o => o.value === keep)) sel.value = keep;
+  });
+  $('seApDiag').checked = !!seat.diag;
+  const ap = $('seApList'); ap.innerHTML = '';
+  if (!seat.apart.length) ap.appendChild(el('span', 'text-xs text-slate-500', '아직 없습니다.'));
+  seat.apart.forEach((p, i) => {
+    const b = el('button', 'text-sm rounded-full border border-rose-200 bg-rose-50 text-rose-700 px-3 py-1', `${p.an || p.a} ↔ ${p.bn || p.b} ✕`); b.type = 'button';
+    b.addEventListener('click', () => { seat.apart.splice(i, 1); saveSeat(); renderSeat(); }); ap.appendChild(b);
+  });
 }
 function seatPool() {
   const locked = new Set(seat.cells.filter(c => c.lock).map(c => c.no || c.name));
@@ -4427,14 +4886,78 @@ function seatPool() {
   else list = seat.cells.filter(c => (c.name || c.no) && !c.lock).map(c => ({ no: c.no, name: c.name }));
   return list.filter(s => !isExcl(s) && !locked.has(s.no || s.name));
 }
+const seatKey = s => String((s && (s.no || s.name)) || '');
+/* 두 자리가 붙어 있는가 (앞뒤·양옆, 설정하면 대각선도) */
+function seatNear(i, j, cols, diag) {
+  const r1 = Math.floor(i / cols), c1 = i % cols, r2 = Math.floor(j / cols), c2 = j % cols;
+  const dr = Math.abs(r1 - r2), dc = Math.abs(c1 - c2);
+  return diag ? (dr <= 1 && dc <= 1 && (dr || dc)) : (dr + dc === 1);
+}
+/* 붙으면 안 되는 짝이 실제로 붙어 있는 수 */
+function seatBad(cols, diag, pairs) {
+  if (!pairs.length) return [];
+  const pos = {};
+  seat.cells.forEach((c, i) => { const k = c.no || c.name; if (k) pos[k] = i; });
+  return pairs.filter(p => { const i = pos[p.a], j = pos[p.b]; return i != null && j != null && seatNear(i, j, cols, diag); });
+}
 function seatShuffle() {
   const pool = seatPool(), free = seat.cells.map((c, i) => c.lock ? -1 : i).filter(i => i >= 0);
   if (!pool.length) { seMsg('배치할 학생이 없습니다. 학생 명단을 등록하거나 칸에 이름을 먼저 적어 주세요.', false); return; }
   if (pool.length > free.length) { seMsg(`자리가 ${pool.length - free.length}개 부족합니다. 열·행을 늘려 주세요.`, false); return; }
   const btn = $('seShuffle'); btn.disabled = true;
-  const deal = () => { const p = pool.slice(); for (let i = p.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [p[i], p[j]] = [p[j], p[i]]; } free.forEach((ci, k) => { const s = p[k]; seat.cells[ci].no = s ? s.no : ''; seat.cells[ci].name = s ? s.name : ''; }); renderSeat(); };
-  let n = 0; const t = setInterval(() => { deal(); if (++n >= 10) { clearInterval(t); btn.disabled = false; saveSeat(); seMsg(`${pool.length}명을 섞어 배치했습니다. (제외 ${seat.excl.length}명)`); } }, 90);
+  const PAIRS = (seat.apart || []).filter(p => {
+    const inPlay = k => pool.some(s => seatKey(s) === k) || seat.cells.some(c => c.lock && (c.no || c.name) === k);
+    return inPlay(p.a) && inPlay(p.b);
+  });
+  const put = p => free.forEach((ci, k) => { const s = p[k]; seat.cells[ci].no = s ? s.no : ''; seat.cells[ci].name = s ? s.name : ''; });
+  const mix = () => { const p = pool.slice(); for (let i = p.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [p[i], p[j]] = [p[j], p[i]]; } return p; };
+  const swap = (i, j) => { const A = seat.cells[i], B = seat.cells[j]; const n0 = A.no, m0 = A.name; A.no = B.no; A.name = B.name; B.no = n0; B.name = m0; };
+  /* 떼어 놓을 짝이 붙지 않도록 자리를 바꿔 가며 찾는다 */
+  function solve() {
+    if (!PAIRS.length) { put(mix()); return []; }
+    const freeSet = new Set(free);
+    let best = null, bestN = Infinity;
+    for (let t = 0; t < 120; t++) {
+      put(mix());
+      let bad = seatBad(seat.cols, seat.diag, PAIRS);
+      for (let k = 0; k < 250 && bad.length; k++) {
+        const pos = {}; seat.cells.forEach((c, i) => { const key = c.no || c.name; if (key) pos[key] = i; });
+        const pr = bad[Math.floor(Math.random() * bad.length)];
+        const opts = [pos[pr.a], pos[pr.b]].filter(i => i != null && freeSet.has(i));
+        if (!opts.length) break;                               /* 둘 다 고정석이면 바꿀 수 없음 */
+        const from = opts[Math.floor(Math.random() * opts.length)];
+        const to = free[Math.floor(Math.random() * free.length)];
+        if (to === from) continue;
+        swap(from, to);
+        const nb = seatBad(seat.cols, seat.diag, PAIRS);
+        if (nb.length <= bad.length) bad = nb; else swap(from, to);
+      }
+      if (!bad.length) return [];
+      if (bad.length < bestN) { bestN = bad.length; best = seat.cells.map(c => ({ no: c.no, name: c.name, lock: c.lock })); }
+    }
+    if (best) seat.cells = best;
+    return seatBad(seat.cols, seat.diag, PAIRS);
+  }
+  let n = 0;
+  const t = setInterval(() => {
+    if (++n < 10) { put(mix()); renderSeat(); return; }
+    clearInterval(t);
+    const left = solve();
+    renderSeat(); btn.disabled = false; saveSeat();
+    if (left.length) seMsg(`${pool.length}명을 섞었지만, 자리가 좁아 ${left.map(p => `${p.an || p.a}↔${p.bn || p.b}`).join(', ')}는 떨어뜨리지 못했습니다. 열·행을 늘리거나 짝을 줄여 보세요.`, false);
+    else seMsg(`${pool.length}명을 섞어 배치했습니다.${PAIRS.length ? ` (떼어 놓을 짝 ${PAIRS.length}쌍 지킴)` : ''}${seat.excl.length ? ` (제외 ${seat.excl.length}명)` : ''}`);
+  }, 90);
 }
+$('seApAdd').addEventListener('click', () => {
+  const a = $('seApA').value, b = $('seApB').value;
+  if (!a || !b) { seMsg('떼어 놓을 두 학생을 모두 골라 주세요.', false); return; }
+  if (a === b) { seMsg('서로 다른 학생을 골라 주세요.', false); return; }
+  if (seat.apart.some(p => (p.a === a && p.b === b) || (p.a === b && p.b === a))) { seMsg('이미 등록된 짝입니다.', false); return; }
+  const nm = v => { const o = [...$('seApA').options].find(x => x.value === v); return o ? o.textContent : v; };
+  seat.apart.push({ a, b, an: nm(a), bn: nm(b) });
+  saveSeat(); renderSeat(); seMsg(`${nm(a)} ↔ ${nm(b)} 를 떼어 놓습니다. "랜덤 돌리기"를 눌러 주세요.`);
+});
+$('seApDiag').addEventListener('change', () => { seat.diag = $('seApDiag').checked; saveSeat(); });
 $('seCols').addEventListener('change', () => seatResize(+$('seCols').value, seat.rows));
 $('seRows').addEventListener('change', () => seatResize(seat.cols, +$('seRows').value));
 $('seShuffle').addEventListener('click', seatShuffle);
@@ -4469,7 +4992,7 @@ function parseSeatRoster(wb) {
         else if (cI.gi >= 0) { const g = +row[cI.gi], c = +row[cI.ci], n = +row[cI.bi]; if (g && c && n) add(`${g}${String(c).padStart(2, '0')}${String(n).padStart(2, '0')}`, name); }
       }
     } else {
-      rows.forEach(row => { const no = row.find(c => /^\d{4,5}$/.test(String(c).trim())), nm = row.find(c => /^[가-힣]{2,5}$/.test(String(c).trim())); if (no && nm) add(no, nm); });
+      rows.forEach(row => { const no = row.find(c => /^\d{4,5}$/.test(String(c).trim())), nm = row.find(c => looksName(c)); if (no && nm) add(no, nm); });
     }
   }
   return out;
@@ -5010,7 +5533,7 @@ pw2UI();
         /* 제목 줄이 없으면: 한글 이름 + 번호가 같은 줄에 있는 경우를 찾음 */
         rows.forEach(r => {
           const cells = r.map(cl).filter(Boolean);
-          const name = cells.find(v => /^[가-힣]{2,5}$/.test(v.replace(/\s/g, '')));
+          const name = cells.find(v => looksName(v));
           const tel = cells.find(v => /\d{2,4}[-.)\s]?\d{3,4}[-.\s]?\d{4}/.test(v));
           const ext = cells.find(v => /^\d{3,5}$/.test(v.replace(/\s/g, '')));
           if (!name || (!tel && !ext)) return;
@@ -5513,6 +6036,74 @@ ${lines}
     rej(new Error(`${f.name} 형식은 바로 읽을 수 없습니다. 한글(hwp)·워드 파일은 PDF로 저장하거나, 내용을 복사해 "핵심 내용" 칸에 붙여 주세요.`));
   });
 
+
+  /* --- 품의 --- */
+  const PU_KEY = 'gm-pumui';
+  let puRows = [{ item: '', price: '', qty: 1 }];
+  const won = n => Number(n || 0).toLocaleString('ko-KR');
+  const HAN = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+  const HAN4 = ['', '십', '백', '천'];
+  const HANB = ['', '만', '억', '조', '경'];
+  function hanWon(n) {                              /* 금액을 한글로: 100000 → 십만 */
+    n = Math.floor(Number(n) || 0); if (!n) return '영';
+    let out = '', b = 0;
+    while (n > 0) {
+      const part = n % 10000; n = Math.floor(n / 10000);
+      if (part) {
+        let t = '', p = part;
+        for (let i = 0; p > 0; i++, p = Math.floor(p / 10)) {
+          const d = p % 10;
+          if (d) t = (d === 1 && i > 0 ? '' : HAN[d]) + HAN4[i] + t;
+        }
+        out = t + HANB[b] + out;
+      }
+      b++;
+    }
+    return out;
+  }
+  const puTotal = () => puRows.reduce((a, r) => a + (Number(r.price) || 0) * (Number(r.qty) || 0), 0);
+  function drawPu() {
+    const box = $('puRows'); if (!box) return;
+    box.innerHTML = '';
+    puRows.forEach((r, i) => {
+      const row = el('div', 'flex gap-1 items-center');
+      const mk = (ph, key, w, type) => {
+        const x = el('input', `${w} min-w-0 border border-slate-300 rounded px-2 py-1 text-xs bg-white`);
+        if (type) { x.type = type; x.min = '0'; }
+        x.placeholder = ph; x.value = r[key] == null ? '' : r[key];
+        x.addEventListener('input', () => { r[key] = x.value; sumPu(); });
+        return x;
+      };
+      row.append(mk('품목', 'item', 'flex-1'), mk('단가', 'price', 'w-24', 'number'), el('span', 'text-xs text-slate-400', '×'), mk('수량', 'qty', 'w-16', 'number'));
+      const amt = el('span', 'text-xs w-24 text-right', won((Number(r.price) || 0) * (Number(r.qty) || 0)));
+      amt.dataset.i = i;
+      const x = el('button', 'text-xs text-slate-400 hover:text-red-600', '✕'); x.type = 'button';
+      x.onclick = () => { puRows.splice(i, 1); if (!puRows.length) puRows = [{ item: '', price: '', qty: 1 }]; drawPu(); };
+      row.append(amt, x); box.appendChild(row);
+    });
+    sumPu();
+  }
+  function sumPu() {
+    [...$('puRows').children].forEach((row, i) => { const sp = row.querySelector('span[data-i]'); if (sp) sp.textContent = won((Number(puRows[i].price) || 0) * (Number(puRows[i].qty) || 0)); });
+    const t = puTotal();
+    $('puSum').textContent = t ? `합계  금${won(t)}원(금${hanWon(t)}원정)` : '합계  —';
+    savePu();
+  }
+  const savePu = () => { try { localStorage.setItem(PU_KEY, JSON.stringify({ rows: puRows, budget: $('puBudget').value, pay: $('puPay').value })); } catch (e) {} };
+  $('puAdd').addEventListener('click', () => { puRows.push({ item: '', price: '', qty: 1 }); drawPu(); });
+  ['puBudget', 'puPay'].forEach(id => $(id).addEventListener('change', savePu));
+  function puUI() {
+    const on = $('goType').value === '품의(내부결재)';
+    $('goPum').classList.toggle('hidden', !on);
+    if (!on) return;
+    try {                                            /* 예산 탭에 적어 둔 항목을 골라 쓸 수 있게 */
+      const dl = $('puBudgetList'); dl.innerHTML = '';
+      (bg.items || []).forEach(b => { (b.cats || []).forEach(c => { const o = document.createElement('option'); o.value = `${b.name} - ${c.name}`; dl.appendChild(o); }); if (!(b.cats || []).length) { const o = document.createElement('option'); o.value = b.name; dl.appendChild(o); } });
+    } catch (e) {}
+  }
+  $('goType').addEventListener('change', puUI);
+  try { const v = JSON.parse(localStorage.getItem(PU_KEY)); if (v) { if (Array.isArray(v.rows) && v.rows.length) puRows = v.rows; if (v.budget) $('puBudget').value = v.budget; if (v.pay) $('puPay').value = v.pay; } } catch (e) {}
+  drawPu(); puUI();
   const RULES = `작성 규칙
 - 대한민국 행정기관 공문서 형식을 지킵니다.
 - 맨 윗줄은 "수신 OOO", 필요하면 다음 줄에 "(경유)", 그다음 줄에 "제목 OOO" 을 씁니다.
@@ -5527,6 +6118,39 @@ ${lines}
 
   function buildPrompt(sum) {
     const v = id => $(id).value.trim();
+    if (!sum && $('goType').value === '품의(내부결재)') {
+      const t = puTotal();
+      const calc = puRows.filter(r => r.item || r.price).map(r => `  - ${r.item || '(품목)'} : 금${won(r.price || 0)}원 × ${r.qty || 0}개 = 금${won((Number(r.price) || 0) * (Number(r.qty) || 0))}원`).join('\n') || '  - (산출 내역 없음)';
+      return `당신은 대한민국 고등학교 교사의 행정 업무를 돕는 전문가입니다. 아래 내용으로 학교 내부결재용 **품의서** 초안을 작성하세요.
+
+[제목] ${v('goTitle') || '(비어 있음 — 내용에 맞게 "○○ 구입(실시)에 따른 품의" 형태로 지을 것)'}
+[목적] ${v('puPurpose') || '(비어 있음)'}
+[일시] ${v('puWhen') || '해당 없음'}
+[장소] ${v('puWhere') || '해당 없음'}
+[대상] ${v('puWho') || '해당 없음'}
+[산출 내역]
+${calc}
+[총액] 금${won(t)}원(금${hanWon(t)}원정)
+[예산 과목] ${v('puBudget') || '(비어 있음 — [예산 과목]으로 남길 것)'}
+[지출 방법] ${$('puPay').value}
+[업체·비고] ${v('puVendor') || '없음'}
+[관련 근거] ${v('goRef') || '없음'}
+[붙임] ${v('goAtt') || '없음'}
+[추가 내용] ${v('goBody') || '없음'}
+[오늘 날짜] ${today()}
+[더 바라는 점] ${v('goMore') || '없음'}
+
+작성 규칙
+- 맨 윗줄에 "제목 ○○에 따른 품의"를 씁니다. 수신란은 쓰지 않습니다(내부결재).
+- 본문 1.은 근거가 있으면 "1. 관련: ○○"으로 시작하고, 없으면 바로 2.의 내용부터 1.로 씁니다.
+- 다음 항목은 "위 ○○과 관련하여 아래와 같이 ○○하고자 합니다." 로 쓰고, 그 아래에 가. 목적 / 나. 일시 / 다. 장소 / 라. 대상 / 마. 소요 예산 / 바. 예산 과목 / 사. 지출 방법 순서로 적습니다. 값이 "해당 없음"인 항목은 빼세요.
+- "마. 소요 예산"에는 총액을 금100,000원(금십만원정) 형식으로 쓰고, 그 아래 1) 2) 3)으로 산출 내역을 "품목 : 금○원 × ○개 = 금○원" 형태로 적습니다. 위에 준 금액과 총액을 그대로 쓰고 절대 다시 계산하거나 바꾸지 마세요.
+- 날짜는 2026. 11. 5.(목) 형식으로 씁니다.
+- 문장은 "~하고자 합니다", "~붙임과 같습니다" 같은 공문체로 씁니다.
+- 모르는 값은 지어내지 말고 [ ] 안에 무엇을 채워야 하는지 적습니다.
+- 붙임이 있으면 마지막에 "붙임  1. ○○ 1부.  끝." 으로, 없으면 본문 끝에 두 칸 띄우고 "끝."을 씁니다.
+- 인사말·설명·마크다운 기호 없이 품의서 본문만 출력하세요.`;
+    }
     if (sum) {
       return `당신은 대한민국 고등학교 교사의 행정 업무를 돕는 전문가입니다. 올린 공문(사진·PDF·글)을 읽고 아래 형식으로 한국어로 정리해 주세요.
 
@@ -5567,7 +6191,8 @@ ${lines}
   async function run(sum) {
     if (!gem.key) { $('goGemDet').open = true; gemMsg('먼저 API 키를 입력하고 "연결 테스트"를 눌러 주세요.'); $('goGemKey').focus(); alert('먼저 위 "🔑 Gemini 연결 설정"에서 API 키를 넣어 주세요.'); return; }
     if (sum && !files.length && !$('goBody').value.trim()) { alert('요약할 공문 파일을 올리거나 내용을 적어 주세요.'); return; }
-    if (!sum && !files.length && !$('goBody').value.trim() && !$('goTitle').value.trim()) { alert('핵심 내용을 적거나 받은 공문 파일을 올려 주세요.'); return; }
+    if (!sum && $('goType').value === '품의(내부결재)' && !$('puPurpose').value.trim() && !puTotal() && !$('goBody').value.trim()) { alert('품의 목적을 적거나 산출 내역을 넣어 주세요.'); return; }
+    if (!sum && $('goType').value !== '품의(내부결재)' && !files.length && !$('goBody').value.trim() && !$('goTitle').value.trim()) { alert('핵심 내용을 적거나 받은 공문 파일을 올려 주세요.'); return; }
     const btns = [$('goRun'), $('goSum')]; btns.forEach(b => b.disabled = true);
     msg(files.length ? '파일을 읽고 AI에 보내는 중… (파일이 크면 1분 넘게 걸릴 수 있어요)' : 'AI가 쓰는 중… 잠시만요', true);
     try {
@@ -5583,7 +6208,8 @@ ${lines}
   $('goRun').addEventListener('click', () => run(false));
   $('goSum').addEventListener('click', () => run(true));
   $('goClear').addEventListener('click', () => {
-    ['goTo', 'goTitle', 'goBody', 'goRef', 'goAtt', 'goMore'].forEach(id => $(id).value = '');
+    ['goTo', 'goTitle', 'goBody', 'goRef', 'goAtt', 'goMore', 'puPurpose', 'puWhen', 'puWhere', 'puWho', 'puVendor'].forEach(id => $(id).value = '');
+    puRows = [{ item: '', price: '', qty: 1 }]; drawPu();
     files = []; drawFiles(); msg('');
   });
   $('goCopy').addEventListener('click', async () => {
@@ -5882,6 +6508,7 @@ const SYNC_KEYS = [
   ['gm-subj', '과목 목록', () => subjList, v => { subjList = Array.isArray(v) ? v : []; }, 'rec'],
   ['gm-clubs', '동아리 목록', () => clubList, v => { clubList = Array.isArray(v) ? v : []; }, 'rec'],
   ['gm-grades-all', '성적 분석 자료', () => gAll, v => { gAll = v && typeof v === 'object' && !Array.isArray(v) ? v : {}; curTerm = Object.keys(gAll).sort().pop() || ''; grades = gAll[curTerm] || null; }, 'gr'],
+  ['gm-exams', '지필평가 회차별 성적', () => (window.examGet ? examGet() : {}), v => { if (window.examSet) examSet(v); }, 'gr'],
   ['gm-gex', '성적 제외 학생', () => gex, v => { gex = Array.isArray(v) ? v : []; $('gEx').value = gex.join(', '); }, 'gr'],
   ['gm-seat', '자리 배치', () => seat, v => { seat = normSeat(v); }, 'stu'],
   ['gm-abs-list', '결석신고서 저장 목록', () => (window.absStore ? absStore.get() : []), v => { if (window.absStore) absStore.set(v); }, 'stu'],
@@ -5967,7 +6594,7 @@ $('syncBtn').addEventListener('click', () => syncNow(true));
 renderSyncOpts(); syncUI();
 if (syncCfg.url && syncCfg.token) setTimeout(() => syncNow(false), 1500);
 
-function renderAll() { if (window.schoFill) schoFill(); renderSch(); renderToday(); renderCal(); renderHome(); renderCh(); renderBudget(); renderRec(); renderDash(); renderMemos(); renderGrades(); renderDdays(); refreshMsgSel(); refreshSelects(); renderStudents(); renderTimeline(); renderPasses(); renderSeat(); absInit(); renderMeal(); renderRsv(); renderHomeRsv(); }
+function renderAll() { try { relinkCounsels(); } catch (e) {} if (window.schoFill) schoFill(); renderSch(); renderToday(); renderCal(); renderHome(); renderCh(); renderBudget(); renderRec(); renderDash(); renderMemos(); renderGrades(); renderDdays(); refreshMsgSel(); refreshSelects(); renderStudents(); renderTimeline(); renderPasses(); renderSeat(); absInit(); renderMeal(); renderRsv(); renderHomeRsv(); }
 renderAll();
 
 (() => {
