@@ -78,6 +78,19 @@
   .sc-doc .empty { color: #94a3b8; }
   .sc-doc .sign { margin-top: 26px; text-align: center; line-height: 2.1; }
   @media print { #printArea.sc-print { width: 190mm !important; border: none !important; padding: 0 !important; margin: 0 auto !important; } #printArea.sc-print .sc-doc { width: auto; padding: 0; box-shadow: none; } #printArea.sc-print h3 { break-after: avoid; page-break-after: avoid; } }
+  @media print {
+    #printArea.ex-print { width: 273mm !important; border: none !important; padding: 0 !important; margin: 0 auto !important; font-size: 9pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    #printArea.ex-print .bg-white, #printArea.ex-print .rounded-xl, #printArea.ex-print .border { border: none !important; box-shadow: none !important; padding: 0 !important; background: #fff !important; }
+    #printArea.ex-print > div, #printArea.ex-print table, #printArea.ex-print svg { break-inside: avoid; page-break-inside: avoid; }
+    #printArea.ex-print table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin: 0 0 4mm; }
+    #printArea.ex-print th, #printArea.ex-print td { border: 0.5pt solid #94a3b8; padding: 1.2mm 1.5mm; text-align: center; }
+    #printArea.ex-print th { background: #e2e8f0; }
+    #printArea.ex-print td.l, #printArea.ex-print th.l { text-align: left; }
+    #printArea.ex-print h3, #printArea.ex-print .font-bold { font-size: 10pt; margin: 0 0 1.5mm; }
+    #printArea.ex-print svg { width: 100% !important; max-width: none !important; height: 76mm !important; display: block; margin: 0 auto; }
+    #printArea.ex-print .overflow-x-auto, #printArea.ex-print .overflow-auto { overflow: visible !important; }
+    #printArea.ex-print .text-xs { font-size: 7.5pt; }
+  }
   @media print { #printArea.as-print { width: 190mm !important; border: none !important; padding: 0 !important; margin: 0 auto !important; font-size: 10pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; } #printArea.as-print table { width: 100%; border-collapse: collapse; } #printArea.as-print th, #printArea.as-print td { border: 1px solid #94a3b8; padding: 3px 6px; text-align: center; } #printArea.as-print th { background: #e2e8f0; } #printArea.as-print td.l { text-align: left; } }
   @media print { #printArea.abs-print { width: 190mm !important; border: none !important; padding: 0 !important; margin: 10mm auto 0 !important; } #printArea.abs-print img { max-width: 100%; max-height: 275mm; width: auto; height: auto; display: block; margin: 0 auto; } }
   @media print { #printArea.abs-multi img { break-after: page; page-break-after: always; } #printArea.abs-multi img:last-child { break-after: auto; page-break-after: auto; } }
@@ -186,7 +199,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="counsel">💬 상담 관리자</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="records">🎒 학생 기록 관리</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="pass">🎫 조퇴/외출증 발급</button>
-    <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="seat">🪑 자리 배치</button>
+    <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="seat">🪑 자리 배치</button><button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="place">🧮 반배치</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="absent">📄 결석신고서</button>
     <button class="tab-btn px-5 py-2.5 rounded-t-lg text-sm text-slate-300 hover:text-white" data-tab="gicho">🌱 기초조사서</button>
   </nav>
@@ -432,7 +445,8 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
   <section id="tab-grades" class="tab-panel hidden">
     <div class="bg-white rounded-xl border border-slate-200 p-5">
       <div class="flex flex-wrap items-end gap-3">
-        <label class="text-sm">성적 엑셀 올리기 (학기말 성적 종합일람표)<input id="gFile" type="file" accept=".xlsx,.xls" class="block mt-1 text-sm"></label>
+        <label class="text-sm">성적 엑셀 올리기 (학기말 성적 종합일람표 · 여러 반 한꺼번에)<input id="gFile" type="file" accept=".xlsx,.xls" multiple class="block mt-1 text-sm"></label>
+        <label class="text-sm">학급<select id="gCls" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm min-w-[110px]"></select></label>
         <label class="text-sm">학기<select id="gTerm" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm min-w-[150px]"></select></label>
         <label class="text-sm">학생<select id="gStu" class="mt-1 block border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm min-w-[180px]"></select></label>
         <label class="text-sm flex-1 min-w-[220px]">분석 제외 학생 (학적변동 등, 쉼표로 구분)<input id="gEx" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2 bg-slate-50 text-sm"></label>
@@ -467,6 +481,26 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
         </div>
         <div id="exMapBox" class="hidden rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-2"></div>
         <div id="exOut"></div>
+      </div>
+    </details>
+    <details class="fold bg-white rounded-xl border border-slate-200 mt-5" id="fold-gpa" open>
+      <summary class="fold-sum px-5 py-3 font-bold">🎓 내신 계산 (5등급제 · 단위 가중평균)</summary>
+      <div class="px-5 pb-5 space-y-3">
+        <div class="flex flex-wrap items-center gap-2 text-sm">
+          <label class="flex items-center gap-1"><input type="checkbox" id="gpaAllTerm" class="w-4 h-4"> 전체 학기 합쳐서</label>
+          <button id="gpaUnitBtn" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">⚙️ 이수단위 확인·수정</button>
+          <button id="gpaXlsx" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs font-bold">📊 엑셀로 받기</button>
+          <button id="gpaPrint" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-1.5 text-xs">🖨️ 인쇄</button>
+          <button id="statXlsx" type="button" class="bg-[#0f2747] hover:bg-[#1b3a66] text-white rounded-lg px-3 py-1.5 text-xs font-bold">📑 종합 통계 엑셀</button>
+          <span id="gpaMsg" class="text-xs text-slate-600"></span>
+        </div>
+        <div id="gpaUnits" class="hidden rounded-lg border border-sky-200 bg-sky-50 p-3">
+          <p class="text-xs text-slate-700 mb-2">과목별 <b>이수단위(학점)</b>입니다. 성적 파일에서 읽은 값이고, 비어 있거나 다르면 고쳐서 저장하세요. 0으로 두면 계산에서 빠집니다.</p>
+          <div id="gpaUnitList" class="flex flex-wrap gap-2"></div>
+          <div class="mt-2 flex gap-2"><button id="gpaUnitSave" type="button" class="bg-[#0f2747] hover:bg-[#1b3a66] text-white rounded-lg px-3 py-1.5 text-xs font-bold">저장</button><button id="gpaUnitAll1" type="button" class="border border-slate-300 bg-white rounded-lg px-3 py-1.5 text-xs">모두 1단위로</button></div>
+        </div>
+        <div id="gpaCls" class="overflow-x-auto"></div>
+        <div id="gpaOut" class="overflow-x-auto"></div>
       </div>
     </details>
   </section>
@@ -645,6 +679,7 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
             <button id="recBatchTxt" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2">📄 txt로 받기</button>
             <button id="recBatchAll" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-2 py-2">모두 선택</button>
             <button id="recBatchNone" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-2 py-2">모두 해제</button>
+            <button id="recBatchDel" type="button" class="border border-red-300 text-red-600 bg-white hover:bg-red-50 rounded-lg px-2 py-2">🗑️ 메모 전체 삭제</button>
             <span id="recBatchMsg" class="text-slate-600"></span>
           </div>
           <div id="recBatchList" class="space-y-1 max-h-56 overflow-y-auto"></div>
@@ -852,6 +887,64 @@ details.fold>summary::before{content:"▾";display:inline-block;width:1.2em;colo
       <div class="bg-white rounded-xl border border-slate-200 p-5" id="seatBoard">
         <div class="text-center text-sm font-bold bg-slate-100 rounded-lg py-2 mb-3">📋 칠판 · 교탁</div>
         <div id="seGrid" class="grid gap-2"></div>
+      </div>
+    </div>
+  </section>
+  <!-- 반배치 -->
+  <section id="tab-place" class="tab-panel hidden">
+    <div class="grid lg:grid-cols-[340px_1fr] gap-6 items-start">
+      <div class="bg-white rounded-xl border border-slate-200 p-5 space-y-4">
+        <h2 class="font-bold">🧮 반배치</h2>
+        <div class="space-y-2">
+          <div class="text-sm font-bold">1. 명단 가져오기</div>
+          <div class="flex gap-2 flex-wrap">
+            <button id="plFromGpa" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-xs font-bold">🎓 내신 결과에서</button>
+            <button id="plFromStu" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-xs font-bold">🎒 학생 명단에서</button>
+            <label class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-xs font-bold cursor-pointer">📂 엑셀 올리기<input id="plFile" type="file" accept=".xlsx,.xls,.csv" class="hidden"></label>
+          </div>
+          <p class="text-xs text-slate-500">엑셀은 <b>학번 · 이름 · 성별 · 점수</b> 열이 있으면 됩니다. 점수는 내신 등급(작을수록 좋음)이나 총점 어느 쪽이든 됩니다.</p>
+          <p id="plInfo" class="text-xs text-slate-600"></p>
+        </div>
+        <div class="space-y-2">
+          <div class="text-sm font-bold">2. 조건</div>
+          <div class="flex gap-2 items-center flex-wrap text-sm">
+            <label class="flex items-center gap-1">반 수<input id="plN" type="number" min="2" max="15" value="4" class="w-16 border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50"></label>
+            <label class="flex items-center gap-1">점수 방향<select id="plDir" class="border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-xs"><option value="asc">작을수록 우수(내신 등급)</option><option value="desc">클수록 우수(총점)</option></select></label>
+          </div>
+          <label class="flex items-center gap-1 text-sm"><input type="checkbox" id="plSex" class="w-4 h-4" checked> 남녀 비율 맞추기</label>
+          <div class="text-xs text-slate-600 pt-1">✂️ 떼어 놓을 짝 (학번 두 개)</div>
+          <div class="flex gap-1 flex-wrap items-center"><input id="plApA" maxlength="6" placeholder="학번" class="w-24 border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"><input id="plApB" maxlength="6" placeholder="학번" class="w-24 border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"><button id="plApAdd" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-2 py-1.5 text-xs font-bold">＋</button></div>
+          <div id="plApList" class="flex gap-1 flex-wrap"></div>
+          <div class="text-xs text-slate-600 pt-1">🤝 같은 반에 둘 짝</div>
+          <div class="flex gap-1 flex-wrap items-center"><input id="plTgA" maxlength="6" placeholder="학번" class="w-24 border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"><input id="plTgB" maxlength="6" placeholder="학번" class="w-24 border border-slate-300 rounded-lg px-2 py-1.5 bg-slate-50 text-sm"><button id="plTgAdd" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-2 py-1.5 text-xs font-bold">＋</button></div>
+          <div id="plTgList" class="flex gap-1 flex-wrap"></div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-sm font-bold">3. 배치</div>
+          <button id="plRun" type="button" class="w-full bg-[#0f2747] hover:bg-[#1b3a66] text-white font-bold rounded-lg py-2.5 text-sm">🧮 반 나누기</button>
+          <div class="flex gap-2">
+            <button id="plXlsx" type="button" class="flex-1 border border-slate-300 bg-white hover:bg-slate-50 rounded-lg py-2 text-sm">📊 엑셀</button>
+            <button id="plPrint" type="button" class="flex-1 border border-slate-300 bg-white hover:bg-slate-50 rounded-lg py-2 text-sm">🖨️ 인쇄</button>
+            <button id="plClear" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-3 py-2 text-sm text-slate-500">초기화</button>
+          </div>
+          <p id="plMsg" class="text-xs text-slate-600"></p>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <div class="flex items-center gap-2 flex-wrap mb-2">
+            <h3 class="font-bold">📋 명단 <span id="plCount" class="text-xs font-normal text-slate-500"></span></h3>
+            <div class="ml-auto flex gap-1 items-center">
+              <input id="plAddNo" maxlength="8" placeholder="학번" class="w-20 border border-slate-300 rounded-lg px-2 py-1 bg-slate-50 text-xs">
+              <input id="plAddNm" maxlength="20" placeholder="이름" class="w-24 border border-slate-300 rounded-lg px-2 py-1 bg-slate-50 text-xs">
+              <input id="plAddSc" placeholder="점수" class="w-16 border border-slate-300 rounded-lg px-2 py-1 bg-slate-50 text-xs">
+              <button id="plAdd" type="button" class="border border-slate-300 bg-white hover:bg-slate-50 rounded-lg px-2 py-1 text-xs font-bold">＋ 추가</button>
+            </div>
+          </div>
+          <div id="plRoster" class="max-h-72 overflow-y-auto"></div>
+        </div>
+        <div id="plStat" class="bg-white rounded-xl border border-slate-200 p-5 hidden"></div>
+        <div id="plOut" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
       </div>
     </div>
   </section>
@@ -3481,15 +3574,17 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const numOf = v => { const m = /^\s*(-?\d+(?:\.\d+)?)/.exec(String(v == null ? '' : v)); return m ? +m[1] : null; };
 const nz = v => String(v == null ? '' : v).replace(/\s+/g, '');
 function parseGrades(rows) {
-  let hi = -1, cName = 1, cLab = 3;
+  let hi = -1, cName = 1, cLab = 3, cNo = 0;
   for (let i = 0; i < rows.length && hi < 0; i++) {
     const r = rows[i].map(nz), a = r.indexOf('번호'), b = r.indexOf('교과목');
-    if (a >= 0 && b > a) { hi = i; cLab = b; cName = r.indexOf('성명') >= 0 ? r.indexOf('성명') : a + 1; }
+    if (a >= 0 && b > a) { hi = i; cLab = b; cName = r.indexOf('성명') >= 0 ? r.indexOf('성명') : a + 1; cNo = a; }
   }
   if (hi < 0) return null;
   const cols = []; rows[hi].forEach((v, i) => { if (i > cLab && nz(v)) cols.push([i, String(v).trim().replace(/\s+/g, ' ')]); });
   const tm = /(\d{4})\s*학년도\s*(\d)\s*학기/.exec(rows.slice(0, hi).map(r => r.join(' ')).join(' '));
-  const avg = rows.find(r => r.some(c => nz(c) === '과목평균')) || [], stu = {};
+  const avg = rows.find(r => r.some(c => nz(c) === '과목평균')) || [], stu = {}, sno = {};
+  /* 단위수(학점) 줄 찾기 — '단위', '단위수', '이수단위', '학점', '이수학점' 중 아무거나 */
+  const unitRow = rows.find(r => r.some(c => /^(단위|단위수|이수단위|학점|이수학점)$/.test(nz(c)))) || [];
   for (let i = hi + 1; i < rows.length; i++) {
     if (!nz(rows[i][cName]) || !nz(rows[i][cLab]).startsWith('합계')) continue;
     const by = {}; for (let j = i; j < i + 5 && j < rows.length; j++) by[nz(rows[j][cLab])] = rows[j];
@@ -3498,9 +3593,10 @@ function parseGrades(rows) {
       const sc = numOf((by['합계(원점수)'] || [])[c]); if (sc == null) return;
       s[name] = { sc, ach: nz((by['성취도'] || [])[c]), gr: numOf((by['석차등급'] || [])[c]), rk: numOf((by['석차'] || [])[c]), n: numOf((by['수강자수'] || [])[c]) };
     });
-    stu[String(rows[i][cName]).trim()] = s;
+    const nm = String(rows[i][cName]).trim();
+    stu[nm] = s; sno[nm] = nz(rows[i][cNo]).replace(/\D/g, '');   /* 일람표의 번호 */
   }
-  return { term: tm ? `${tm[1]}학년도 ${tm[2]}학기` : '', subjects: cols.map(c => c[1]), avg: Object.fromEntries(cols.map(([c, n]) => [n, numOf(avg[c])])), stu };
+  return { term: tm ? `${tm[1]}학년도 ${tm[2]}학기` : '', subjects: cols.map(c => c[1]), avg: Object.fromEntries(cols.map(([c, n]) => [n, numOf(avg[c])])), units: Object.fromEntries(cols.map(([c, n]) => [n, numOf(unitRow[c])])), stu, sno };
 }
 const ACH = { A: 5, B: 4, C: 3, D: 2, E: 1 };
 function analyze(name) {
@@ -3515,15 +3611,29 @@ function analyze(name) {
   });
   return out;
 }
+/* 학급 필터 */
+let gCls = '';
+const clsOf = (term, name) => ((gAll[term] || {}).cls || {})[name] || '';
+const clsList = term => [...new Set(Object.values((gAll[term] || {}).cls || {}))].filter(Boolean).sort();
+const inCls = (term, name) => !gCls || clsOf(term, name) === gCls;
 function renderGrades() {
   grades = gAll[curTerm] || null;
+  const cs = $('gCls');
+  if (cs) {
+    const list = clsList(curTerm); if (gCls && !list.includes(gCls)) gCls = '';
+    cs.innerHTML = '<option value="">전체 학급</option>';
+    list.forEach(c => { const o = el('option', '', `${c.split('-')[0]}학년 ${c.split('-')[1]}반`); o.value = c; cs.appendChild(o); });
+    cs.value = gCls; cs.parentElement.classList.toggle('hidden', list.length < 2);
+  }
+  if (window.gpaDraw) { gpaDraw(); if ($('gpaUnits') && !$('gpaUnits').classList.contains('hidden')) gpaUnitDraw(); }
   const ts = $('gTerm'); ts.innerHTML = '';
   Object.keys(gAll).sort().forEach(t => { const o = el('option', '', t); o.value = t; ts.appendChild(o); }); ts.value = curTerm;
-  const sel = $('gStu'), keep = sel.value, names = grades ? Object.keys(grades.stu).filter(n => !gex.includes(n)) : [];
+  const sel = $('gStu'), keep = sel.value, names = grades ? Object.keys(grades.stu).filter(n => !gex.includes(n) && inCls(curTerm, n)) : [];
   sel.innerHTML = '<option value="">-- 학생 선택 --</option>';
   names.forEach(n => { const o = el('option', '', n); o.value = n; sel.appendChild(o); });
   if (names.includes(keep)) sel.value = keep;
-  $('gInfo').textContent = grades ? `${grades.term} · 과목 ${grades.subjects.length}개 · 학생 ${names.length}명 (제외 ${gex.length}명)` : '아직 올린 성적 파일이 없습니다.';
+  const cl = clsList(curTerm);
+  $('gInfo').textContent = grades ? `${grades.term} · ${cl.length > 1 ? `학급 ${cl.length}개(${cl.join(', ')}) · ` : ''}과목 ${grades.subjects.length}개 · 학생 ${names.length}명 (제외 ${gex.length}명)` : '아직 올린 성적 파일이 없습니다.';
   const out = $('gOut');
   if (!grades || !sel.value) { out.innerHTML = '<div class="bg-white rounded-xl border border-slate-200 p-10 text-center text-slate-500">성적 파일을 올리고 학생을 선택하면 신경 써야 할 과목이 여기에 나타납니다.</div>'; return; }
   const name = sel.value, rows = analyze(name), top = [...rows].sort((a, b) => b.risk - a.risk);
@@ -3533,6 +3643,7 @@ function renderGrades() {
   const names2 = f => rows.filter(f).map(r => `${esc(r.sub)}${r.gr ? '' : ''}`).join(', ') || '없음';
   const cnt = ['A', 'B', 'C', 'D', 'E'].map(k => `${k} ${rows.filter(r => r.ach === k).length}`).join(' · ');
   out.innerHTML =
+    gpaCard(name) +
     card(`<h2 class="font-bold text-lg">${esc(name)} · 우선 신경 쓸 과목</h2><ol class="mt-2 divide-y divide-slate-100">${top.slice(0, 3).map((r, i) => `<li class="flex items-start gap-3 py-2"><span class="font-bold w-4">${i + 1}</span><div><span class="font-medium">${esc(r.sub)}</span> <span class="text-xs px-2 py-0.5 rounded ${LV[r.lv]}">${r.lv}</span><p class="text-sm text-slate-500">${esc(r.why.join(' · ') || '특별한 위험 신호 없음')}</p></div></li>`).join('')}</ol>`) +
     `<div class="grid md:grid-cols-2 gap-5">` +
     card(`<h3 class="font-bold">성취도 분석 (절대평가 A~E)</h3><p class="text-xs text-slate-500 mt-1">${cnt}</p><p class="text-sm mt-2"><b>D·E</b> ${names2(r => r.ach === 'D' || r.ach === 'E')}</p><p class="text-sm mt-1"><b>A·B</b> ${names2(r => r.ach === 'A' || r.ach === 'B')}</p>`) +
@@ -3540,6 +3651,157 @@ function renderGrades() {
     `</div>` +
     card(`<h3 class="font-bold mb-2">과목별 점수 <span class="text-xs font-normal text-slate-500">(빨간 선 = 과목 평균)</span></h3>${rows.map(r => `<div class="grid grid-cols-[150px_1fr_44px] items-center gap-2 text-sm py-1"><span>${esc(r.sub)}</span><div class="relative h-4 bg-slate-100 rounded"><div class="h-4 rounded bg-sky-500" style="width:${r.sc}%"></div>${r.avg == null ? '' : `<div class="absolute top-[-2px] h-5 border-l-2 border-red-500" style="left:${r.avg}%"></div>`}</div><span class="text-right">${r.sc}</span></div>`).join('')}`) +
     card(`<div class="overflow-x-auto"><table class="w-full text-sm"><thead class="text-slate-500 text-left"><tr>${['과목', '원점수', '과목평균', '평균 대비', '성취도', '석차', '석차등급', '판단'].map(t => `<th class="px-2 py-1 font-medium whitespace-nowrap">${t}</th>`).join('')}</tr></thead><tbody class="divide-y divide-slate-100">${rows.map(r => `<tr><td class="px-2 py-1.5">${esc(r.sub)}</td><td class="px-2">${r.sc}</td><td class="px-2">${r.avg == null ? '-' : r.avg}</td><td class="px-2 ${r.diff < 0 ? 'text-red-600' : 'text-emerald-600'}">${r.diff > 0 ? '+' : ''}${r.diff.toFixed(1)}</td><td class="px-2"><span class="px-2 rounded ${AC[r.ach] || ''}">${esc(r.ach || '-')}</span></td><td class="px-2">${r.rk ? `${r.rk}/${r.n}` : '-'}</td><td class="px-2">${r.gr ? r.gr + '등급' : '-'}</td><td class="px-2"><span class="text-xs px-2 py-0.5 rounded ${LV[r.lv]}">${r.lv}</span></td></tr>`).join('')}</tbody></table></div>`);
+}
+
+/* ===== 🎓 내신 계산 (5등급제 · 이수단위 가중평균) ===== */
+const GU_KEY = 'gm-grade-units';
+let gUnits = (() => { try { const v = JSON.parse(localStorage.getItem(GU_KEY)); return v && typeof v === 'object' ? v : {}; } catch (e) { return {}; } })();
+const gUnitSave = () => store(GU_KEY, gUnits);
+/* 과목 한 개의 이수단위: 내가 고친 값 > 성적 파일 값 > 1 */
+function unitOf(term, sub) {
+  const my = (gUnits[term] || {})[sub];
+  if (my != null && my !== '') return Math.max(0, +my || 0);
+  const g = gAll[term], f = g && g.units ? g.units[sub] : null;   /* 예전 자료엔 units 가 없습니다 */
+  return f == null ? 1 : Math.max(0, +f || 0);
+}
+const gpaTerms = () => ($('gpaAllTerm') && $('gpaAllTerm').checked) ? Object.keys(gAll).sort() : (curTerm ? [curTerm] : []);
+/* 학생 한 명의 내신 — 석차등급이 있는 과목만, 단위로 가중평균 */
+function gpaOf(name) {
+  let sum = 0, unit = 0; const used = [], skip = [];
+  gpaTerms().forEach(t => {
+    const g = gAll[t]; if (!g || !g.stu[name]) return;
+    g.subjects.forEach(sub => {
+      const v = g.stu[name][sub]; if (!v) return;
+      const u = unitOf(t, sub);
+      if (!v.gr || !u) { if (v.sc != null) skip.push(sub); return; }
+      sum += v.gr * u; unit += u; used.push({ t, sub, gr: v.gr, u });
+    });
+  });
+  return { avg: unit ? sum / unit : null, unit, used, skip };
+}
+function gpaRows() {
+  const names = new Set();
+  gpaTerms().forEach(t => { const g = gAll[t]; if (g) Object.keys(g.stu).forEach(n => { if (!gex.includes(n) && inCls(t, n)) names.add(n); }); });
+  const rows = [...names].map(n => ({ name: n, ...gpaOf(n) })).filter(r => r.avg != null);
+  rows.sort((a, b) => a.avg - b.avg);
+  let rk = 0, prev = null, same = 1;                                   /* 같은 평균은 공동 석차 */
+  rows.forEach((r, i) => { if (prev != null && Math.abs(r.avg - prev) < 1e-9) { same++; } else { rk = i + 1; same = 1; } r.rank = rk; prev = r.avg; });
+  return rows;
+}
+function gpaUnitDraw() {
+  const box = $('gpaUnitList'); if (!box) return;
+  box.innerHTML = '';
+  const terms = gpaTerms();
+  if (!terms.length) { box.innerHTML = '<span class="text-xs text-slate-500">올린 성적 파일이 없습니다.</span>'; return; }
+  terms.forEach(t => {
+    const g = gAll[t]; if (!g) return;
+    if (terms.length > 1) box.appendChild(el('div', 'basis-full text-xs font-bold text-slate-600', t));
+    g.subjects.forEach(sub => {
+      const w = el('label', 'flex items-center gap-1 text-xs bg-white border border-slate-300 rounded-lg px-2 py-1');
+      w.append(el('span', '', sub));
+      const i = el('input'); i.type = 'number'; i.min = '0'; i.max = '20'; i.step = '1';
+      i.className = 'w-12 border border-slate-300 rounded px-1 py-0.5 text-right';
+      i.value = unitOf(t, sub); i.dataset.t = t; i.dataset.sub = sub;
+      w.append(i, el('span', 'text-slate-400', '단위')); box.appendChild(w);
+    });
+  });
+}
+function gpaDraw() {
+  const out = $('gpaOut'); if (!out) return;
+  const terms = gpaTerms();
+  if (!terms.length) { out.innerHTML = '<p class="text-sm text-slate-500 py-4">성적 엑셀을 올리면 학생별 내신 등급이 여기에 계산됩니다.</p>'; $('gpaMsg').textContent = ''; return; }
+  const rows = gpaRows();
+  if (!rows.length) { out.innerHTML = '<p class="text-sm text-slate-500 py-4">석차등급이 들어 있는 과목이 없습니다. 성적 파일에 석차등급 줄이 있는지 확인해 주세요.</p>'; return; }
+  const noU = rows[0] && rows[0].skip.length ? [...new Set(rows.flatMap(r => r.skip))] : [];
+  const col = v => v <= 2 ? 'text-emerald-700' : v <= 3 ? 'text-sky-700' : v <= 4 ? 'text-amber-700' : 'text-red-600';
+  const many = clsList(terms[0]).length > 1;
+  out.innerHTML = `<table class="w-full text-sm"><thead class="text-slate-500 text-left"><tr>${['석차', ...(many ? ['학급'] : []), '학생', '내신 등급', '반영 단위', '반영 과목'].map(t => `<th class="px-2 py-1 font-medium whitespace-nowrap">${t}</th>`).join('')}</tr></thead>`
+    + `<tbody class="divide-y divide-slate-100">${rows.map(r => `<tr><td class="px-2 py-1.5">${r.rank}</td>${many ? `<td class="px-2 text-slate-500">${esc(clsOf(terms[0], r.name) || '-')}</td>` : ''}<td class="px-2 font-medium">${esc(r.name)}</td><td class="px-2 font-bold ${col(r.avg)}">${r.avg.toFixed(2)}</td><td class="px-2">${r.unit}</td><td class="px-2 text-xs text-slate-500">${r.used.length}개</td></tr>`).join('')}</tbody></table>`;
+  /* 반이 2개 이상이면 반별 요약도 */
+  const cbox = $('gpaCls');
+  if (cbox) {
+    const cl = clsList(terms[0]);
+    if (cl.length > 1 && !gCls) {
+      const by = {}; rows.forEach(r => { const c = clsOf(terms[0], r.name) || '미상'; (by[c] = by[c] || []).push(r.avg); });
+      const ks = Object.keys(by).sort();
+      cbox.innerHTML = `<table class="w-full text-sm mb-3"><thead class="text-slate-500 text-left"><tr>${['학급', '인원', '평균 등급', '최고', '최저', '1~2등급', '4~5등급'].map(t => `<th class="px-2 py-1 font-medium whitespace-nowrap">${t}</th>`).join('')}</tr></thead><tbody class="divide-y divide-slate-100">`
+        + ks.map(c => { const v = by[c], av = v.reduce((a, x) => a + x, 0) / v.length; return `<tr><td class="px-2 py-1.5 font-bold">${esc(c)}</td><td class="px-2">${v.length}</td><td class="px-2 font-bold">${av.toFixed(2)}</td><td class="px-2">${Math.min(...v).toFixed(2)}</td><td class="px-2">${Math.max(...v).toFixed(2)}</td><td class="px-2">${v.filter(x => x <= 2).length}</td><td class="px-2">${v.filter(x => x >= 4).length}</td></tr>`; }).join('')
+        + `</tbody></table>`;
+      cbox.classList.remove('hidden');
+    } else { cbox.innerHTML = ''; }
+  }
+  const m = rows.reduce((a, r) => a + r.avg, 0) / rows.length;
+  $('gpaMsg').textContent = `${terms.join(', ')} · ${gCls ? gCls.replace('-', '학년 ') + '반 ' : '전체 '}${rows.length}명 · 평균 ${m.toFixed(2)}등급${noU.length ? ` · 석차등급이 없어 빠진 과목: ${noU.join(', ')}` : ''}`;
+}
+if ($('gpaOut')) {
+  $('gpaAllTerm').addEventListener('change', () => { gpaDraw(); gpaUnitDraw(); });
+  $('gpaUnitBtn').addEventListener('click', () => { $('gpaUnits').classList.toggle('hidden'); gpaUnitDraw(); });
+  $('gpaUnitAll1').addEventListener('click', () => { $('gpaUnitList').querySelectorAll('input').forEach(i => i.value = 1); });
+  $('gpaUnitSave').addEventListener('click', () => {
+    $('gpaUnitList').querySelectorAll('input').forEach(i => { gUnits[i.dataset.t] = gUnits[i.dataset.t] || {}; gUnits[i.dataset.t][i.dataset.sub] = Math.max(0, +i.value || 0); });
+    gUnitSave(); gpaDraw(); $('gpaMsg').textContent = '이수단위를 저장했습니다.';
+  });
+  $('gpaXlsx').addEventListener('click', () => {
+    if (typeof XLSX === 'undefined') { $('gpaMsg').textContent = '엑셀 도구를 불러오지 못했습니다.'; return; }
+    const rows = gpaRows(); if (!rows.length) { $('gpaMsg').textContent = '계산된 내신이 없습니다.'; return; }
+    const subs = [...new Set(rows.flatMap(r => r.used.map(u => (gpaTerms().length > 1 ? `${u.t} ${u.sub}` : u.sub))))];
+    const t0 = gpaTerms()[0];
+    const head = ['석차', '학급', '학생', '내신 등급', '반영 단위', ...subs];
+    const body = rows.map(r => { const m = {}; r.used.forEach(u => m[gpaTerms().length > 1 ? `${u.t} ${u.sub}` : u.sub] = u.gr); return [r.rank, clsOf(t0, r.name), r.name, +r.avg.toFixed(2), r.unit, ...subs.map(s => m[s] == null ? '' : m[s])]; });
+    const ws = XLSX.utils.aoa_to_sheet([head, ...body]);
+    ws['!cols'] = [{ wch: 6 }, { wch: 8 }, { wch: 10 }, { wch: 10 }, { wch: 9 }, ...subs.map(() => ({ wch: 12 }))];
+    const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, '내신');
+    const bl = new Blob([XLSX.write(wb, { type: 'array', bookType: 'xlsx' })], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(bl); a.download = `내신_${gpaTerms().join('_').replace(/\s/g, '')}_${ymd(now)}.xlsx`;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    $('gpaMsg').textContent = `엑셀로 저장했습니다. (${rows.length}명)`;
+  });
+  $('gpaPrint').addEventListener('click', () => {
+    const rows = gpaRows(); if (!rows.length) { alert('계산된 내신이 없습니다.'); return; }
+    printReset();
+    const t0 = gpaTerms()[0], many = clsList(t0).length > 1 && !gCls;
+    const pa = $('printArea'); pa.innerHTML = `<div class="gr-page"><h2 style="font-size:15pt;font-weight:700;margin:0">${esc(gCls ? gCls.replace('-', '학년 ') + '반' : (many ? '전체' : cfg.cls || ''))} 내신 등급 (5등급제)</h2>`
+      + `<p style="color:#475569;margin:2px 0 8px">${esc(gpaTerms().join(', '))} · ${rows.length}명 · 이수단위 가중평균</p>`
+      + `<table><thead><tr><th>석차</th>${many ? '<th>학급</th>' : ''}<th>학생</th><th>내신 등급</th><th>반영 단위</th></tr></thead><tbody>`
+      + rows.map(r => `<tr><td>${r.rank}</td>${many ? `<td>${esc(clsOf(t0, r.name) || '-')}</td>` : ''}<td>${esc(r.name)}</td><td><b>${r.avg.toFixed(2)}</b></td><td>${r.unit}</td></tr>`).join('')
+      + `</tbody></table><p style="color:#64748b;font-size:8.5pt;margin-top:8px">※ 개인정보가 담긴 자료입니다. 보관·폐기에 유의하세요.</p></div>`;
+    pa.classList.add('gr-print');
+    const pg = document.createElement('style'); pg.dataset.pg = '1'; pg.textContent = '@page{size:A4;margin:12mm}'; document.head.appendChild(pg);
+    const done = () => { pg.remove(); pa.classList.remove('gr-print'); pa.innerHTML = ''; window.removeEventListener('afterprint', done); };
+    window.addEventListener('afterprint', done); window.print(); setTimeout(done, 120000);
+  });
+}
+
+/* 학생 한 명의 내신 요약 — 화면 카드 / 인쇄용 */
+function gpaOne(name) {
+  const g = gpaOf(name); if (g.avg == null) return null;
+  const rows = gpaRows(), me = rows.find(r => r.name === name);
+  const terms = gpaTerms(), many = terms.length > 1;
+  return { ...g, rank: me ? me.rank : null, total: rows.length, terms: terms, many: many,
+    cls: clsOf(terms[0], name), scope: gCls ? `${gCls.split('-')[0]}학년 ${gCls.split('-')[1]}반` : (clsList(terms[0]).length > 1 ? '전체' : (cfg.cls || '우리 반')) };
+}
+function gpaCard(name) {
+  const o = gpaOne(name); if (!o) return '';
+  const col = v => v <= 2 ? 'text-emerald-700' : v <= 3 ? 'text-sky-700' : v <= 4 ? 'text-amber-700' : 'text-red-600';
+  const li = o.used.map(u => `<tr><td class="px-2 py-1">${esc(o.many ? u.t + ' ' : '')}${esc(u.sub)}</td><td class="px-2 text-center">${u.gr}등급</td><td class="px-2 text-center text-slate-500">${u.u}단위</td></tr>`).join('');
+  return `<div class="bg-white rounded-xl border border-slate-200 p-5">
+    <h3 class="font-bold">🎓 내신 등급 <span class="text-xs font-normal text-slate-500">(5등급제 · 이수단위 가중평균 · ${esc(o.terms.join(', '))})</span></h3>
+    <div class="flex flex-wrap items-end gap-6 mt-2">
+      <div><div class="text-xs text-slate-500">내신 등급</div><div class="text-3xl font-bold ${col(o.avg)}">${o.avg.toFixed(2)}</div></div>
+      <div><div class="text-xs text-slate-500">${esc(o.scope)} 석차</div><div class="text-xl font-bold">${o.rank ? `${o.rank} / ${o.total}` : '-'}</div></div>
+      <div><div class="text-xs text-slate-500">반영 단위</div><div class="text-xl font-bold">${o.unit}</div></div>
+      <div><div class="text-xs text-slate-500">반영 과목</div><div class="text-xl font-bold">${o.used.length}개</div></div>
+    </div>
+    <table class="w-full text-sm mt-3"><thead class="text-slate-500 text-left"><tr><th class="px-2 py-1 font-medium">과목</th><th class="px-2 font-medium text-center">석차등급</th><th class="px-2 font-medium text-center">이수단위</th></tr></thead><tbody class="divide-y divide-slate-100">${li}</tbody></table>
+    ${o.skip.length ? `<p class="text-xs text-slate-500 mt-2">석차등급이 없어 계산에서 빠진 과목: ${esc([...new Set(o.skip)].join(', '))}</p>` : ''}
+  </div>`;
+}
+function gpaPrintBlock(name) {
+  const o = gpaOne(name); if (!o) return '';
+  return `<h3 style="font-weight:700;margin:10px 0 3px">내신 등급 (5등급제 · 이수단위 가중평균)</h3>
+<p style="margin:0 0 3px"><b style="font-size:13pt">${o.avg.toFixed(2)}등급</b> &nbsp; ${esc(o.scope)} 석차 ${o.rank ? `${o.rank}/${o.total}` : '-'} &nbsp; 반영 단위 ${o.unit} &nbsp; 반영 과목 ${o.used.length}개 &nbsp; <span style="color:#475569">${esc(o.terms.join(', '))}</span></p>
+<p style="margin:0;color:#475569;font-size:9pt">${o.used.map(u => `${esc(o.many ? u.t + ' ' : '')}${esc(u.sub)} ${u.gr}등급(${u.u}단위)`).join(' · ')}</p>
+${o.skip.length ? `<p style="margin:2px 0 0;color:#64748b;font-size:8.5pt">석차등급이 없어 빠진 과목: ${esc([...new Set(o.skip)].join(', '))}</p>` : ''}`;
 }
 
 /* 학생별 성적 분석 인쇄 */
@@ -3551,6 +3813,7 @@ function gradePrintHtml(name) {
   const d = new Date(), ds = `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}`;
   return `<div class="gr-page"><h2 style="font-size:16pt;font-weight:700;margin:0">${esc(name)} 성적 분석</h2>
 <p style="color:#475569;margin:2px 0 10px">${esc(grades.term || '')} · 과목 ${rows.length}개 · 출력 ${ds}</p>
+${gpaPrintBlock(name)}
 <h3 style="font-weight:700;margin:8px 0 3px">우선 신경 쓸 과목</h3>
 <ol style="margin:0 0 8px 18px;padding:0">${top.map(r => `<li><b>${esc(r.sub)}</b> <b style="color:${LVC[r.lv]}">[${r.lv}]</b> <span style="color:#475569">${esc(r.why.join(' · ') || '특별한 위험 신호 없음')}</span></li>`).join('')}</ol>
 <h3 style="font-weight:700;margin:8px 0 3px">성취도·석차등급</h3>
@@ -3572,27 +3835,65 @@ function printGrades(names) {
 }
 $('gPrint1').addEventListener('click', () => { if (!$('gStu').value) { alert('인쇄할 학생을 먼저 선택해 주세요.'); return; } printGrades([$('gStu').value]); });
 $('gPrintAll').addEventListener('click', () => {
-  const names = grades ? Object.keys(grades.stu).filter(n => !gex.includes(n)) : [];
+  const names = grades ? Object.keys(grades.stu).filter(n => !gex.includes(n) && inCls(curTerm, n)) : [];
   if (names.length > 1 && !confirm(`${names.length}명의 성적 분석을 학생마다 한 쪽씩 인쇄합니다. 계속할까요?`)) return;
   printGrades(names);
 });
 $('gStu').addEventListener('change', renderGrades);
 $('gTerm').addEventListener('change', () => { curTerm = $('gTerm').value; renderGrades(); });
+$('gCls').addEventListener('change', () => { gCls = $('gCls').value; renderGrades(); });
 $('gEx').addEventListener('change', () => { gex = $('gEx').value.split(',').map(s => s.trim()).filter(Boolean); store(GEX_KEY, gex); renderGrades(); });
+/* 파일(시트)에서 학급 찾기 — '1학년 6반', '1-6', 파일 이름 순으로 */
+function findCls(rows, fname) {
+  const txt = rows.slice(0, 12).map(r => r.join(' ')).join(' ') + ' ' + String(fname || '');
+  let m = /(\d)\s*학년\s*(\d{1,2})\s*반/.exec(txt);
+  if (m) return `${+m[1]}-${+m[2]}`;
+  m = /(?:^|[^0-9])(\d)\s*-\s*(\d{1,2})\s*반?(?:[^0-9]|$)/.exec(txt);
+  return m ? `${+m[1]}-${+m[2]}` : '';
+}
+/* 여러 반 파일을 한 학기에 합치기 (같은 이름이 있으면 '이름(1-6)'으로 구분) */
+function gradeMerge(term, g, cls) {
+  const t = gAll[term] || (gAll[term] = { term: term, subjects: [], avg: {}, units: {}, stu: {}, cls: {} });
+  /* 예전에 저장한 자료에는 units·cls 칸이 없어서 먼저 채워 둡니다 */
+  if (!Array.isArray(t.subjects)) t.subjects = [];
+  t.avg = t.avg || {}; t.units = t.units || {}; t.stu = t.stu || {}; t.cls = t.cls || {}; t.sno = t.sno || {};
+  g.subjects.forEach(s => { if (!t.subjects.includes(s)) t.subjects.push(s); });
+  Object.keys(g.avg).forEach(s => { if (t.avg[s] == null) t.avg[s] = g.avg[s]; });
+  Object.keys(g.units || {}).forEach(s => { if (t.units[s] == null) t.units[s] = g.units[s]; });
+  let add = 0, dup = 0;
+  Object.keys(g.stu).forEach(n => {
+    let key = n;
+    /* 같은 이름이 이미 있는데 학급이 다르면(또는 예전 자료라 학급을 모르면) 이름 뒤에 학급을 붙여 구분 */
+    if (t.stu[key] && cls && t.cls[key] !== cls) { key = `${n}(${cls})`; dup++; }
+    if (!t.stu[key]) add++;
+    t.stu[key] = g.stu[n]; if (cls) t.cls[key] = cls;
+    if (g.sno && g.sno[n]) t.sno[key] = g.sno[n];
+  });
+  return { add, dup, cls };
+}
 $('gFile').addEventListener('change', async e => {
-  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+  const fs = [...e.target.files]; e.target.value = ''; if (!fs.length) return;
   if (typeof XLSX === 'undefined') { alert('엑셀 읽기 도구를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'); return; }
-  try {
-    const wb = XLSX.read(await f.arrayBuffer()), sheetRows = n => XLSX.utils.sheet_to_json(wb.Sheets[n], { header: 1, defval: '' });
-    let g = null;
-    for (const n of wb.SheetNames) { g = parseGrades(sheetRows(n)); if (g && Object.keys(g.stu).length) break; g = null; }
-    if (!g) {
-      const first = sheetRows(wb.SheetNames[0]).flat().map(nz).filter(Boolean);
-      alert(first.some(t => t.includes('환산점')) ? '이 파일은 "전과목 성적 일람표(환산점)"입니다. 아직 지원하지 않으니 "학기말 성적 종합일람표"를 올려 주세요.' : '"학기말 성적 종합일람표" 형식이 아닙니다. 해당 파일을 올려 주세요.\n\n(읽은 내용: ' + first.slice(0, 6).join(' / ').slice(0, 120) + ')');
-      return;
-    }
-    curTerm = g.term || '학기 미상'; gAll[curTerm] = g; store(G_KEY, gAll); renderGrades();
-  } catch (err) { alert('불러오기 실패: ' + err.message); }
+  const done = [], fail = [];
+  for (const f of fs) {
+    try {
+      const wb = XLSX.read(await f.arrayBuffer()), sheetRows = n => XLSX.utils.sheet_to_json(wb.Sheets[n], { header: 1, defval: '' });
+      let g = null, rows = null;
+      for (const n of wb.SheetNames) { rows = sheetRows(n); g = parseGrades(rows); if (g && Object.keys(g.stu).length) break; g = null; }
+      if (!g) {
+        const first = sheetRows(wb.SheetNames[0]).flat().map(nz).filter(Boolean);
+        fail.push(`${f.name}: ` + (first.some(t => t.includes('환산점')) ? '전과목 성적 일람표(환산점)은 아직 지원하지 않습니다' : '학기말 성적 종합일람표 형식이 아닙니다'));
+        continue;
+      }
+      const term = g.term || '학기 미상', cls = findCls(rows, f.name);
+      const r = gradeMerge(term, g, cls);
+      curTerm = term;
+      done.push(`${cls || f.name.replace(/\.[^.]+$/, '')} ${Object.keys(g.stu).length}명${r.dup ? ` (같은 이름 ${r.dup}명은 이름 뒤에 반을 붙였습니다)` : ''}`);
+    } catch (err) { fail.push(`${f.name}: ${err.message}`); }
+  }
+  store(G_KEY, gAll); renderGrades();
+  if (fail.length) alert('읽지 못한 파일이 있습니다.\n\n' + fail.join('\n'));
+  if (done.length) $('gInfo').textContent = `불러왔습니다 — ${done.join(' · ')}`;
 });
 
 
@@ -3806,13 +4107,13 @@ function subjGroup(name) {
     if (typeof printReset === 'function') printReset();
     const c = (typeof cfg === 'object' && cfg) || {}, d = new Date();
     const pa = $('printArea');
-    pa.innerHTML = `<h2 style="text-align:center;font-size:15pt;font-weight:700;margin:0 0 2px">지필평가 비교</h2>
-      <p style="text-align:center;font-size:9.5pt;color:#475569;margin:0 0 10px">${esc([c.school || '', c.cls || ''].filter(Boolean).join(' '))} · ${esc($('exStu').value || '반 전체 평균')} · 출력 ${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}</p>
+    pa.innerHTML = `<h2 style="text-align:center;font-size:14pt;font-weight:700;margin:0 0 1mm">지필평가 비교</h2>
+      <p style="text-align:center;font-size:9pt;color:#475569;margin:0 0 4mm">${esc([c.school || '', c.cls || ''].filter(Boolean).join(' '))} · ${esc($('exStu').value || '반 전체 평균')} · 출력 ${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}</p>
       ${$('exOut').innerHTML}
       <p style="font-size:8.5pt;color:#64748b;margin-top:8px">※ 개인정보가 담겨 있으니 보관과 폐기에 유의하세요.</p>`;
-    pa.classList.add('as-print');
-    const pg = document.createElement('style'); pg.dataset.pg = '1'; pg.textContent = '@page{size:A4 landscape;margin:12mm}'; document.head.appendChild(pg);
-    const done = () => { pg.remove(); pa.classList.remove('as-print'); pa.innerHTML = ''; window.removeEventListener('afterprint', done); };
+    pa.classList.add('ex-print');
+    const pg = document.createElement('style'); pg.dataset.pg = '1'; pg.textContent = '@page{size:A4 landscape;margin:10mm}'; document.head.appendChild(pg);
+    const done = () => { pg.remove(); pa.classList.remove('ex-print'); pa.innerHTML = ''; window.removeEventListener('afterprint', done); };
     window.addEventListener('afterprint', done); window.print(); setTimeout(done, 60000);
   });
   $('exXlsx').addEventListener('click', () => {
@@ -4041,6 +4342,356 @@ $('mmForm').addEventListener('submit', e => {
     upDraw();
   }
 })();
+
+/* ===== 📑 종합 통계 엑셀 (한 파일에 모아서) ===== */
+function statXlsx() {
+  if (typeof XLSX === 'undefined') { $('gpaMsg').textContent = '엑셀 도구를 불러오지 못했습니다.'; return; }
+  const wb = XLSX.utils.book_new(), add = (name, aoa, cols) => {
+    if (!aoa || aoa.length < 2) return;
+    const ws = XLSX.utils.aoa_to_sheet(aoa); if (cols) ws['!cols'] = cols;
+    XLSX.utils.book_append_sheet(wb, ws, String(name).replace(/[\[\]*?\/\\:]/g, ' ').slice(0, 31));
+  };
+  const t0 = gpaTerms()[0] || curTerm;
+  /* 1) 학생 종합 */
+  const rows = (typeof gpaRows === 'function') ? gpaRows() : [];
+  const absN = nm => { try { return (window.absStore ? absStore.get() : []).filter(a => a.name === nm).length; } catch (e) { return 0; } };
+  const cnsN = nm => { const s = students.find(x => x.name === nm); return s ? counsels.filter(c => c.sid === s.id).length : 0; };
+  const sum = [['학급', '학번', '이름', '내신 등급', '석차', '반영 단위', '상담 횟수', '결석신고서']];
+  rows.forEach(r => { const st = students.find(x => x.name === r.name); sum.push([clsOf(t0, r.name), st ? st.no : '', r.name, +r.avg.toFixed(2), r.rank, r.unit, cnsN(r.name), absN(r.name)]); });
+  add('학생 종합', sum, [{ wch: 8 }, { wch: 9 }, { wch: 10 }, { wch: 10 }, { wch: 6 }, { wch: 9 }, { wch: 9 }, { wch: 11 }]);
+  /* 2) 반별 요약 */
+  if (rows.length) {
+    const by = {}; rows.forEach(r => { const c = clsOf(t0, r.name) || '미상'; (by[c] = by[c] || []).push(r.avg); });
+    const cl = [['학급', '인원', '평균 등급', '최고', '최저', '1~2등급', '4~5등급']];
+    Object.keys(by).sort().forEach(c => { const v = by[c]; cl.push([c, v.length, +(v.reduce((a, x) => a + x, 0) / v.length).toFixed(2), +Math.min(...v).toFixed(2), +Math.max(...v).toFixed(2), v.filter(x => x <= 2).length, v.filter(x => x >= 4).length]); });
+    add('반별 요약', cl);
+  }
+  /* 3) 과목별 통계 (학기마다) */
+  Object.keys(gAll).sort().forEach(t => {
+    const g = gAll[t]; if (!g) return;
+    const aoa = [['과목', '이수단위', '과목평균', '응시', '원점수 평균', '등급평균', 'A', 'B', 'C', 'D', 'E', '1등급', '2등급', '3등급', '4등급', '5등급']];
+    g.subjects.forEach(sub => {
+      const vs = [], gs = [], ac = { A: 0, B: 0, C: 0, D: 0, E: 0 }, gc = {};
+      Object.keys(g.stu).forEach(n => { if (gex.includes(n)) return; const v = g.stu[n][sub]; if (!v) return; if (v.sc != null) vs.push(v.sc); if (v.gr) { gs.push(v.gr); gc[v.gr] = (gc[v.gr] || 0) + 1; } if (ac[v.ach] != null) ac[v.ach]++; });
+      if (!vs.length && !gs.length) return;
+      aoa.push([sub, unitOf(t, sub), g.avg[sub] == null ? '' : g.avg[sub], vs.length,
+        vs.length ? +(vs.reduce((a, x) => a + x, 0) / vs.length).toFixed(1) : '',
+        gs.length ? +(gs.reduce((a, x) => a + x, 0) / gs.length).toFixed(2) : '',
+        ac.A, ac.B, ac.C, ac.D, ac.E, gc[1] || 0, gc[2] || 0, gc[3] || 0, gc[4] || 0, gc[5] || 0]);
+    });
+    add(`과목통계 ${t.replace('학년도 ', ' ')}`, aoa, [{ wch: 18 }]);
+  });
+  /* 4) 지필평가 회차별 */
+  try {
+    const ks = (typeof order === 'function') ? order() : [];
+    if (ks.length) {
+      const labels = ks.map(k => { const [, t, r] = k.split('-'); return `${t}학기 ${r}회`; });
+      const subs = [...new Set(ks.flatMap(k => ex[k].subjects || []))];
+      const aoa = [['교과', '과목', ...labels, '처음 대비']];
+      subs.forEach(sub => {
+        const v = ks.map(k => avgOf(k, sub));
+        const last = [...v].reverse().find(x => x != null), first = v.find(x => x != null);
+        aoa.push([subjGroup(sub), sub, ...v.map(x => x == null ? '' : +x.toFixed(1)), (last != null && first != null) ? +(last - first).toFixed(1) : '']);
+      });
+      add('지필평가 평균', aoa, [{ wch: 12 }, { wch: 20 }]);
+    }
+  } catch (e) {}
+  /* 5) 결석 현황 */
+  try {
+    const list = window.absStore ? absStore.get() : [];
+    if (list.length) {
+      const aoa = [['학번', '이름', '시작일', '종료일', '일수', '사유', '종류']];
+      list.forEach(a => aoa.push([a.no || '', a.name || '', a.from || '', a.to || '', a.days || '', a.reason || '', a.kind || '']));
+      add('결석신고서', aoa, [{ wch: 9 }, { wch: 10 }, { wch: 12 }, { wch: 12 }, { wch: 6 }, { wch: 24 }, { wch: 10 }]);
+    }
+  } catch (e) {}
+  /* 6) 상담 기록 */
+  if (counsels.length) {
+    const aoa = [['날짜', '학번', '이름', '유형', '영역', '내용']];
+    [...counsels].sort((a, b) => String(a.date).localeCompare(String(b.date))).forEach(c => { const s = students.find(x => x.id === c.sid); aoa.push([c.date, s ? s.no : (c.sno || ''), s ? s.name : (c.sname || ''), c.type || '', c.area || '', c.detail || '']); });
+    add('상담 기록', aoa, [{ wch: 12 }, { wch: 9 }, { wch: 10 }, { wch: 8 }, { wch: 10 }, { wch: 60 }]);
+  }
+  /* 7) 반배치 */
+  try {
+    if (place && place.res) {
+      const aoa = [['배정 반', '학번', '이름', '성별', '점수']];
+      place.stu.filter(s => place.res[s.no] != null).sort((a, b) => place.res[a.no] - place.res[b.no]).forEach(s => aoa.push([place.res[s.no] + 1, s.no, s.name, s.sex || '', s.score == null ? '' : s.score]));
+      add('반배치', aoa);
+    }
+  } catch (e) {}
+  if (!wb.SheetNames.length) { $('gpaMsg').textContent = '저장할 자료가 없습니다. 성적 파일을 먼저 올려 주세요.'; return; }
+  const bl = new Blob([XLSX.write(wb, { type: 'array', bookType: 'xlsx' })], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), a = document.createElement('a');
+  a.href = URL.createObjectURL(bl); a.download = `종합통계_${ymd(now)}.xlsx`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  $('gpaMsg').textContent = `종합 통계를 저장했습니다. (시트 ${wb.SheetNames.length}장: ${wb.SheetNames.join(', ')})`;
+}
+if ($('statXlsx')) $('statXlsx').addEventListener('click', statXlsx);
+
+/* ===== 🧮 반배치 ===== */
+const PL_KEY = 'gm-place';
+let place = (() => { try { const v = JSON.parse(localStorage.getItem(PL_KEY)) || {}; return { n: +v.n || 4, dir: v.dir || 'asc', sex: v.sex !== false, stu: Array.isArray(v.stu) ? v.stu : [], apart: Array.isArray(v.apart) ? v.apart : [], tog: Array.isArray(v.tog) ? v.tog : [], res: v.res && typeof v.res === 'object' ? v.res : null }; } catch (e) { return { n: 4, dir: 'asc', sex: true, stu: [], apart: [], tog: [], res: null }; } })();
+const plSave = () => store(PL_KEY, place);
+const plSex = v => { const t = nz(v); return /^(남|M|m|남자|1)$/.test(t) ? '남' : /^(여|F|f|여자|2)$/.test(t) ? '여' : ''; };
+/* 배치 점수: 작을수록 앞자리가 되도록 통일 */
+const plRank = s => place.dir === 'asc' ? s.score : -s.score;
+function plPairs(list) { return list.map(p => p.map(String)); }
+function plRun() {
+  const st = place.stu.filter(s => !s.out && s.score != null);
+  if (st.length < 2) { $('plMsg').textContent = '명단을 먼저 가져오세요. (점수가 있는 학생이 2명 이상 필요)'; return; }
+  const N = Math.max(2, Math.min(15, +place.n || 4));
+  const ap = plPairs(place.apart), tg = plPairs(place.tog);
+  /* 같은 반에 둘 짝은 한 덩어리로 묶어서 배치 */
+  const gid = {}; st.forEach(s => gid[s.no] = s.no);
+  const find = x => { while (gid[x] !== x) x = gid[x]; return x; };
+  tg.forEach(([a, b]) => { if (gid[a] != null && gid[b] != null) gid[find(a)] = find(b); });
+  const groups = {};
+  st.forEach(s => { const g = find(s.no); (groups[g] = groups[g] || []).push(s); });
+  const units = Object.values(groups).map(g => ({ list: g, score: g.reduce((a, s) => a + plRank(s), 0) / g.length, size: g.length }));
+  units.sort((a, b) => a.score - b.score);
+  /* 뱀 배치(지그재그)로 성적 균등 분배 */
+  const cls = Array.from({ length: N }, () => []);
+  let dir = 1, i = 0;
+  units.forEach(u => {
+    cls[i].push(...u.list);
+    i += dir;
+    if (i >= N) { i = N - 1; dir = -1; } else if (i < 0) { i = 0; dir = 1; }
+  });
+  const avg = c => c.length ? c.reduce((a, s) => a + plRank(s), 0) / c.length : 0;
+  const men = c => c.filter(s => s.sex === '남').length;
+  const bad = () => {                                   /* 떼어 놓을 짝이 같은 반인 경우 수 */
+    let n = 0; ap.forEach(([a, b]) => { const ca = cls.findIndex(c => c.some(s => String(s.no) === a)), cb = cls.findIndex(c => c.some(s => String(s.no) === b)); if (ca >= 0 && ca === cb) n++; });
+    return n;
+  };
+  const cost = () => {
+    const as = cls.map(avg), sp = Math.max(...as) - Math.min(...as);
+    const sz = Math.max(...cls.map(c => c.length)) - Math.min(...cls.map(c => c.length));
+    const mx = place.sex ? Math.max(...cls.map(c => c.length ? men(c) / c.length : 0)) - Math.min(...cls.map(c => c.length ? men(c) / c.length : 0)) : 0;
+    return bad() * 10 + sp * 2 + sz * 1.5 + mx * 2;
+  };
+  const locked = new Set();                            /* 같이 둘 짝은 서로 떨어지지 않게 */
+  tg.forEach(([a, b]) => { locked.add(a); locked.add(b); });
+  let best = cost();
+  for (let t = 0; t < 4000 && best > 0; t++) {          /* 두 학생을 바꿔 보며 더 좋아지면 유지 */
+    const x = Math.floor(Math.random() * N), y = Math.floor(Math.random() * N); if (x === y || !cls[x].length || !cls[y].length) continue;
+    const a = Math.floor(Math.random() * cls[x].length), b = Math.floor(Math.random() * cls[y].length);
+    if (locked.has(String(cls[x][a].no)) || locked.has(String(cls[y][b].no))) continue;
+    const tmp = cls[x][a]; cls[x][a] = cls[y][b]; cls[y][b] = tmp;
+    const c = cost();
+    if (c <= best) best = c; else { const t2 = cls[x][a]; cls[x][a] = cls[y][b]; cls[y][b] = t2; }
+  }
+  cls.forEach(c => c.sort((a, b) => String(a.no).localeCompare(String(b.no), 'ko', { numeric: true })));
+  place.res = {}; cls.forEach((c, k) => c.forEach(s => place.res[s.no] = k));
+  place.n = N; plSave(); plDraw();
+  const left = bad();
+  $('plMsg').textContent = `${st.length}명을 ${N}개 반으로 나눴습니다.` + (left ? ` ⚠️ 떼어 놓지 못한 짝 ${left}쌍 — 반 수를 늘리거나 짝을 줄여 보세요.` : '');
+}
+function plDraw() {
+  const out = $('plOut'), stat = $('plStat'); if (!out) return;
+  $('plN').value = place.n; $('plDir').value = place.dir; $('plSex').checked = !!place.sex;
+  $('plInfo').textContent = place.stu.length ? `명단 ${place.stu.length}명 · 점수 있는 학생 ${place.stu.filter(s => s.score != null).length}명` : '아직 명단이 없습니다.';
+  const chip = (list, box, key) => {
+    box.innerHTML = '';
+    list.forEach((p, i) => {
+      const nm = p.map(no => { const s = place.stu.find(x => String(x.no) === String(no)); return s ? `${no} ${s.name}` : no; }).join(' ↔ ');
+      const c = el('span', 'inline-flex items-center gap-1 text-xs rounded-full border border-slate-300 bg-white px-2 py-0.5');
+      c.append(el('span', '', nm));
+      const d = el('button', 'text-slate-400 hover:text-red-600', '✕'); d.type = 'button';
+      d.onclick = () => { place[key].splice(i, 1); plSave(); plDraw(); };
+      c.appendChild(d); box.appendChild(c);
+    });
+  };
+  chip(place.apart, $('plApList'), 'apart'); chip(place.tog, $('plTgList'), 'tog');
+  plRoster();
+  if (!place.res) { out.innerHTML = '<p class="text-sm text-slate-500 col-span-full">명단을 가져오고 "반 나누기"를 누르면 결과가 여기에 나옵니다.</p>'; stat.classList.add('hidden'); return; }
+  const cls = Array.from({ length: place.n }, () => []);
+  place.stu.forEach(s => { if (s.out) return; const k = place.res[s.no]; if (k != null && cls[k]) cls[k].push(s); });
+  const avg = c => c.length ? c.reduce((a, s) => a + s.score, 0) / c.length : 0;
+  stat.classList.remove('hidden');
+  stat.innerHTML = `<h3 class="font-bold mb-2">반별 요약</h3><div class="overflow-x-auto"><table class="w-full text-sm"><thead class="text-slate-500 text-left"><tr>${['반', '인원', '평균 점수', '남', '여'].map(t => `<th class="px-2 py-1 font-medium">${t}</th>`).join('')}</tr></thead><tbody class="divide-y divide-slate-100">`
+    + cls.map((c, k) => `<tr><td class="px-2 py-1.5 font-bold">${k + 1}반</td><td class="px-2">${c.length}</td><td class="px-2">${avg(c).toFixed(2)}</td><td class="px-2">${c.filter(s => s.sex === '남').length}</td><td class="px-2">${c.filter(s => s.sex === '여').length}</td></tr>`).join('')
+    + `</tbody></table></div>`;
+  out.innerHTML = '';
+  cls.forEach((c, k) => {
+    const d = el('div', 'bg-white rounded-xl border border-slate-200 p-4');
+    d.append(el('div', 'font-bold mb-1', `${k + 1}반 · ${c.length}명 · 평균 ${avg(c).toFixed(2)}`));
+    const ul = el('div', 'space-y-0.5 text-sm');
+    c.forEach(s => {
+      const r = el('div', 'flex items-center gap-2');
+      r.append(el('span', 'text-slate-400 w-12 shrink-0 text-xs', String(s.no)), el('span', 'flex-1', s.name),
+        el('span', 'text-xs text-slate-500', (s.sex || '') + (s.score != null ? ` ${s.score}` : '')));
+      const mv = el('select', 'text-xs border border-slate-300 rounded px-1 py-0.5 bg-white');
+      for (let i = 0; i < place.n; i++) { const o = el('option', '', `${i + 1}반`); o.value = i; mv.appendChild(o); }
+      mv.value = k; mv.title = '다른 반으로 옮기기';
+      mv.onchange = () => { place.res[s.no] = +mv.value; plSave(); plDraw(); };
+      r.appendChild(mv); ul.appendChild(r);
+    });
+    d.appendChild(ul); out.appendChild(d);
+  });
+}
+if ($('plRun')) {
+  const setStu = (list, how) => {
+    const seen = new Set();
+    list.forEach(s => { let k = String(s.no); if (seen.has(k)) k = `${k}(${s.cls || '중복'})`; seen.add(k); s.no = k; });
+    place.stu = list; place.res = null; plSave(); plDraw();
+    $('plMsg').textContent = `${how} ${list.length}명을 불러왔습니다.`;
+  };
+  $('plFromGpa').addEventListener('click', () => {
+    const terms = Object.keys(gAll).sort();
+    if (!terms.length) { $('plMsg').textContent = '성적 자료가 없습니다. 성적관리에서 일람표를 먼저 올려 주세요.'; return; }
+    /* 반배치는 학급 필터·분석 제외와 상관없이 올린 성적의 모든 학생을 가져옵니다 */
+    const keepCls = gCls, keepEx = gex;
+    gCls = ''; gex = [];
+    let list = [];
+    try {
+      const names = new Set();
+      terms.forEach(t => Object.keys((gAll[t] || {}).stu || {}).forEach(n => names.add(n)));
+      const clsKey = no => { const m = /(\d+)학년\s*(\d+)반/.exec((stuInfo(no) || {}).cls || ''); return m ? `${+m[1]}-${+m[2]}` : ''; };
+      list = [...names].map(n => {
+        const base = String(n).replace(/\(\d+-\d+\)$/, '').trim();
+        let cl = ''; terms.forEach(t => { if (!cl) cl = clsOf(t, n); });
+        const same = students.filter(x => x.name === base);
+        /* 학급이 맞는 학생만 연결합니다. 학급을 모를 때만 같은 이름 한 명과 연결 */
+        const st = cl ? same.find(x => clsKey(x.no) === cl) : (same.length === 1 ? same[0] : null);
+        /* 학생 명단에 없으면 일람표의 '반 + 번호'로 학번을 만듭니다 (예: 1-7반 5번 → 1705) */
+        let num = ''; terms.forEach(t => { if (!num) num = ((gAll[t] || {}).sno || {})[n] || ''; });
+        const made = (cl && num) ? `${cl.split('-')[0]}${cl.split('-')[1]}${String(num).padStart(2, '0')}` : '';
+        const g = gpaOf(n);
+        return { no: st ? st.no : (made || (cl ? `${base}(${cl})` : base)), name: base, sex: st ? plSex(st.sex) : '',
+          score: g.avg == null ? null : +g.avg.toFixed(2), cls: cl };
+      }).sort((a, b) => String(a.cls).localeCompare(String(b.cls)) || String(a.no).localeCompare(String(b.no), 'ko', { numeric: true }));
+    } finally { gCls = keepCls; gex = keepEx; }
+    const noScore = list.filter(s => s.score == null).length;
+    setStu(list, '성적 자료에서');
+    place.dir = 'asc'; plSave(); plDraw();
+    if (noScore) $('plMsg').textContent = `${list.length}명을 불러왔습니다. 그중 ${noScore}명은 석차등급이 없어 점수가 비어 있습니다 — 명단에서 직접 넣거나, 비워 두면 배치에서 빠집니다.`;
+  });
+  $('plFromStu').addEventListener('click', () => {
+    if (!students.length) { $('plMsg').textContent = '학생 명단이 없습니다.'; return; }
+    setStu(students.map(s => ({ no: s.no, name: s.name, sex: plSex(s.sex), score: null })), '학생 명단에서');
+  });
+  $('plFile').addEventListener('change', async e => {
+    const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+    if (typeof XLSX === 'undefined') { alert('엑셀 도구를 불러오지 못했습니다.'); return; }
+    try {
+      const wb = XLSX.read(await f.arrayBuffer());
+      for (const sn of wb.SheetNames) {
+        const rows = XLSX.utils.sheet_to_json(wb.Sheets[sn], { header: 1, defval: '' });
+        let hi = -1, c = {};
+        for (let i = 0; i < Math.min(rows.length, 15) && hi < 0; i++) {
+          const r = rows[i].map(nz);
+          const no = r.findIndex(x => /^(학번|번호|No|no)$/.test(x)), nm = r.findIndex(x => /^(이름|성명|학생명)$/.test(x));
+          if (no >= 0 && nm >= 0) { hi = i; c = { no, nm, sex: r.findIndex(x => /^(성별|남녀)$/.test(x)), sc: r.findIndex(x => /(점수|등급|총점|내신|평균)/.test(x)) }; }
+        }
+        if (hi < 0) continue;
+        const list = [];
+        for (let i = hi + 1; i < rows.length; i++) {
+          const no = nz(rows[i][c.no]).replace(/\D/g, ''), nm = nameNorm(rows[i][c.nm]);
+          if (!no || !looksName(nm)) continue;
+          const sc = c.sc >= 0 ? num(rows[i][c.sc]) : null;
+          list.push({ no, name: nm, sex: c.sex >= 0 ? plSex(rows[i][c.sex]) : '', score: sc });
+        }
+        if (list.length) { setStu(list, f.name + ' 에서'); return; }
+      }
+      alert('학번·이름 열을 찾지 못했습니다. 첫 줄에 "학번", "이름"(그리고 성별·점수)이 있는 표로 만들어 주세요.');
+    } catch (err) { alert('불러오기 실패: ' + err.message); }
+  });
+  const addPair = (ka, kb, key) => {
+    const a = $(ka).value.replace(/\D/g, ''), b = $(kb).value.replace(/\D/g, '');
+    if (!a || !b || a === b) { $('plMsg').textContent = '서로 다른 학번 두 개를 적어 주세요.'; return; }
+    if (!place.stu.some(s => String(s.no) === a) || !place.stu.some(s => String(s.no) === b)) { $('plMsg').textContent = '명단에 없는 학번입니다.'; return; }
+    if (place[key].some(p => (String(p[0]) === a && String(p[1]) === b) || (String(p[0]) === b && String(p[1]) === a))) { $('plMsg').textContent = '이미 있는 짝입니다.'; return; }
+    place[key].push([a, b]); plSave(); plDraw(); $(ka).value = ''; $(kb).value = ''; $(ka).focus(); $('plMsg').textContent = '';
+  };
+  $('plApAdd').addEventListener('click', () => addPair('plApA', 'plApB', 'apart'));
+  $('plTgAdd').addEventListener('click', () => addPair('plTgA', 'plTgB', 'tog'));
+  $('plN').addEventListener('change', () => { place.n = Math.max(2, Math.min(15, +$('plN').value || 4)); plSave(); });
+  $('plDir').addEventListener('change', () => { place.dir = $('plDir').value; plSave(); });
+  $('plSex').addEventListener('change', () => { place.sex = $('plSex').checked; plSave(); });
+  $('plRun').addEventListener('click', plRun);
+  $('plClear').addEventListener('click', () => { if (!confirm('반배치 명단과 결과를 모두 지울까요?')) return; place = { n: place.n, dir: place.dir, sex: place.sex, stu: [], apart: [], tog: [], res: null }; plSave(); plDraw(); $('plMsg').textContent = ''; });
+  $('plXlsx').addEventListener('click', () => {
+    if (!place.res) { $('plMsg').textContent = '먼저 반을 나눠 주세요.'; return; }
+    if (typeof XLSX === 'undefined') { $('plMsg').textContent = '엑셀 도구를 불러오지 못했습니다.'; return; }
+    const wb = XLSX.utils.book_new();
+    const aoa = [['배정 반', '학번', '이름', '성별', '점수', '이전 학급']];
+    place.stu.filter(s => s.out || place.res[s.no] != null).sort((a, b) => (a.out ? 99 : place.res[a.no]) - (b.out ? 99 : place.res[b.no]) || String(a.no).localeCompare(String(b.no), 'ko', { numeric: true }))
+      .forEach(s => aoa.push([s.out ? '제외' : place.res[s.no] + 1, s.no, s.name, s.sex || '', s.score == null ? '' : s.score, s.cls || '']));
+    const ws = XLSX.utils.aoa_to_sheet(aoa); ws['!cols'] = [{ wch: 8 }, { wch: 10 }, { wch: 10 }, { wch: 6 }, { wch: 8 }, { wch: 10 }];
+    XLSX.utils.book_append_sheet(wb, ws, '반배치');
+    const cls = Array.from({ length: place.n }, () => []);
+    place.stu.forEach(s => { const k = place.res[s.no]; if (k != null && cls[k]) cls[k].push(s); });
+    const sm = [['반', '인원', '평균 점수', '남', '여']];
+    cls.forEach((c, k) => sm.push([k + 1, c.length, c.length ? +(c.reduce((a, s) => a + s.score, 0) / c.length).toFixed(2) : '', c.filter(s => s.sex === '남').length, c.filter(s => s.sex === '여').length]));
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sm), '반별 요약');
+    const bl = new Blob([XLSX.write(wb, { type: 'array', bookType: 'xlsx' })], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(bl); a.download = `반배치_${ymd(now)}.xlsx`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    $('plMsg').textContent = '엑셀로 저장했습니다.';
+  });
+  $('plPrint').addEventListener('click', () => {
+    if (!place.res) { alert('먼저 반을 나눠 주세요.'); return; }
+    printReset();
+    const cls = Array.from({ length: place.n }, () => []);
+    place.stu.forEach(s => { if (s.out) return; const k = place.res[s.no]; if (k != null && cls[k]) cls[k].push(s); });
+    const outs = place.stu.filter(s => s.out);
+    const pa = $('printArea');
+    pa.innerHTML = `<h2 style="text-align:center;font-size:14pt;font-weight:700;margin:0 0 3mm">반배치 결과 (${place.stu.filter(s => place.res[s.no] != null).length}명 · ${place.n}개 반)</h2>`
+      + `<div style="display:grid;grid-template-columns:repeat(${Math.min(place.n, 5)},1fr);gap:3mm">`
+      + cls.map((c, k) => `<div style="border:0.6pt solid #000;padding:2mm"><div style="font-weight:700;border-bottom:0.6pt solid #000;margin-bottom:1mm">${k + 1}반 (${c.length}명)</div>`
+        + c.map(s => `<div style="font-size:9pt">${esc(String(s.no))} ${esc(s.name)}${s.sex ? ' ' + s.sex : ''}</div>`).join('') + `</div>`).join('')
+      + `</div>${outs.length ? `<p style="font-size:9pt;margin-top:3mm"><b>배치 제외</b> ${outs.map(s => esc(`${s.no} ${s.name}`)).join(' · ')}</p>` : ''}<p style="font-size:8.5pt;color:#64748b;margin-top:4mm">※ 개인정보가 담긴 자료입니다. 보관·폐기에 유의하세요.</p>`;
+    pa.classList.add('ex-print');
+    const pg = document.createElement('style'); pg.dataset.pg = '1'; pg.textContent = '@page{size:A4 landscape;margin:10mm}'; document.head.appendChild(pg);
+    const done = () => { pg.remove(); pa.classList.remove('ex-print'); pa.innerHTML = ''; window.removeEventListener('afterprint', done); };
+    window.addEventListener('afterprint', done); window.print(); setTimeout(done, 60000);
+  });
+  plDraw();
+}
+
+/* 불러온 명단을 표로 보여 주고 바로 고치기 */
+function plRoster() {
+  const box = $('plRoster'); if (!box) return;
+  const n = place.stu.length, ns = place.stu.filter(s => !s.out && s.score == null).length, no = place.stu.filter(s => s.out).length;
+  $('plCount').textContent = n ? `${n}명${no ? ` · 배치 제외 ${no}명` : ''}${ns ? ` · 점수 없음 ${ns}명` : ''}` : '';
+  if (!n) { box.innerHTML = '<p class="text-sm text-slate-500 py-3">위에서 명단을 가져오거나, 오른쪽 위에서 직접 추가하세요.</p>'; return; }
+  box.innerHTML = `<table class="w-full text-sm"><thead class="text-slate-500 text-left sticky top-0 bg-white"><tr>${['배치', '이전 반', '학번', '이름', '성별', '점수', ''].map(t => `<th class="px-2 py-1 font-medium">${t}</th>`).join('')}</tr></thead><tbody id="plRows" class="divide-y divide-slate-100"></tbody></table>`;
+  const tb = $('plRows');
+  place.stu.forEach((s, i) => {
+    const tr = document.createElement('tr');
+    if (s.out) tr.className = 'opacity-50 bg-slate-50';
+    const td0 = document.createElement('td'); td0.className = 'px-2 py-1';
+    const ck = el('input'); ck.type = 'checkbox'; ck.className = 'w-4 h-4'; ck.checked = !s.out; ck.title = '체크를 끄면 반배치에서 빠집니다 (명단에는 남습니다)';
+    ck.onchange = () => { s.out = !ck.checked; if (s.out && place.res) delete place.res[s.no]; plSave(); plDraw(); };
+    td0.appendChild(ck); tr.appendChild(td0);
+    tr.insertAdjacentHTML('beforeend', `<td class="px-2 py-1 text-slate-500 text-xs">${esc(s.cls || '-')}</td><td class="px-2 text-xs">${esc(String(s.no))}</td><td class="px-2 font-medium">${esc(s.name)}</td>`);
+    const td1 = document.createElement('td'); td1.className = 'px-2';
+    const sx = el('select', 'border border-slate-300 rounded px-1 py-0.5 text-xs bg-white');
+    ['', '남', '여'].forEach(v => { const o = el('option', '', v || '-'); o.value = v; sx.appendChild(o); });
+    sx.value = s.sex || ''; sx.onchange = () => { s.sex = sx.value; plSave(); };
+    td1.appendChild(sx);
+    const td2 = document.createElement('td'); td2.className = 'px-2';
+    const sc = el('input'); sc.type = 'number'; sc.step = '0.01'; sc.className = 'w-20 border border-slate-300 rounded px-1 py-0.5 text-xs text-right' + (s.score == null ? ' border-amber-400 bg-amber-50' : '');
+    sc.value = s.score == null ? '' : s.score;
+    sc.onchange = () => { const v = sc.value.trim(); s.score = v === '' ? null : +v; plSave(); plRoster(); };
+    td2.appendChild(sc);
+    const td3 = document.createElement('td'); td3.className = 'px-2 text-right';
+    const rm = el('button', 'text-slate-400 hover:text-red-600 text-xs', '✕'); rm.type = 'button'; rm.title = '명단에서 빼기';
+    rm.onclick = () => { place.stu.splice(i, 1); if (place.res) delete place.res[s.no]; plSave(); plDraw(); };
+    td3.appendChild(rm);
+    tr.append(td1, td2, td3); tb.appendChild(tr);
+  });
+}
+if ($('plAdd')) {
+  const addOne = () => {
+    const no = $('plAddNo').value.trim(), nm = nameNorm($('plAddNm').value), sc = $('plAddSc').value.trim();
+    if (!no || !nm) { $('plMsg').textContent = '학번과 이름을 적어 주세요.'; return; }
+    if (place.stu.some(s => String(s.no) === no)) { $('plMsg').textContent = `${no}번은 이미 명단에 있습니다.`; return; }
+    place.stu.push({ no: no, name: nm, sex: '', score: sc === '' ? null : +sc, cls: '', out: false });
+    place.res = null; plSave(); plDraw();
+    $('plAddNo').value = ''; $('plAddNm').value = ''; $('plAddSc').value = ''; $('plAddNo').focus();
+    $('plMsg').textContent = `${nm} 추가 (${place.stu.length}명)`;
+  };
+  $('plAdd').addEventListener('click', addOne);
+  ['plAddNo', 'plAddNm', 'plAddSc'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addOne(); } }));
+}
 
 /* ===== 📌 떠 있는 할 일 메모 창 ===== */
 /* 아래 mw 변수보다 먼저 실행되는 코드에서도 안전하게 읽기 위한 함수 */
@@ -4724,6 +5375,18 @@ function recBatchDraw() {
 
 if ($('recBatchMake')) {
   $('recBatchMake').addEventListener('click', () => recBatchDraw());
+  $('recBatchDel').addEventListener('click', () => {
+    const all = recBatchItems(true);
+    if (!all.length) { $('recBatchMsg').textContent = '지울 메모가 없습니다.'; return; }
+    const wh = `${recType}${hasSubT() && recSub ? '·' + recSub : ''}`;
+    if (!confirm(`${wh} 요청문 목록의 관찰 메모 ${all.length}명분을 모두 지울까요?\n되돌릴 수 없습니다. (이미 작성한 기록 본문은 그대로 남습니다)`)) return;
+    if (!confirm(`한 번 더 확인합니다. ${all.length}명분 관찰 메모를 정말 지울까요?`)) return;
+    all.forEach(it => { delete recMemo[recKey(it.s.id)]; recBatchOff.delete(recBatchId(it.s)); });
+    saveRecMemo(); recBatchSave();
+    if (recStu && !$('recText').disabled) { $('recAiMemo').value = ''; $('recAiCtx').value = ''; if (window.chMark) chMark(); }
+    renderRec();
+    $('recBatchMsg').textContent = `${wh} 관찰 메모 ${all.length}명분을 지웠습니다.`;
+  });
   $('recBatchAll').addEventListener('click', () => { recBatchItems(true).forEach(it => recBatchOff.delete(recBatchId(it.s))); recBatchSave(); recBatchDraw(); });
   $('recBatchNone').addEventListener('click', () => { recBatchItems(true).forEach(it => recBatchOff.add(recBatchId(it.s))); recBatchSave(); recBatchDraw(); });
   $('recBatchCopy').addEventListener('click', async () => {
@@ -6072,7 +6735,7 @@ setTimeout(() => { snapTake('열 때'); snapDraw(); }, 1500);
 
 /* ===== 추가 잠금 (민감한 탭) ===== */
 const PW2_KEY = 'gm-pw2';
-const LOCKABLE = [['staff', '📇 교직원 연락처'], ['records', '🎒 학생 기록 관리'], ['scho', '🎓 추천서 작성'], ['counsel', '💬 상담 관리자'], ['gicho', '🌱 기초조사서']];
+const LOCKABLE = [['staff', '📇 교직원 연락처'], ['records', '🎒 학생 기록 관리'], ['scho', '🎓 추천서 작성'], ['counsel', '💬 상담 관리자'], ['gicho', '🌱 기초조사서'], ['place', '🧮 반배치']];
 let pw2 = (() => { try { const v = JSON.parse(localStorage.getItem(PW2_KEY)); return v && v.hash ? v : null; } catch (e) { return null; } })();
 let pw2Open = false, pw2After = null, pw2Fail = 0;
 const pw2Save = () => { try { pw2 ? localStorage.setItem(PW2_KEY, JSON.stringify(pw2)) : localStorage.removeItem(PW2_KEY); } catch (e) {} };
@@ -7151,11 +7814,13 @@ const SYNC_KEYS = [
   ['gm-recs', '작성한 기록(세특·행특 등)', () => recs, v => { recs = v && typeof v === 'object' && !Array.isArray(v) ? v : {}; }, 'rec'],
   ['gm-subj', '과목 목록', () => subjList, v => { subjList = Array.isArray(v) ? v : []; }, 'rec'],
   ['gm-clubs', '동아리 목록', () => clubList, v => { clubList = Array.isArray(v) ? v : []; }, 'rec'],
+  ['gm-grade-units', '과목 이수단위(내신 계산)', () => gUnits, v => { gUnits = v && typeof v === 'object' ? v : {}; }, 'gr'],
   ['gm-grades-all', '성적 분석 자료', () => gAll, v => { gAll = v && typeof v === 'object' && !Array.isArray(v) ? v : {}; curTerm = Object.keys(gAll).sort().pop() || ''; grades = gAll[curTerm] || null; }, 'gr'],
   ['gm-exams', '지필평가 회차별 성적', () => (window.examGet ? examGet() : {}), v => { if (window.examSet) examSet(v); }, 'gr'],
   ['gm-gex', '성적 제외 학생', () => gex, v => { gex = Array.isArray(v) ? v : []; $('gEx').value = gex.join(', '); }, 'gr'],
   ['gm-seat', '자리 배치', () => seat, v => { seat = normSeat(v); }, 'stu'],
   ['gm-abs-list', '결석신고서 저장 목록', () => (window.absStore ? absStore.get() : []), v => { if (window.absStore) absStore.set(v); }, 'stu'],
+  ['gm-place', '반배치', () => place, v => { if (v && typeof v === 'object') { place = { n: +v.n || 4, dir: v.dir || 'asc', sex: v.sex !== false, stu: Array.isArray(v.stu) ? v.stu : [], apart: v.apart || [], tog: v.tog || [], res: v.res || null }; if (window.plDraw) plDraw(); } }, 'stu'],
   ['gm-seat-roster', '자리 배치 명단', () => seatRoster, v => { seatRoster = Array.isArray(v) ? v : []; }, 'stu'],
   ['gm-staff', '교직원 연락처', () => (window.staffGet ? staffGet() : []), v => { if (window.staffSet) staffSet(v); }, 'stf'],
   ['gm-budget', '예산', () => bg, v => { bg = normBg(v); }, 'bg']
